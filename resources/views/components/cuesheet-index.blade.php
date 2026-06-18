@@ -70,7 +70,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component
 <div class="min-h-screen px-4 py-8">
     <div class="mx-auto max-w-lg">
         <div class="mb-6 flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-gray-800">Cue Sheet</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Partial Cue Sheet</h1>
             <a href="{{ route('home') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Back</a>
         </div>
 
@@ -87,8 +87,45 @@ new #[Title('Your Ride Cuesheet')] class extends Component
             </div>
         @endif --}}
 
-        <div class="grid gap-4">
+        {{-- <div class="grid gap-4"> --}}
+
+
+        <div class="relative overflow-hidden shadow-md ">
+            <table class="table-auto w-full text-left">
+                <thead class="uppercase bg-[#2455b6] text-[#ffffff]" style="background-color: rgb(36, 85, 182); color: rgb(255, 255, 255);">
+                    <tr>
+                        <!--[-->
+                        <td class="py-1  text-center font-bold p-4">Turn</td>
+                        <td class="py-1  text-center font-bold p-4">Description</td>
+                        <td class="py-1  text-center font-bold p-4">Distance</td>
+                        <!--]-->
+                    </tr>
+                </thead>
+                <tbody class="bg-white text-gray-500 bg-[#000000] text-[#ececec]" style="background-color: rgb(0, 0, 0); color: rgb(236, 236, 236);">
+                    <!--[-->
             @foreach ($this->cuesheets as $index => $cuesheet)
+
+
+            @if($loop->iteration % 2 == 0)
+        <!--[-->
+            <tr class=" py-2" style="">
+                <!--[-->
+                <td class=" py-2 border  border-gray-300   p-4">{{ $cuesheet->turn }}</td>
+                <td class=" py-2 border  border-gray-300   p-4">{{ $cuesheet->notes }}</td>
+                <td class=" py-2 border  border-gray-300   p-4">{{ $cuesheet->distance }}</td>
+                <!--]-->
+            </tr>
+    @else
+        <tr class=" py-2" style="background-color: rgb(18, 79, 141); color: rgb(243, 243, 243);">
+                <!--[-->
+                <td class=" py-2 border  border-gray-300   p-4">{{ $cuesheet->turn }}</td>
+                <td class=" py-2 border  border-gray-300   p-4">{{ $cuesheet->notes }}</td>
+                <td class=" py-2 border  border-gray-300   p-4">{{ $cuesheet->distance }}</td>
+                <!--]-->
+            </tr>
+    @endif
+             
+            
                 {{-- <a
                     href="{{ route('movies.show', $movie->slug) }}"
                     wire:key="movie-{{ $movie->id }}"
@@ -103,11 +140,11 @@ new #[Title('Your Ride Cuesheet')] class extends Component
                     class="block rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-5 transition-all duration-200 hover:border-ocean-300 hover:shadow-lg"
                     style="animation: fade-in-up 0.4s ease-out {{ $index * 0.06 }}s both"
                 > --}}
-                    <div class="flex items-start justify-between">
+                    {{-- <div class="flex items-start justify-between">
                         <div>
                             <h2 class="text-lg font-bold text-gray-800">{{ $cuesheet->turn }}</h2>
                             <p class="mt-1 text-sm text-gray-500">{{ $cuesheet->notes }} &middot; {{ $cuesheet->distance }} questions</p>
-                        </div>
+                        </div> --}}
 
                         {{-- @if ($this->stats->has($movie->id))
                             <div class="text-right text-sm">
@@ -117,7 +154,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component
                         @else
                             <span class="rounded-full bg-ocean-100 px-3 py-1 text-xs font-medium text-ocean-500">New</span>
                         @endif --}}
-                    </div>
+                    {{-- </div> --}}
 
                     {{-- @if ($this->stats->has($movie->id))
                         <div class="mt-3">
@@ -132,8 +169,12 @@ new #[Title('Your Ride Cuesheet')] class extends Component
                             </p>
                         </div>
                     @endif --}}
-                </a>
+                {{-- </a> --}}
             @endforeach
+
+              </tbody>
+    </table>
+</div>
         </div>
     </div>
 </div>
