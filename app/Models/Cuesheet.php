@@ -26,6 +26,7 @@ class Cuesheet extends Model
     protected function casts(): array
     {
         return [
+                'ride' => 'string',
             'turn' => 'string',
             'notes' => 'string',
             'distance' => 'float',

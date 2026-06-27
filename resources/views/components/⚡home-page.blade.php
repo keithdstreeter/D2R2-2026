@@ -111,6 +111,11 @@ new #[Title('Quiz App')] class extends Component
             <a href="{{ route('cuesheet') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
                 Cue Sheet
             </a>
+
+            <a href="{{ route('image') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
+                Display Image
+            </a>
+
             <span class="w-1 h-1 rounded-full bg-gray-300"></span>
             <a href="{{ route('settings') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
                 Settings

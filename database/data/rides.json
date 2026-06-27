@@ -1,0 +1,74 @@
+[
+  {
+    "ride": "180k",
+    "ride_desc": "D2R2 180k Classic 2026",
+    "distance_k": "180",
+    "distance_miles": "111.84678"
+  },
+  {
+    "ride": "140k",
+    "ride_desc": "D2R2 140k 2026",
+    "distance_k": "140",
+    "distance_miles": "86.99194"
+  },
+  {
+    "ride": "110k CS",
+    "ride_desc": "D2R2 110k with Crowningshield Lunch 2026",
+    "distance_k": "110",
+    "distance_miles": "68.35081"
+  },
+  {
+    "ride": "110k 8A",
+    "ride_desc": "D2R2 110k 8A Cutoff 2026",
+    "distance_k": "110",
+    "distance_miles": "68.35081"
+  },
+  {
+    "ride": "100k",
+    "ride_desc": "D2R2 100k 2026",
+    "distance_k": "100",
+    "distance_miles": "62.1371"
+  },
+  {
+    "ride": "90k",
+    "ride_desc": "D2R2 90k to Edge Hill 2026",
+    "distance_k": "90",
+    "distance_miles": "55.92339"
+  },
+  {
+    "ride": "80k",
+    "ride_desc": "D2R2 80k P2P Florida to Greenfield 2026",
+    "distance_k": "80",
+    "distance_miles": "49.70968"
+  },
+  {
+    "ride": "GRR",
+    "ride_desc": "D2R2 Green River Ride 2026",
+    "distance_k": "57.614372",
+    "distance_miles": "35.8"
+  },
+  {
+    "ride": "GRR+12.7",
+    "ride_desc": "D2R2 Green River Ride 2026 Add 12.7 mi. 2026",
+    "distance_k": "78.05299",
+    "distance_miles": "48.5"
+  },
+  {
+    "ride": "GRR+7.7",
+    "ride_desc": "D2R2 Green River Ride 2026 Add 7.7 mi 2026",
+    "distance_k": "70.00629",
+    "distance_miles": "43.5"
+  },
+  {
+    "ride": "Family-GRR",
+    "ride_desc": "D2R2 Family Ride to end of Green River Rd.",
+    "distance_k": "26.55411",
+    "distance_miles": "16.5"
+  },
+  {
+    "ride": "Family-CB",
+    "ride_desc": "D2R2 Family Ride to Covered Bridge 2026",
+    "distance_k": "19.633948",
+    "distance_miles": "12.2"
+  }
+]

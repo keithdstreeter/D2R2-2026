@@ -69,4 +69,23 @@ class ContentController extends Controller
             'timestamp' => now()->toIso8601String(),
         ]);
     }
+
+    public function displayImage(Request $request): string
+    {
+        $imagePath = public_path('icon.png');
+
+        if (!file_exists($imagePath)) {
+            return response()->json(['error' => 'Image not found'], 404);
+        }
+
+        return response()->file($imagePath);
+
+        // $imageData = base64_encode(file_get_contents($imagePath));
+        // $mimeType = mime_content_type($imagePath);
+
+    //     return response()->json([
+    //         'image' => 'data:' . $mimeType . ';base64,' . $imageData,
+    //     ]);
+    // }
+    }
 }

@@ -16,6 +16,9 @@ return Redirect::to($url);
 
 })->name('welcome2');
 
+// IMAGE SHOW 
+Route::livewire('/image', 'image')->name('image');
+
 // Route::get('/welcome2', function () {
 //     return redirect()->away(config('services.api.url') . '/welcome2');
 // });
@@ -42,4 +45,6 @@ Route::middleware(Authenticated::class)->group(function () {
     Route::livewire('/leaderboard', 'leaderboard')->name('leaderboard');
 
     Route::livewire('/cuesheet', 'cuesheet-index')->name('cuesheet');
+
+    
 });
