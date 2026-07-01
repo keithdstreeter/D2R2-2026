@@ -1,0 +1,626 @@
+[
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Bear LEFT toward exit.",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Fairview Street",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Laurel Street",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto River Street",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Next RIGHT onto Woodard Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Colrain St",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "LEFT just after bridge onto Riverside Dr",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Bear LEFT onto bike path",
+    "ride": "140k"
+  },
+  {
+    "distance": "1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Nash's Mill Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Colrain Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Slight RIGHT onto Plain Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.6",
+    "turn": "Straight",
+    "notes": "Continue onto Green River Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Right",
+    "notes": "Slight right onto Eunice Williams Dr",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Leyden Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Straight",
+    "notes": "Continue onto Greenfield Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Left",
+    "notes": "Turn LEFT onto S County Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Right",
+    "notes": "RIGHT onto Cobbs Rd (no sign, just big maple trees)",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "STRAIGHT (more of a zig-zag) across Greenfield Rd onto South Schoolhouse Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Left",
+    "notes": "Bend LEFT onto Glen Rd (other way is dead end)",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Right",
+    "notes": "Bend RIGHT, still Glen Rd (no sign--big white house on left. other way is dead end)",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Right",
+    "notes": "Bend RIGHT, still Glen Rd (other way is dead end)",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Paved T intersection, LEFT onto Eden Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Straight",
+    "notes": "Continue STRAIGHT onto dirt, East Hill Rd - great views along here",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Left",
+    "notes": "Stay to the left fork, still East Hill Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Danger",
+    "notes": "CAUTION! Really nasty, unmaintained downhill. Consider walking in places.",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Back to civilization - RIGHT onto Simon Keets Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Immediate LEFT onto Keets Brook Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "1",
+    "turn": "Left",
+    "notes": "Pavement. LEFT onto Weatherhead Hollow Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "RIGHT onto Packer(s) Corner(s) Rd - pretty hard 1-mile climb",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Right",
+    "notes": "RIGHT onto South Belden Hill Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Straight",
+    "notes": "Continue STRAIGHT past red barns onto unmaintained road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Left",
+    "notes": "Stop sign at bottom of fast hill, LEFT onto Sweet Pond Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "2.8",
+    "turn": "Left",
+    "notes": "Back to pavement; immediate LEFT onto (Jacksonville) Stage Rd. Note that the 115K route diverges. Don't follow riders straight onto Guilford Center Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "2.4",
+    "turn": "Straight",
+    "notes": "Straight across covered bridge at bottom of descent, rest stop on right.",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Food",
+    "notes": "SNACKS & WATER: Green River Covered Bridge. Open 10:30-16:00. Park bikes off road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Covered bridge",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Straight",
+    "notes": "Head back through covered bridge",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "LEFT on Green River Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Green River Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Hinesburg Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "6",
+    "turn": "Straight",
+    "notes": "Continue onto Hatch School Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Hatch School Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Hatch School Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Gates Pond Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Lake Hill Lane",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lake Hill Lane",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Parsons Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Stonehouse Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Straight",
+    "notes": "Road becomes rough and rocky, but not for long",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Straight",
+    "notes": "Pass through rocks at summit",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Vermont Route 100, VT 100",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Fuller Hill Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Fuller Hill Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto East Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Faulkner Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Faulkner Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Maple Drive",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Sadawga Lake Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Kentfield Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Burrington Hill Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Burrington Hill Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.7",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Cyrus Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Saddada Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "3.1",
+    "turn": "Straight",
+    "notes": "Continue onto MA-8A S",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto W Branch Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "U Turn",
+    "notes": "After lunch return to route the way you arrived",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Crowningshield lunch",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto MA-8A S",
+    "ride": "140k"
+  },
+  {
+    "distance": "7.9",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Main Street, MA 2, MA 8A. Caution: busy road, ride single file",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto West Hawley Road, MA 8A",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto South River Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto East Hawley Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Left",
+    "notes": "Turn LEFT onto East Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto East Road. begin rough 3 mile climb",
+    "ride": "140k"
+  },
+  {
+    "distance": "2.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Forget Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Pond Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Buckland Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Plainfield Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Ashfield Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "4.1",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Hawley Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Suburban Drive, MA 112, MA 116",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Steady Lane Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Water",
+    "notes": "Water and snacks at Steady Lane Farm",
+    "ride": "140k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Steady Lane",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Norton Hill Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Main Street, MA 116",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Baptist Corner Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Straight",
+    "notes": "Continue onto Baptist Corner Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Bellus Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Straight",
+    "notes": "Continue onto Beldingville Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Straight",
+    "notes": "Continue onto Beldingville Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Left",
+    "notes": "Keep LEFT onto Pine Hill Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Pine Hill Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Shelburne Falls Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Newhall Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Elmer Rd",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Bardwells Ferry Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "2.9",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Taylor Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Left",
+    "notes": "Keep LEFT onto Taylor Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto South Shelburne Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Old Albany Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "2.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Upper Road",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Wisdom Way",
+    "ride": "140k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp left onto Fairview Street",
+    "ride": "140k"
+  }
+]

@@ -1,0 +1,914 @@
+[
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Turn LEFT out of fairgrounds onto Fairview St.",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Wisdom Way",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lower Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 3.4,
+    "turn": "Slight Right",
+    "notes": "Keep right on Lower Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Left",
+    "notes": "Turn LEFT onto Upper Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Stillwater Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.4,
+    "turn": "Right",
+    "notes": "RIGHT onto Hoosac Rd (which soon turns to dirt)",
+    "ride": "180k"
+  },
+  {
+    "distance": 2,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Mathews Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Right",
+    "notes": "RIGHT onto Boyden Rd (tiny driveway-sized road; the sign is 100 ft. past turn)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Graves Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.8,
+    "turn": "Right",
+    "notes": "T-intersection RIGHT onto Reeds Bridge Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.4,
+    "turn": "Straight",
+    "notes": "STRAIGHT across onto Elmer Rd (after little bridge)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Left",
+    "notes": "LEFT onto Newhall Rd (at top of steep little hill)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Shelburne Falls Rd (climb)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.3,
+    "turn": "Left",
+    "notes": "LEFT onto Pine Hill Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Left",
+    "notes": "Bear left to stay on Pine Hill Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.4,
+    "turn": "Left",
+    "notes": "LEFT to stay on Pine Hill Rd (dirt)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Straight",
+    "notes": "Continue straight, ignore road closure sign",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.3,
+    "turn": "Danger",
+    "notes": "Pavement: CAUTION: entering \"The Bobsled Run\" (steep twisty descent near bottom)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Right",
+    "notes": "RIGHT at little grass triangle onto Upper Baptist Hill Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Right",
+    "notes": "RIGHT onto Ives Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Left",
+    "notes": "Left to stay on Ives Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Rt.116",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Left",
+    "notes": "LEFT onto Burkeville Covered Bridge",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Slight Right",
+    "notes": "Stay right off bridge on Main Poland Rd (steep climb begins soon)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.6,
+    "turn": "Danger",
+    "notes": "Summit, through cut in bedrock, \"Poland Gate\". CAUTION: the downhill is often rocky washboard.",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.2,
+    "turn": "Right",
+    "notes": "RIGHT onto North Poland Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Left",
+    "notes": "LEFT onto Bullitt Rd, dirt (no sign, just past driveway #536). CAUTION: possibly washout.",
+    "ride": "180k"
+  },
+  {
+    "distance": 1,
+    "turn": "Straight",
+    "notes": "STRAIGHT across Rt 116 onto Murray Rd (little dirt lane)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Left",
+    "notes": "LEFT at end of lane onto Hill Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Left",
+    "notes": "Fork left onto Burton Hill Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Straight",
+    "notes": "STRAIGHT across Rt 116 onto Creamery Rd (through grassy triangle)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.8,
+    "turn": "Left",
+    "notes": "T-intersection, LEFT onto Norton Hill Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Right",
+    "notes": "Quick fork RIGHT at triangle onto Steady Lane (sign only for Norton Hill)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Water",
+    "notes": "Snacks & water at Steady Lane Farm on left, Open 7:00-10:00 Park bikes off road!",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Straight",
+    "notes": "STRAIGHT across Rt 112 onto Lilliput Rd, dirt (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Bug Hill Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 2.1,
+    "turn": "Straight",
+    "notes": "Continue straight: CAUTION: this intersection has no stop signs in any direction",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Right",
+    "notes": "RIGHT onto Old Stage Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.3,
+    "turn": "Left",
+    "notes": "Bear LEFT onto Hawley Rd (becomes Ashfield Rd 200 yds later at Hawley town line)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.2,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Plainfield Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Right",
+    "notes": "Right onto Buckland Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Left",
+    "notes": "LEFT onto Pond Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Left",
+    "notes": "T-intersection, LEFT onto Forget Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.4,
+    "turn": "Right",
+    "notes": "Heads up! RIGHT at phone pole onto little jeep track - this is actually East Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Left",
+    "notes": "T-intersection, left to stay on East Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Danger",
+    "notes": "CAUTION: steep, narrow downhill with patches of rutted, stony, washboard and surprise traffic. Don't leave your water bottles here.",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.8,
+    "turn": "Sharp Right",
+    "notes": "Hard RIGHT downhill turn after little bridge, still East Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Right",
+    "notes": "Merge right onto East Hawley Rd. Pavement resumes. CAUTION: cars from left. No sign.",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Left",
+    "notes": "T-intersection, LEFT onto South River Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Right",
+    "notes": "RIGHT, cross RR tracks onto Rt 8A",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Right",
+    "notes": "RIGHT onto Route 2; please stay single file for next mile through town",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Left",
+    "notes": "LEFT Route 8A - note Neighbor's Store before corner",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Left",
+    "notes": "Bear left onto Bissell Covered Bridge to stay on Rt 8A",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Right",
+    "notes": "RIGHT onto Mountain Rd; 15% climb next 3/4 mile",
+    "ride": "180k"
+  },
+  {
+    "distance": 1,
+    "turn": "Left",
+    "notes": "LEFT onto South Heath Rd; paved, super steep, becomes South Rd at Heath town line",
+    "ride": "180k"
+  },
+  {
+    "distance": 1,
+    "turn": "Left",
+    "notes": "T-intersection: LEFT onto Town Farm Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.5,
+    "turn": "Left",
+    "notes": "4-way intersection: LEFT on South Rd across from Bassett Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Straight",
+    "notes": "Fork STRAIGHT (or LEFT) onto Royer Rd (dirt)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Straight",
+    "notes": "Continue straight - road becomes gnarly",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Water",
+    "notes": "Snacks & water: 60 Royer Rd, Heath. Open 8:15-12:00",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.5,
+    "turn": "Right",
+    "notes": "T-intersection at bottom of descent, RIGHT onto Dell Rd (pavement, no sign) which becomes W. Main St",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Straight",
+    "notes": "Straight through center of town",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Straight",
+    "notes": "Continue STRAIGHT onto E. Main St",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Straight",
+    "notes": "Stay STRAIGHT (or LEFT) onto Taylor Brook Rd (dirt)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Straight",
+    "notes": "Straight through 4-way intersection; note pond on left 200 yds later",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.3,
+    "turn": "Straight",
+    "notes": "Road turns to pavement and becomes Heath Rd at Colrain town line",
+    "ride": "180k"
+  },
+  {
+    "distance": 1,
+    "turn": "Left",
+    "notes": "LEFT onto Maxam Rd - don't miss this turn",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.4,
+    "turn": "Left",
+    "notes": "Stay to the left (still Maxam Rd)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Left",
+    "notes": "T-intersection; LEFT onto Adamsville Rd (catch your breath)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Left",
+    "notes": "Slight LEFT onto Archambo Rd (becomes extremely steep)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto White Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Adamsville Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Left",
+    "notes": "Immediate LEFT onto Hillman Rd. (dirt, no sign). Hard climb, arguably the hardest climb on the course",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.6,
+    "turn": "Left",
+    "notes": "T-intersection, LEFT onto Wilson Hill Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.8,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Christian Hill Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Right",
+    "notes": "Downhill T-intersection, RIGHT onto Thompson Rd (long downhill)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.9,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Route 112 S (Jacksonville Rd)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.2,
+    "turn": "Left",
+    "notes": "LEFT onto Franklin Hill Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Left",
+    "notes": "Left after bridge onto tiny dirt lane (still Franklin Hill Rd)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.3,
+    "turn": "Water",
+    "notes": "Franklin Hill water on right",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Water",
+    "notes": "Water stop by side of road on right",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Left",
+    "notes": "Bear LEFT past rock walls (straight ahead is a jeep track)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.8,
+    "turn": "Left",
+    "notes": "Downhill T-intersection, LEFT onto Amidon Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.4,
+    "turn": "Straight",
+    "notes": "Stay straight, note sign for Amidon Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.4,
+    "turn": "Left",
+    "notes": "LEFT onto Jacksonville Stage Rd. Sign is hard to see, but visible looking back",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.5,
+    "turn": "Left",
+    "notes": "Stay left, still on Jacksonville Stage Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Right",
+    "notes": "RIGHT onto Old County Rd. Note that the routes diverge. Don't follow riders straight.",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Right",
+    "notes": "RIGHT onto Deer Park Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Danger",
+    "notes": "CAUTION Freshly graded surface for next 4.1 miles. Reduce speed on downhills and in corners.",
+    "ride": "180k"
+  },
+  {
+    "distance": 2.7,
+    "turn": "Right",
+    "notes": "Bear right at bottom of hill, still on Deer Park Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.1,
+    "turn": "Left",
+    "notes": "Stay left (at Josh Rd), still on Deer Park Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Danger",
+    "notes": "CAUTION: Hard left bend onto wooden bridge",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Hinesburg / Green River Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.1,
+    "turn": "Right",
+    "notes": "RIGHT onto Green River Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.9,
+    "turn": "Right",
+    "notes": "Slight right to stay on Green River Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Right",
+    "notes": "Turn right onto Jacksonville Stage Rd/​Stage Rd and head through covered bridge",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Food",
+    "notes": "LUNCH at Green River Crib Dam on right. After lunch go back through covered bridge, continue straight on Jacksonville Stage Rd.",
+    "ride": "180k"
+  },
+  {
+    "distance": 2.5,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Sweet Pond Rd (intersection is paved)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.2,
+    "turn": "Right",
+    "notes": "Sweet Pond Rd bends right up sharp hill (at Potash Rd)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Left",
+    "notes": "Stay to the left (at Abijah Prince Rd)",
+    "ride": "180k"
+  },
+  {
+    "distance": 2.3,
+    "turn": "Right",
+    "notes": "Fork to the right, still on Sweet Pond Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Straight",
+    "notes": "Cross pavement onto Keet's Brook Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1,
+    "turn": "Right",
+    "notes": "RIGHT onto Simon Keet's Rd (bridge)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.5,
+    "turn": "Straight",
+    "notes": "Merge left onto Brattleboro Rd (pavement)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Right",
+    "notes": "RIGHT onto Greenfield Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Right",
+    "notes": "RIGHT onto Alexander Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.4,
+    "turn": "Left",
+    "notes": "Top of climb, LEFT onto North County Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 2.1,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto West Leyden Rd. Caution, twisty high-speed descent. Sign visible over your shoulder.",
+    "ride": "180k"
+  },
+  {
+    "distance": 2.1,
+    "turn": "Slight Right",
+    "notes": "Keep right onto West Leyden Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Green River Road to go to optional water stop.",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Right",
+    "notes": "Turn right onto North Green River Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Water",
+    "notes": "Optional Water Stop",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Left",
+    "notes": "Turn left onto Green River Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Straight",
+    "notes": "Continue onto South Green River Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 4,
+    "turn": "Right",
+    "notes": "Hairpin RIGHT onto Nelson Rd (no other turns are close). Note that the routes diverge. Don't follow riders straight past this turn.",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.3,
+    "turn": "Left",
+    "notes": "T-intersection, LEFT onto East Colrain Rd (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.2,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT at major power line onto Van Nuys Rd., paved (no sign) Note that routes diverge. Don't follow riders left down Van Nuys Rd.",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.5,
+    "turn": "Left",
+    "notes": "T-intersection at bottom of hill, LEFT onto Shelburne Line Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.5,
+    "turn": "Right",
+    "notes": "RIGHT onto Jurek Rd (no sign, look for faded red barns on left after making turn)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Right",
+    "notes": "RIGHT onto Greenfield Rd (double-yellow line). CAUTION: steep descent.",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Danger",
+    "notes": "Caution: at bottom of descent - blind oncoming traffic behind church",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Left",
+    "notes": "LEFT onto Rt 112 South",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Left",
+    "notes": "Stay left to remain on Route 112",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Food",
+    "notes": "Catamount store on right - good place to stop if you're bonking",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Right",
+    "notes": "RIGHT onto Lyonsville Rd - cross Colrain Covered Bridge",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Left",
+    "notes": "Bear LEFT at end of street (top of steep little rise) onto Foundry Village Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Left",
+    "notes": "LEFT just after cemetery onto Adamsville Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Right",
+    "notes": "RIGHT after green iron bridge back onto Route 112 South",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.3,
+    "turn": "Left",
+    "notes": "Fork LEFT before bridge onto Call Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.7,
+    "turn": "Left",
+    "notes": "LEFT onto Patten Hill Rd at triangle (sign is 60 ft later, on other fork of road) - big climb",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.8,
+    "turn": "Water",
+    "notes": "Snacks & water at the Little Big House Gallery. Opens: 12:00; closes 6:00",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Left",
+    "notes": "Continue south on Patten Hill Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.5,
+    "turn": "Right",
+    "notes": "RIGHT onto Square Lot Rd (tiny tree-lined lane, no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.4,
+    "turn": "Right",
+    "notes": "T-intersection, RIGHT onto Tower Rd, paved (no sign)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Left",
+    "notes": "Bear LEFT onto Cooper Lane (sign only for Tower Rd)",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.8,
+    "turn": "Danger",
+    "notes": "Pavement at bottom of long descent: CAUTION: full stop coming up",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Left",
+    "notes": "T-intersection, LEFT; Caution: limited sight distance on left",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Straight",
+    "notes": "STRAIGHT across Rt 2 onto Shelburne Center Rd (Caution: 55 mph traffic)",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.7,
+    "turn": "Right",
+    "notes": "Quick RIGHT onto Barnard Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.1,
+    "turn": "Left",
+    "notes": "Quick LEFT onto Allen Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Right",
+    "notes": "T-intersection at bottom of steep hill, go RIGHT onto Bardwell's Ferry Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 0,
+    "turn": "Left",
+    "notes": "Immediate LEFT at brick house onto South Shelburne Rd",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.2,
+    "turn": "Straight",
+    "notes": "Straight through 4-way intersection. Note that routes diverges, don't follow riders onto Zerah Fiske Rd.",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.9,
+    "turn": "Right",
+    "notes": "RIGHT onto Taylor Rd at bottom of hill - don't miss this turn",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.8,
+    "turn": "Left",
+    "notes": "LEFT onto Hawk's Rd (underneath power lines) Ignore \"Road Closed\" sign. Road open to bikes. Riders rejoin others to finish",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.6,
+    "turn": "Straight",
+    "notes": "Continue straight at driveway",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.2,
+    "turn": "Danger",
+    "notes": "CAUTION: Road turns to dirt at bottom of hill and becomes rough and rocky with major gullies from recent rain!",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.8,
+    "turn": "Slight Left",
+    "notes": "Keep left onto Hawks Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.4,
+    "turn": "Left",
+    "notes": "Turn LEFT onto Upper Road",
+    "ride": "180k"
+  },
+  {
+    "distance": 1.9,
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Wisdom Way",
+    "ride": "180k"
+  },
+  {
+    "distance": 0.8,
+    "turn": "Sharp Left",
+    "notes": "Turn sharp left onto Fairview Street",
+    "ride": "180k"
+  }
+]

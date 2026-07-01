@@ -1,0 +1,416 @@
+[
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Leave fairgrounds and turn LEFT on Fairview St.",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Wisdom Way",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lower Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "3.4",
+    "turn": "Slight Right",
+    "notes": "Keep right on Lower Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Upper Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Stillwater Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Mill Village Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Lee Rd.",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "After crossing over I 91, turn LEFT onto Sand Gully Rd.",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Plain Road West",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Settright Road (this looks more like a farm lane)",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Conway Road, MA 116",
+    "ride": "90k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Settright Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto South Mill River Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Whately Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Whately Glen Road. (next 2.2 miles - rough road, washouts in places)",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Whately Glen Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Whately Glen Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Whately Glen Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Roaring Brook Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "2.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Whately Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "2.2",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Williamsburg Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Food",
+    "notes": "Williamsburg Rd checkpoint",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Right",
+    "notes": "Keep RIGHT on Williamsburg Rd.",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Right",
+    "notes": "Bear RIGHT onto Village Hill Rd.",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "Continue STRAIGHT",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Old Goshen Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Hemenway Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Slight Left",
+    "notes": "Keep LEFT onto Briar Hill Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "2.5",
+    "turn": "Right",
+    "notes": "Slight RIGHT. Road is now called Wing Hill Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Ludwig Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0",
+    "turn": "Slight Left",
+    "notes": "Immediately bear LEFT onto West Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "2.1",
+    "turn": "Straight",
+    "notes": "Bear LEFT onto gravel to stay on West Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.6",
+    "turn": "Straight",
+    "notes": "Continue STRAIGHT onto Steady Lane",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Slight Left",
+    "notes": "Keep left onto Steady Lane",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Water",
+    "notes": "Water and snack stop. Open 10:45am - 1:00pm",
+    "ride": "90k"
+  },
+  {
+    "distance": "0",
+    "turn": "Straight",
+    "notes": "After water stop, continue on Steady Lane",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Turn right onto Suburban Drive, MA 112, MA 116",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Buckland Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Main Street, MA 116",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Baptist Corner Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.7",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Barnes Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Food",
+    "notes": "Edge Hill",
+    "ride": "90k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Lunch at Edge Hill Open 11:30am - 3:30pm",
+    "ride": "90k"
+  },
+  {
+    "distance": "0",
+    "turn": "Straight",
+    "notes": "Return to route and continue on Barnes Rd.",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Barnes Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Phillips Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Baptist Corner Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "Continue onto Baptist Corner Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Pfersick Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Straight",
+    "notes": "Continue on Pfersick Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Beldingville Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Pine Hill Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "2.6",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Upper Baptist Hill Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Emerson Hollow Rd.",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Shelburne Falls Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Reeds Bridge Road Branch",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT to stay on Reeds Bridge Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Graves Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Mathews Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Hoosac Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Straight",
+    "notes": "Continue on Hoosac Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Stillwater Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto West Deerfield Upper Road",
+    "ride": "90k"
+  },
+  {
+    "distance": "3.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Wisdom Way",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Fairview Street",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT into fairgrounds",
+    "ride": "90k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto track",
+    "ride": "90k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Generic",
+    "notes": "FINISH",
+    "ride": "90k"
+  }
+]

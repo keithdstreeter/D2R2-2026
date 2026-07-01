@@ -26,7 +26,7 @@ class Cuesheet extends Model
     protected function casts(): array
     {
         return [
-                'ride' => 'string',
+            'ride' => 'string',
             'turn' => 'string',
             'notes' => 'string',
             'distance' => 'float',
@@ -53,8 +53,8 @@ class Cuesheet extends Model
      * @param  Builder<Cuesheet>  $query
      * @return Builder<Cuesheet>
      */
-    // public function scopeActive(Builder $query): Builder
-    // {
-    //     return $query->where('is_active', true);
-    // }
+    public function scopeRide(Builder $query): Builder
+    {
+        return $query->where('ride', '180k');
+    }
 }

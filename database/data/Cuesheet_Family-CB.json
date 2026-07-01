@@ -1,0 +1,38 @@
+[
+  {
+    "distance": "",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto North Green River Road",
+    "ride": "Family-CB"
+  },
+  {
+    "distance": "5",
+    "turn": "Left",
+    "notes": "Turn LEFT at covered bridge onto Stage Road",
+    "ride": "Family-CB"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT to lunch",
+    "ride": "Family-CB"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Green River covered bridge",
+    "ride": "Family-CB"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Stage Road",
+    "ride": "Family-CB"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Green River Road",
+    "ride": "Family-CB"
+  }
+]

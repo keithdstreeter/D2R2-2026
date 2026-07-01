@@ -1,0 +1,458 @@
+[
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Exit fairgrounds and turn LEFT on Fairview St.",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Wisdom Way",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Upper Rd",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Old Albany Rd. Becomes a rocky jeep track for 1 mi.",
+    "ride": "100k"
+  },
+  {
+    "distance": "1",
+    "turn": "Straight",
+    "notes": "Continue on Old Albany Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto South Shelburne Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "2.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Bardwells Ferry Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Slight Left",
+    "notes": "Turn LEFT onto Allen Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Barnard Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Shelburne Center Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Danger",
+    "notes": "Careful crossing Rt. 2. 55 mph traffic",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Cooper Lane",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Slight Right",
+    "notes": "Turn slight RIGHT onto Cooper Lane",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Right",
+    "notes": "Keep right onto Cooper Lane Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Square Lot Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Patten Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Food",
+    "notes": "Food and water at Little Big House. U-turn to return to route.",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Little Big House",
+    "ride": "100k"
+  },
+  {
+    "distance": "1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Patten Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Reynolds Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Little Mohawk Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Prolovich Rd.",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Straight",
+    "notes": "Continue on Prolovich Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Greenfield Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Right",
+    "notes": "Keep right on Jacksonville Road, MA 112 at bottom of hill.",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Jacksonville Road, MA 112",
+    "ride": "100k"
+  },
+  {
+    "distance": "2.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Franklin Hill Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Water",
+    "notes": "Franklin Hill water on right",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Franklin Hill Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Amidon Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Jacksonville Stage Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "2.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Old County Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Slight Right",
+    "notes": "Turn RIGHT onto Deer Park Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "2.7",
+    "turn": "Right",
+    "notes": "Keep right to stay on Deer Park Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Hinesburg Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Green River Road at grassy triangle",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Right",
+    "notes": "Keep right on Green River Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Stage Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Lunch at Green River dam",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Green River Road to return to route.",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Lunch at covered bridge",
+    "ride": "100k"
+  },
+  {
+    "distance": "6",
+    "turn": "Water",
+    "notes": "Ten Mile water stop",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Green River Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "Continue on South Green River Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Slight Right",
+    "notes": "Keep right on South Green River Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.4",
+    "turn": "Straight",
+    "notes": "Continue on South Green River Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "2",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Nelson Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto East Colrain Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Van Nuys Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Wilson Graves Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Brook Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Peckville Road. Challenging stari step climb with an awesome view at the top",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Food",
+    "notes": "Water and food at Apex Orchard",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Apex Orchard",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn left onto Peckville Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Slight Right",
+    "notes": "Turn slight right onto Peckville Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp left onto Mohawk Trail, MA 2",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Food",
+    "notes": "Shelburne Falls Coffee Roasters",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Colrain Shelburne Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "Continue straight across intersection to Skinner Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Mohawk Trail, MA 2",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Old Greenfield Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Slight Right",
+    "notes": "Bear RIGHT onto Zerah Fiske Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lucy Fiske Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Straight",
+    "notes": "Continue uphill onto South Shelburne Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Taylor Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Hawks Road. CAUTION rough and rocky road.",
+    "ride": "100k"
+  },
+  {
+    "distance": "2.6",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Foxtown Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Slight Right",
+    "notes": "Turn slight RIGHT onto Upper Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lower Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Slight Left",
+    "notes": "Keep left on Lower Road",
+    "ride": "100k"
+  },
+  {
+    "distance": "3.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Wisdom Way",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Fairview Street",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT to enter fairgrounds",
+    "ride": "100k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto track",
+    "ride": "100k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Generic",
+    "notes": "FINISH",
+    "ride": "100k"
+  }
+]

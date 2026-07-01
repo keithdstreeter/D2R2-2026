@@ -1,0 +1,374 @@
+[
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Church Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto South County Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Savoy Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "2.9",
+    "turn": "Slight Left",
+    "notes": "Keep LEFT onto New State Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Burnett Road Branch",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Adams Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Center Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "2.9",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Main Road, MA 8A, MA 116",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Bush Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Upper Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Ridge Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Windigo Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Schoolhouse Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Slight Right",
+    "notes": "Keep right onto Schoolhouse Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Food",
+    "notes": "Windsor Jambs",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Windsor Bush Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto West Street",
+    "ride": "80k"
+  },
+  {
+    "distance": "2.5",
+    "turn": "Right",
+    "notes": "Turn right onto West Main Street, MA 8A, MA 116",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Hawley Street",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Slight Right",
+    "notes": "Turn RIGHT onto North Central Street",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto North Union Street",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Grant Street",
+    "ride": "80k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto North Street",
+    "ride": "80k"
+  },
+  {
+    "distance": "1",
+    "turn": "Straight",
+    "notes": "Continue onto Watson Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Straight",
+    "notes": "Continue onto Bug Hill Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "2.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lilliput Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Straight",
+    "notes": "Cross over Suburban Drive onto Steady Lane",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Water",
+    "notes": "Steady Lane Farm",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Norton Hill Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0",
+    "turn": "Slight Left",
+    "notes": "Turn slight left to stay on Norton Hill Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Main Street, MA 116",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Baptist Corner Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.7",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Barnes Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Food",
+    "notes": "Edge Hill",
+    "ride": "80k"
+  },
+  {
+    "distance": "0",
+    "turn": "Straight",
+    "notes": "Continue on Barnes Rd. to return to route",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Barnes Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Phillips Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Baptist Corner Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "Continue on Baptist Corner Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Sharp Right",
+    "notes": "Turn RIGHT onto Pfersick Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Beldingville Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Slight Right",
+    "notes": "Turn RIGHT onto Pine Hill Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "2.6",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Upper Baptist Hill Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Continue LEFT on Upper Baptist Hill Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Shelburne Falls Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Reeds Bridge Road Branch",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Reeds Bridge Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Graves Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Boyden Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1",
+    "turn": "Slight Left",
+    "notes": "Keep left on Boyden Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Mathews Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Hoosac Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Straight",
+    "notes": "Continue LEFT on Hoosac Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Slight Left",
+    "notes": "Turn LEFT onto Stillwater Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto West Deerfield Upper Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Lower Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "2.1",
+    "turn": "Straight",
+    "notes": "Continue on Lower Road",
+    "ride": "80k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Right",
+    "notes": "Turn right onto Wisdom Way",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Fairview Street",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT to enter fairgrounds",
+    "ride": "80k"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto track",
+    "ride": "80k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Generic",
+    "notes": "FINISH",
+    "ride": "80k"
+  }
+]

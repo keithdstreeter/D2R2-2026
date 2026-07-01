@@ -1,0 +1,494 @@
+[
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Leave fairgrounds and go LEFT on Fairview St.",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Wisdom Way",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Munson Street",
+    "ride": "110k"
+  },
+  {
+    "distance": "3.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Stillwater Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Hoosac Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Mathews Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Slight Right",
+    "notes": "Keep right onto Boyden Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Graves Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Reeds Bridge Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Straight",
+    "notes": "Continue on Reeds Bridge Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Straight",
+    "notes": "Cross over Bardwell's Ferry Rd. onto Elmer Rd.",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Newhall Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Shelburne Falls Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Pine Hill Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto South Shirkshire Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Jones Corner Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Baptist Corner Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Slight Right",
+    "notes": "Bear RIGHT onto March Cross Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto March Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Straight",
+    "notes": "Continue on March Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Howes Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Slight Right",
+    "notes": "Turn slight RIGHT onto East Buckland Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Hog Hollow Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lower Street, MA 112",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Cross Street",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Upper Street",
+    "ride": "110k"
+  },
+  {
+    "distance": "0",
+    "turn": "Water",
+    "notes": "Food and water at Buckland Historical Society",
+    "ride": "110k"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Buckland Historical Society",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Orcutt Hill Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Clesson Brook Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.2",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Labelle Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Straight",
+    "notes": "Continue on Labelle Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto East Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0",
+    "turn": "Danger",
+    "notes": "CAUTION Steep rough downhill for 2 miles",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Straight",
+    "notes": "Continue on East Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto East Hawley Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto South River Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto West Hawley Road, MA 8A",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Main Street, MA 2, MA 8A",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Route 8a North, MA 8A",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Generic",
+    "notes": "Shortcut to lunch. Continue STRAIGHT on MA 8A and rejoin route in 3.5 miles",
+    "ride": "110k"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Mountain Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0",
+    "turn": "Slight Left",
+    "notes": "Keep left on Mountain Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1",
+    "turn": "Straight",
+    "notes": "Road becomes South Heath Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto South Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto South Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Slight Left",
+    "notes": "Keep LEFT onto Royer Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Dell Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Long Hill Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Slight Right",
+    "notes": "Keep right on Long Hill Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto MA Route 8A",
+    "ride": "110k"
+  },
+  {
+    "distance": "3.2",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto West Branch Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Food",
+    "notes": "Lunch at Crowningshield Conservation Area. After lunch make a u-turn to return to route.",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Food",
+    "notes": "Crowningshield lunch",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Route 8a, MA 8A",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.9",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto State Farm Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "2.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Ed Clark Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Danger",
+    "notes": "Approaching steep downhill with blind dropoffs. Go easy!",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Left",
+    "notes": "Turn LEFT onto Adamsville Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "3.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto MA-112 S",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Call Rd",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.7",
+    "turn": "Slight Left",
+    "notes": "Bear LEFT onto Patten Hill Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Food",
+    "notes": "Little Big House",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Water",
+    "notes": "Food and water at Little Big House",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Square Lot Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Tower Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Right",
+    "notes": "Keep RIGHT to stay on Patten Rd.",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Little Mohawk Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Frank Williams Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Skinner Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Mohawk Trail, MA 2. CAUTION 55 mph traffic",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Old Greenfield Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.2",
+    "turn": "Slight Right",
+    "notes": "Turn RIGHT onto Zerah Fiske Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.5",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Lucy Fiske Road. Don't miss this turn!",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Straight",
+    "notes": "Turn LEFT onto South Shelburne Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Taylor Road. Don't miss this turn!",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.8",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Hawks Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "2.6",
+    "turn": "Slight Left",
+    "notes": "Keep LEFT on Hawks Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Upper Road",
+    "ride": "110k"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Wisdom Way",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.8",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Fairview Street",
+    "ride": "110k"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Enter fairgrounds and go LEFT around the track to finish line",
+    "ride": "110k"
+  }
+]

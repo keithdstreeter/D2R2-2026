@@ -12,13 +12,11 @@ class CreateRidesTable extends Migration
 
 		$table->bigIncrements('id')->unsigned();
 		$table->string('ride',10);
-		$table->string('ride_desc',200);
-		$table->float('distance_k');
-		$table->float('distance_miles');
+		$table->string('ride_desc',200)->nullable();
+		$table->float('distance_k', 10, 2)->nullable();
+		$table->float('distance_miles', 10, 2)->nullable();
 		$table->timestamp('created_at')->nullable()->default('NULL');
 		$table->timestamp('updated_at')->nullable()->default('NULL');
-		
-
         });
     }
 
