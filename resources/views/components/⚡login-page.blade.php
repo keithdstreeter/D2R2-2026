@@ -1,21 +1,30 @@
 <?php
 
+use App\Models\Registration;
+use App\Models\Ride;
+use App\Models\UserSetting;
 use App\Services\DeviceIdentity;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Native\Mobile\Facades\Browser;
+use Illuminate\Http\JsonResponse;
 
 new #[Title('Login')] class extends Component {
     #[Validate('required|email')]
     public string $email = '';
+
+    public string $first_name = '';
+    public string $last_name = '';
+    public string $bib = '';
 
     #[Validate('required')]
     public string $password = '';
 
     public string $error = '';
 
+    
     public function mount(): void
     {
         if (session('auth_token')) {
@@ -25,8 +34,24 @@ new #[Title('Login')] class extends Component {
         // Temrporary: pre-fill credentials for easier testing during development
         $this->email = 'kds@kds.com';
         $this->password = 'password';
-        
+        // $this->first_name = 'John';
+        // $this->last_name = 'Doe';
+        $this->bib = '54';
     }
+
+    public function getRideID($rideName): int
+    {
+        // Retrieve the ride ID from the Ride model based on the CategoryEntered 
+        // value (ride name) from the Registration model
+        //$rideId = UserSetting::get('ride_id');
+
+        //dd($rideName);
+        $rideId = Ride::where('ride', $rideName)->pluck('id')->first();
+
+        // If the ride ID is not set, return a default value (e.g., 0)
+        return $rideId ? (int) $rideId : 0;
+    }
+   
 
     public function loginWithGoogle(): void
     {
@@ -59,26 +84,93 @@ new #[Title('Login')] class extends Component {
 
         $deviceInfo = $deviceIdentity->getDeviceInfo();
 
-        try {
-            $response = Http::api()->post('/auth/login', [
-                'email' => $this->email,
-                'password' => $this->password,
-                'device_name' => $deviceInfo['model'],
-            ]);
-        } catch (\Illuminate\Http\Client\ConnectionException) {
-            $this->error = 'Unable to connect. Please check your connection.';
+        // Set up a local database query to check either BIB or First/Last Name against the Registration table, and if found, log in the user. If not found, return an error message.
+        
+        // Take the input values
+        $bib = $this->bib;
+        $firstName = $this->first_name;
+        $lastName = $this->last_name;
 
+        // Check if either BIB or First/Last Name is provided and process accordingly
+        if (empty($bib) && !empty($firstName) && !empty($lastName)) {
+            // Query the Registration table for a matching first and last name
+            $registration = Registration::where('first_name', $firstName)->where('last_name', $lastName)->first();
+            if (!$registration) {
+                $this->error = 'No registration found for that name.';
+                return;
+            } else {
+                //$token = $registration->createToken($firstName . ' ' . $lastName)->plainTextToken;
+                $ride_id = $this->getRideID($registration->ride);
+                
+                $token = bcrypt($firstName . ' ' . $lastName);
+                if ($token) {
+                    session(['auth_token' => $token, 'token_verified_at' => now()]);
+                    UserSetting::set('first_name', $firstName);
+                    UserSetting::set('last_name', $lastName);
+                    UserSetting::set('bib', $bib);
+                    UserSetting::set('ride_id', (string) $ride_id);
+                    $this->redirect(route('home'), navigate: true);
+                    return;
+                }
+            }
+            //$token = $registration->createToken($request->device_name)->plainTextToken;
+        
+        } elseif (!empty($bib)) {
+            $registration = Registration::where('bib', $bib)->first();
+            //dd($registration);
+            if (!$registration) {
+                $this->error = 'No registration found for that bib number.';
+                return;
+            } else {
+                $ride_id = $this->getRideID($registration->category_entered);
+                //dd($ride_id);
+                $token = bcrypt($bib);
+                if ($token ) {
+                    session(['auth_token' => $token, 'token_verified_at' => now()]);
+                    UserSetting::set('first_name', $registration->first_name);
+                    UserSetting::set('last_name', $registration->last_name);
+                    UserSetting::set('bib', $registration->bib);
+                    UserSetting::set('ride_id', (string) $registration->category_entered);
+                    $this->redirect(route('home'), navigate: true);
+                    return;
+                }
+            }
+        } else {
+            $this->error = 'Please enter either a bib number or first and last name.';
             return;
-        }
+        }   
 
-        if ($response->successful() && $response->json('token')) {
-            session(['auth_token' => $response->json('token'), 'token_verified_at' => now()]);
-            $this->redirect(route('home'), navigate: true);
+        
 
-            return;
-        }
+        
 
-        $this->error = $response->json('message') ?? 'Invalid credentials. Please try again.';
+        //$registration = Registration::where('bib', $this->bib)->get();
+        
+
+        // try {
+        //     $response = Http::api()->post('/auth/login', [
+        //         'email' => $this->email,
+        //         'password' => $this->password,
+        //         'device_name' => $deviceInfo['model'],
+        //     ]);
+        //     dd($response->json());
+        // } catch (\Illuminate\Http\Client\ConnectionException) {
+        //     $this->error = 'Unable to connect. Please check your connection.';
+
+        //     return;
+        // }
+
+        // If the response is successful and contains a token, store it in the session and redirect to the home page
+        // if ($response->successful() && $response->json('token')) {
+        //     session(['auth_token' => $response->json('token'), 'token_verified_at' => now()]);
+        //     $this->redirect(route('home'), navigate: true);
+
+        //     return;
+        // }
+
+        // If the response is not successful, set the error message to display to the user
+        // OR Invalid credentials. Please try again.
+        //$this->error = $response->json('message') ?? 'Invalid credentials. Please try again.';
     }
 };
 ?>
@@ -89,9 +181,9 @@ new #[Title('Login')] class extends Component {
             x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
             <h1
                 class="text-4xl font-bold bg-gradient-to-r from-ocean-500 to-candy-500 bg-clip-text text-transparent mb-2">
-                Welcome Back
+                Welcome D2R2 Riders!
             </h1>
-            <p class="text-base text-gray-500">Sign in to your account</p>
+            <p class="text-base text-gray-500">Use your bib # or name to get started. <br>Use Guest if not registered before the deadline.</p>
         </div>
 
         <form wire:submit="login">
@@ -103,6 +195,36 @@ new #[Title('Login')] class extends Component {
                         {{ $error }}
                     </div>
                 @endif
+
+                 <div class="space-y-1">
+                    <label class="text-md font-semibold text-gray-600 pl-1">Bib Number</label>
+                    <input wire:model="bib" type="text" placeholder="1234" autocomplete="bib"
+                        class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
+                    @error('bib') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                </div>
+
+                {{-- OR block to separate out Bib and First/Last Name --}}
+                <div class="flex items-center gap-3 py-1">
+                    <div class="flex-1 h-px bg-gray-200"></div>
+                    <span class="text-sm text-gray-400 font-medium">or</span>
+                    <div class="flex-1 h-px bg-gray-200"></div>
+                </div>
+
+                {{-- First and Last Name entry --}}
+                <div class="space-y-1">
+                    <label class="text-sm font-semibold text-gray-600 pl-1">First Name</label>
+                    <input wire:model="first_name" type="text" placeholder="John" autocomplete="given-name"
+                        class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
+                    @error('first_name') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                </div>
+                <div class="space-y-1">
+                    <label class="text-sm font-semibold text-gray-600 pl-1">Last Name</label>
+                    <input wire:model="last_name" type="text" placeholder="Doe" autocomplete="family-name"
+                        class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
+                    @error('last_name') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                </div>
+
+
 
                 <div class="space-y-1">
                     <label class="text-sm font-semibold text-gray-600 pl-1">Email</label>
@@ -122,19 +244,25 @@ new #[Title('Login')] class extends Component {
                     <button type="submit" x-data="{ pressed: false }"
                         x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                         :class="pressed ? 'scale-95' : 'scale-100'"
-                        class="w-full rounded-2xl bg-gradient-to-r from-ocean-500 to-candy-500 px-6 py-5 text-lg font-bold text-white shadow-lg shadow-ocean-200 hover:shadow-xl transition-all duration-200 min-h-[56px]">
+                        class="w-full rounded-2xl font-bold  shadow-lg shadow-ocean-200 border-gray-900 border-2 bg-green-900 min-h-[56px]">
                         <span wire:loading.remove wire:target="login">Login</span>
                         <span wire:loading wire:target="login">Signing in…</span>
                     </button>
                 </div>
 
-                <div class="flex items-center gap-3 py-1">
+                {{-- new class for login as a test, get rid of blend --}}
+                {{-- <button type="submit" class="min-w-3/4 rounded-2xl border-gray-900 border-2 bg-green-900 px-6 py-5 text-lg font-bold text-white"> --}}
+                
+                    {{-- saved class from login button --}}
+                {{-- class="w-full rounded-2xl   bg-red-500 px-6 py-5 text-lg font-bold text-white shadow-lg shadow-ocean-200 hover:shadow-xl transition-all duration-200 min-h-[56px]">
+ --}}
+                    {{-- <div class="flex items-center gap-3 py-1">
                     <div class="flex-1 h-px bg-gray-200"></div>
                     <span class="text-sm text-gray-400 font-medium">or</span>
                     <div class="flex-1 h-px bg-gray-200"></div>
-                </div>
+                </div> --}}
 
-                <button type="button" wire:click="loginWithGoogle" wire:loading.attr="disabled"
+                {{-- <button type="button" wire:click="loginWithGoogle" wire:loading.attr="disabled"
                     x-data="{ pressed: false }" x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                     :class="pressed ? 'scale-95' : 'scale-100'"
                     class="w-full flex items-center justify-center gap-3 rounded-2xl border-2 border-ocean-200 bg-white/80 px-6 py-4 text-base font-bold text-gray-700 hover:border-ocean-300 hover:shadow-md transition-all duration-200 min-h-[56px] disabled:opacity-60">
@@ -155,15 +283,15 @@ new #[Title('Login')] class extends Component {
                     </svg>
                     <span wire:loading.remove wire:target="loginWithGoogle">Login with Google</span>
                     <span wire:loading wire:target="loginWithGoogle">Opening…</span>
-                </button>
+                </button> --}}
             </div>
         </form>
 
         <p class="text-center text-sm text-gray-500 mt-6" style="animation: fade-in-up 0.4s ease-out 0.2s both">
-            Don't have an account?
+            Use the D2R2 app as a guest.
             <a href="{{ route('register') }}" wire:navigate
                 class="font-bold text-ocean-500 hover:text-ocean-600 transition-colors">
-                Register
+                Guest Login
             </a>
         </p>
     </div>

@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@import "flowbite/src/themes/default";
+
+
+
+
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -94,3 +100,7 @@
     50% { transform: scale(1.1); }
     to { opacity: 1; transform: scale(1); }
 }
+
+@plugin "flowbite/plugin";
+
+@source "../../node_modules/flowbite";

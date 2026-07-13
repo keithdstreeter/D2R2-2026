@@ -4,6 +4,7 @@ use App\Models\AgeGroup;
 use App\Models\QuizAnswer;
 use App\Models\QuizSession;
 use App\Models\UserSetting;
+use App\Models\Ride;
 use App\Services\DeviceIdentity;
 use App\Services\LeaderboardService;
 use App\Services\NativeFeedback;
@@ -15,7 +16,7 @@ use Livewire\Component;
 use Native\Mobile\Events\Alert\ButtonPressed;
 use Native\Mobile\Facades\Dialog;
 
-new #[Title('Settings — Quiz App')] class extends Component
+new #[Title('Settings — D2R2 App')] class extends Component
 {
     public bool $gateUnlocked = false;
 
@@ -37,20 +38,70 @@ new #[Title('Settings — Quiz App')] class extends Component
     /** @var array{model: string, os: string, platform: string} */
     public array $deviceInfo = [];
 
+    public ?int $savedRideId = null;
+    //public ?string $ride = null;
+
+public $ride = '4';
+
     public function mount(): void
     {
         $savedId = UserSetting::get('age_group_id');
+        //$savedRideId = UserSetting::get('ride_id');
+        //$savedDistanceType = UserSetting::get('distance_type');
+        $savedBib = UserSetting::get('bib');
+        $savedFirstName = UserSetting::get('first_name');
+        $savedLastName = UserSetting::get('last_name');
+        $savedRideId = UserSetting::get('ride_id');
+        $savedRideDesc = UserSetting::get('ride_desc');
+        $savedRide = UserSetting::get('ride');
 
+        // Values seem correctly saved in UserSetting
+
+        //dd($savedRideId, $savedBib, $savedFirstName, $savedLastName);
         if ($savedId) {
             $this->selectedAgeGroupId = (int) $savedId;
         }
 
+        if ($savedRideId) {
+            $this->savedRideId      = (int) $savedRideId;
+        }
         $this->soundEnabled = UserSetting::get('sound_enabled') !== '0';
         $this->hapticsEnabled = UserSetting::get('haptics_enabled') !== '0';
 
         $identity = app(DeviceIdentity::class);
-        $this->username = $identity->getUsername();
+        $this->username = $savedFirstName . ' ' . $savedLastName;
+        //$identity->getUsername();
         $this->deviceInfo = $identity->getDeviceInfo();
+
+        $query = Ride::all();
+        //dd($query);
+        //dd($this->savedRideId, $this->ride, $savedRideId, $savedRideDesc, $savedRide);
+    }
+
+    public function updated($name, $value) 
+    {
+        // Use the Livewire updated lifecycle hook to save the updated value
+        // to the UserSetting model
+        // The $name parameter will contain the Ride Model
+        // The $value parameter will contain the selected value from the dropdown
+        UserSetting::set($name, $value);
+
+        // Update the Ride_id property as well so that it matches the selected value in the dropdown
+        if ($name === 'ride') {
+            $this->ride = $value;
+
+            $rideShortName = Ride::where('id', $value)->pluck('ride')->first();
+
+            // If the ride ID is not set, return a default value (e.g., 0)
+            //return $rideId ? (int) $rideId : 0;
+            
+            userSetting::set('ride_id', $rideShortName);
+        }
+
+        //dd($name, $value);
+        // $this->post->update([
+        //     $name => $value,
+        // ]);
     }
 
     #[On('parent-gate-passed')]
@@ -150,15 +201,30 @@ new #[Title('Settings — Quiz App')] class extends Component
             <a href="{{ route('home') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Home</a>
         </div>
 
-        @if (! $gateUnlocked)
+        {{-- @if (! $gateUnlocked)
             <livewire:parent-gate />
-        @else
+        @else --}}
             <div class="space-y-6">
                 {{-- Age Group --}}
                 <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up" style="animation-delay: 0s">
-                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Age Group</h2>
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Ride</h2>
                     <div class="grid gap-3">
-                        @foreach ($this->ageGroups as $ageGroup)
+                        <select wire:model.live="ride">    
+                            {{-- <option disabled value="">Select a ride...</option>      --}}
+                            @foreach (Ride::all() as $ride)
+                                <option value="{{ $ride->id }}">{{ $ride->ride_desc }}</option>
+                                {{-- if ($ride->id == $savedRideId) {
+                                    <option value="{{ $ride->id }}" selected>{{ $ride->id }} - {{ $savedRideId }}  {{ $ride->ride_desc }}</option>
+                                } else {
+                                    <option value="{{ $ride->id }}">{{ $ride->id }} - {{ $savedRideId }}  {{ $ride->ride_desc }}</option>
+                                }    --}}
+                                {{-- {{ $ride->id }}  {{ $this->savedRideId }}   --}}
+                                {{-- <option value="{{ $ride->id }}">{{ $ride->ride_desc }}</option> --}}
+                            @endforeach
+                            {{-- <option value="999" selected>KDS OTHER</option> --}}
+                        </select>
+
+                        {{-- @foreach ($this->ageGroups as $ageGroup)
                             <button
                                 wire:key="age-group-{{ $ageGroup->id }}"
                                 wire:click="changeAgeGroup({{ $ageGroup->id }})"
@@ -173,7 +239,7 @@ new #[Title('Settings — Quiz App')] class extends Component
                             >
                                 {{ $ageGroup->label }}
                             </button>
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 </div>
 
@@ -282,7 +348,7 @@ new #[Title('Settings — Quiz App')] class extends Component
 
                 {{-- Device Info --}}
                 <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up" style="animation-delay: 0.4s">
-                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Device Info</h2>
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Mobile Device Info</h2>
                     <div class="space-y-3">
                         <div class="flex items-center justify-between min-h-[36px]">
                             <span class="text-sm text-gray-500">Model</span>
@@ -299,7 +365,7 @@ new #[Title('Settings — Quiz App')] class extends Component
                     </div>
                 </div>
             </div>
-        @endif
+        {{-- @endif --}}
 
         {{-- Account --}}
         <div class="mt-6 rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up">

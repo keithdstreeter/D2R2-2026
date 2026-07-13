@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cuesheets', function (Blueprint $table) {
-            // With primary it fails to create the table in SQLite
-            // will need a fix for this in the future
+        Schema::create('registrations', function (Blueprint $table) {
             $table->id();
-            $table->string('ride', 10)->nullable();
-			$table->string('turn', 30)->nullable();
-			$table->string('notes', 200)->nullable();
-			$table->float('distance', 8, 1)->nullable();
+            $table->string('bib', 10)->nullable();
+            $table->string('first_name', 100)->nullable();
+            $table->string('last_name', 100)->nullable();
+            $table->string('category_entered', 10)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cuesheets');
+        Schema::dropIfExists('registrations');
     }
 };

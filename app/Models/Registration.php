@@ -8,17 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Cuesheet extends Model
+class Registration extends Model
 {
-    /** @use HasFactory<\Database\Factories\CuesheetFactory> */
+    /** @use HasFactory<\Database\Factories\RegistrationFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'ride',
-        'turn',
-        'notes',
-        'distance',
-        'completed',
+        'bib',
+        'first_name',
+        'last_name',
+        'category_entered',
     ];
 
     /**
@@ -27,11 +26,10 @@ class Cuesheet extends Model
     protected function casts(): array
     {
         return [
-            'ride' => 'string',
-            'turn' => 'string',
-            'notes' => 'string',
-            'distance' => 'float',
-            'completed' => 'integer',
+            'bib' => 'string',
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'category_entered' => 'string',
         ];
     }
 
@@ -52,11 +50,11 @@ class Cuesheet extends Model
     // }
 
     /**
-     * @param  Builder<Cuesheet>  $query
-     * @return Builder<Cuesheet>
+     * @param  Builder<Registration>  $query
+     * @return Builder<Registration>
      */
-    public function scopeRide(Builder $query): Builder
-    {
-        return $query->where('ride', '180k');
-    }
+    // public function scopeActive(Builder $query): Builder
+    // {
+    //     return $query->where('is_active', true);
+    // }
 }

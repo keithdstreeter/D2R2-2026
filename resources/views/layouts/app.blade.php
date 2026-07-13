@@ -10,11 +10,13 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="min-h-screen font-sans antialiased bg-gradient-to-b from-ocean-50 via-candy-50 to-sunny-50 text-gray-900">
         <div class="fixed top-2 right-2 z-50">
-            <livewire:network-status-indicator />
+            {{-- <livewire:network-status-indicator /> --}}
         </div>
         {{ $slot }}
     </body>

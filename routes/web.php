@@ -19,6 +19,9 @@ return Redirect::to($url);
 // IMAGE SHOW 
 Route::livewire('/image', 'image')->name('image');
 
+// Map of the Route
+Route::livewire('/map', 'image')->name('image');
+
 // Route::get('/welcome2', function () {
 //     return redirect()->away(config('services.api.url') . '/welcome2');
 // });
