@@ -15,6 +15,7 @@
         "livewire/livewire": "^4.1",
         "nativephp/mobile": "^3.0",
         "nativephp/mobile-browser": "^1.0",
+        "nativephp/mobile-firebase": "*",
         "srwiez/nativephp-mobile-screen": "^1.0"
     },
     "require-dev": {
@@ -92,5 +93,10 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [{
+        "name": "nativephp-plugins",
+        "type": "composer",
+        "url": "https://plugins.nativephp.com"
+    }]
 }

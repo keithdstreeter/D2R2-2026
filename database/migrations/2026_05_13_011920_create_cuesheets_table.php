@@ -19,6 +19,7 @@ return new class extends Migration
 			$table->string('turn', 30)->nullable();
 			$table->string('notes', 200)->nullable();
 			$table->float('distance', 8, 1)->nullable();
+            $table->integer('completed')->nullable();
             $table->timestamps();
         });
     }

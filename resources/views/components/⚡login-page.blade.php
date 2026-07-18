@@ -24,7 +24,6 @@ new #[Title('Login')] class extends Component {
 
     public string $error = '';
 
-    
     public function mount(): void
     {
         if (session('auth_token')) {
@@ -36,12 +35,17 @@ new #[Title('Login')] class extends Component {
         $this->password = 'password';
         // $this->first_name = 'John';
         // $this->last_name = 'Doe';
-        $this->bib = '54';
+        $this->bib = '519';
+
+        // Set the Guest_User setting to true when the login page is mounted
+        // Validated Users will have additional features (Communications, etc.)
+        // that Guest Users will not have access to.
+        UserSetting::set('Guest_User', 'true');
     }
 
     public function getRideID($rideName): int
     {
-        // Retrieve the ride ID from the Ride model based on the CategoryEntered 
+        // Retrieve the ride ID from the Ride model based on the CategoryEntered
         // value (ride name) from the Registration model
         //$rideId = UserSetting::get('ride_id');
 
@@ -51,7 +55,6 @@ new #[Title('Login')] class extends Component {
         // If the ride ID is not set, return a default value (e.g., 0)
         return $rideId ? (int) $rideId : 0;
     }
-   
 
     public function loginWithGoogle(): void
     {
@@ -67,7 +70,7 @@ new #[Title('Login')] class extends Component {
 
         $url = $response->json('url');
 
-        if (! $url) {
+        if (!$url) {
             $this->error = 'API error ' . $response->status() . ': ' . substr($response->body(), 0, 100);
 
             return;
@@ -85,7 +88,7 @@ new #[Title('Login')] class extends Component {
         $deviceInfo = $deviceIdentity->getDeviceInfo();
 
         // Set up a local database query to check either BIB or First/Last Name against the Registration table, and if found, log in the user. If not found, return an error message.
-        
+
         // Take the input values
         $bib = $this->bib;
         $firstName = $this->first_name;
@@ -101,7 +104,7 @@ new #[Title('Login')] class extends Component {
             } else {
                 //$token = $registration->createToken($firstName . ' ' . $lastName)->plainTextToken;
                 $ride_id = $this->getRideID($registration->ride);
-                
+
                 $token = bcrypt($firstName . ' ' . $lastName);
                 if ($token) {
                     session(['auth_token' => $token, 'token_verified_at' => now()]);
@@ -114,7 +117,6 @@ new #[Title('Login')] class extends Component {
                 }
             }
             //$token = $registration->createToken($request->device_name)->plainTextToken;
-        
         } elseif (!empty($bib)) {
             $registration = Registration::where('bib', $bib)->first();
             //dd($registration);
@@ -125,7 +127,7 @@ new #[Title('Login')] class extends Component {
                 $ride_id = $this->getRideID($registration->category_entered);
                 //dd($ride_id);
                 $token = bcrypt($bib);
-                if ($token ) {
+                if ($token) {
                     session(['auth_token' => $token, 'token_verified_at' => now()]);
                     UserSetting::set('first_name', $registration->first_name);
                     UserSetting::set('last_name', $registration->last_name);
@@ -138,14 +140,9 @@ new #[Title('Login')] class extends Component {
         } else {
             $this->error = 'Please enter either a bib number or first and last name.';
             return;
-        }   
-
-        
-
-        
+        }
 
         //$registration = Registration::where('bib', $this->bib)->get();
-        
 
         // try {
         //     $response = Http::api()->post('/auth/login', [
@@ -183,7 +180,8 @@ new #[Title('Login')] class extends Component {
                 class="text-4xl font-bold bg-gradient-to-r from-ocean-500 to-candy-500 bg-clip-text text-transparent mb-2">
                 Welcome D2R2 Riders!
             </h1>
-            <p class="text-base text-gray-500">Use your bib # or name to get started. <br>Use Guest if not registered before the deadline.</p>
+            <p class="text-base text-gray-500">Use your bib # or name to get started. <br>Use Guest if not registered
+                before the deadline.</p>
         </div>
 
         <form wire:submit="login">
@@ -196,11 +194,13 @@ new #[Title('Login')] class extends Component {
                     </div>
                 @endif
 
-                 <div class="space-y-1">
+                <div class="space-y-1">
                     <label class="text-md font-semibold text-gray-600 pl-1">Bib Number</label>
                     <input wire:model="bib" type="text" placeholder="1234" autocomplete="bib"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
-                    @error('bib') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                    @error('bib')
+                        <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- OR block to separate out Bib and First/Last Name --}}
@@ -215,13 +215,17 @@ new #[Title('Login')] class extends Component {
                     <label class="text-sm font-semibold text-gray-600 pl-1">First Name</label>
                     <input wire:model="first_name" type="text" placeholder="John" autocomplete="given-name"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
-                    @error('first_name') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                    @error('first_name')
+                        <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="space-y-1">
                     <label class="text-sm font-semibold text-gray-600 pl-1">Last Name</label>
                     <input wire:model="last_name" type="text" placeholder="Doe" autocomplete="family-name"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
-                    @error('last_name') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                    @error('last_name')
+                        <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
 
@@ -230,14 +234,18 @@ new #[Title('Login')] class extends Component {
                     <label class="text-sm font-semibold text-gray-600 pl-1">Email</label>
                     <input wire:model="email" type="email" placeholder="you@example.com" autocomplete="email"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
-                    @error('email') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                    @error('email')
+                        <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="space-y-1">
                     <label class="text-sm font-semibold text-gray-600 pl-1">Password</label>
                     <input wire:model="password" type="password" placeholder="••••••••" autocomplete="current-password"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
-                    @error('password') <p class="text-sm text-candy-600 pl-1">{{ $message }}</p> @enderror
+                    @error('password')
+                        <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="pt-2">
@@ -252,11 +260,11 @@ new #[Title('Login')] class extends Component {
 
                 {{-- new class for login as a test, get rid of blend --}}
                 {{-- <button type="submit" class="min-w-3/4 rounded-2xl border-gray-900 border-2 bg-green-900 px-6 py-5 text-lg font-bold text-white"> --}}
-                
-                    {{-- saved class from login button --}}
+
+                {{-- saved class from login button --}}
                 {{-- class="w-full rounded-2xl   bg-red-500 px-6 py-5 text-lg font-bold text-white shadow-lg shadow-ocean-200 hover:shadow-xl transition-all duration-200 min-h-[56px]">
  --}}
-                    {{-- <div class="flex items-center gap-3 py-1">
+                {{-- <div class="flex items-center gap-3 py-1">
                     <div class="flex-1 h-px bg-gray-200"></div>
                     <span class="text-sm text-gray-400 font-medium">or</span>
                     <div class="flex-1 h-px bg-gray-200"></div>
@@ -291,7 +299,7 @@ new #[Title('Login')] class extends Component {
             Use the D2R2 app as a guest.
             <a href="{{ route('register') }}" wire:navigate
                 class="font-bold text-ocean-500 hover:text-ocean-600 transition-colors">
-                Guest Login
+                Continue as Guest
             </a>
         </p>
     </div>

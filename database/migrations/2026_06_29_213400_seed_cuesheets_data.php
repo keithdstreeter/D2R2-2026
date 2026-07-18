@@ -37,6 +37,7 @@ return new class extends Migration
                         'turn' => $RideData['turn'],
                         'notes' => $RideData['notes'],
                         'distance' => $RideData['distance'],
+                        'completed' => 0,
                     ],
                 );
             }
@@ -46,19 +47,22 @@ return new class extends Migration
 
         //dd($Cuesheet);
 
-        foreach ($Cuesheet as $RideData) {
 
-        //dump($RideData);
+        // SHOULD THIS BE HERE???
 
-            Ride::query()->updateOrCreate(
-                [
-                    'ride' => $RideData['ride'],
-                    'turn' => $RideData['turn'],
-                    'notes' => $RideData['notes'],
-                    'distance' => $RideData['distance'],
-                ],
-            );
-        }
+        // foreach ($Cuesheet as $RideData) {
+
+        // //dump($RideData);
+
+        //     Ride::query()->updateOrCreate(
+        //         [
+        //             'ride' => $RideData['ride'],
+        //             'turn' => $RideData['turn'],
+        //             'notes' => $RideData['notes'],
+        //             'distance' => $RideData['distance'],
+        //         ],
+        //     );
+        // }
     }
 
     /** @return array<int, array<string, mixed>> */

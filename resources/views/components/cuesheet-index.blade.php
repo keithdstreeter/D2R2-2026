@@ -204,7 +204,7 @@ foreach ($value as $checkedID) {
 
                 {{-- <a href="{{ route('home') }}" wire:navigate
                 class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Back</a> --}}
-                <button type="button" wire:click="saveChecks()">Back</button>
+                <button type="button" wire:click="saveChecks()">&larr; Back</button>
 
                 {{-- <button type="submit">Complete</button> --}}
 

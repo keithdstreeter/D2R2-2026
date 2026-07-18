@@ -1,0 +1,296 @@
+[
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Turn LEFT to exit fairgrounds",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Fairview Street",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Right",
+    "notes": "Turn RIGHT onto Laurel Street",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto River Street",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Woodard Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Colrain Street",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Riverside Drive",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Riverside Community bike path",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Nashs Mill Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Leyden Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "2.9",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Eunice Williams Drive",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.7",
+    "turn": "Sharp Right",
+    "notes": "Turn RIGHT onto Green River Road. Soon becomes a dirt road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1",
+    "turn": "Slight Right",
+    "notes": "Stay right on South Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "4",
+    "turn": "Straight",
+    "notes": "Continue past West Leyden Rd. on Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto North Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Water",
+    "notes": "Water on left",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT to stay on North Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "3.7",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Jelly Mill Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1.5",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Stage Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp left off Stage Rd. to lunch site",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Lunch at Green River dam",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Green River covered bridge",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "",
+    "turn": "Left",
+    "notes": "Turn left onto Guilford Center Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Carpenter Hill Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Barney Hill Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1.4",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Bonnyvale Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1.3",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Akley Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1",
+    "turn": "Left",
+    "notes": "Turn LEFT to stay on Akley Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Hinesburg Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "3.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0",
+    "turn": "Slight Left",
+    "notes": "Keep LEFT onto Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT on Green River Road to return to Green River Ride route. Refill water at lunch site for 17 mile return trip to fairgrounds.",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "Pass through covered bridge onto Stage Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0",
+    "turn": "Straight",
+    "notes": "Pass through covered bridge onto Stage Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "6.1",
+    "turn": "Water",
+    "notes": "Water on left",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Straight",
+    "notes": "Continue on South Green River Road past West Leyden Rd.",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto South Green River Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1.4",
+    "turn": "Straight",
+    "notes": "Continue on South Green River Road past Nelson Rd.",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "5.8",
+    "turn": "Slight Left",
+    "notes": "Turn slight LEFT onto Colrain Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Nashs Mill Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.3",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Riverside Community Path",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "1",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Riverside Drive",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Sharp Right",
+    "notes": "Turn sharp RIGHT onto Colrain Street",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Woodard Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Shelburne Road",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Laurel Street",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.4",
+    "turn": "Sharp Left",
+    "notes": "Turn sharp LEFT onto Fairview Street",
+    "ride": "gr+12.7"
+  },
+  {
+    "distance": "0.6",
+    "turn": "Generic",
+    "notes": "FINISH",
+    "ride": "gr+12.7"
+  }
+]
