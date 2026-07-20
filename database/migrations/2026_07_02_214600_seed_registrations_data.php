@@ -22,7 +22,7 @@ return new class extends Migration
 
     private function seedRegistrations(): void
     {
-        $Registrations = $this->loadJson('Registrations.json');
+        $Registrations = $this->loadJson('registrations.json');
 
         //dd($Registrations);
 
@@ -33,7 +33,11 @@ return new class extends Migration
                     'bib' => $RegistrationData['bib'],
                     'first_name' => $RegistrationData['first_name'],
                     'last_name' => $RegistrationData['last_name'],
+                    'phone' => $RegistrationData['phone'],
                     'category_entered' => $RegistrationData['category_entered'],
+                    'email' => $RegistrationData['email'],
+                    'dob' => $RegistrationData['dob'],
+                    'gender' => $RegistrationData['gender']
                 ],
             );
         }

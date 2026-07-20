@@ -17,7 +17,11 @@ class Registration extends Model
         'bib',
         'first_name',
         'last_name',
+        'phone',
         'category_entered',
+        'email',
+        'dob',
+        'gender'
     ];
 
     /**
@@ -29,7 +33,11 @@ class Registration extends Model
             'bib' => 'string',
             'first_name' => 'string',
             'last_name' => 'string',
+            'phone' => 'string',
             'category_entered' => 'string',
+            'email' => 'string',
+            'dob' => 'string',
+            'gender' => 'string'
         ];
     }
 

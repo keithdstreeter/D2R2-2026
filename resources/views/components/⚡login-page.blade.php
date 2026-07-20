@@ -18,10 +18,14 @@ new #[Title('Login')] class extends Component {
     public string $first_name = '';
     public string $last_name = '';
     public string $bib = '';
+    public string $dob_day = '';
+    public string $dob_month = '';
+    public string $dob_year = '';
+    public string $dob_full = '';
+
+    //public string $password = '';
 
     #[Validate('required')]
-    public string $password = '';
-
     public string $error = '';
 
     public function mount(): void
@@ -31,11 +35,17 @@ new #[Title('Login')] class extends Component {
         }
 
         // Temrporary: pre-fill credentials for easier testing during development
-        $this->email = 'kds@kds.com';
-        $this->password = 'password';
-        // $this->first_name = 'John';
-        // $this->last_name = 'Doe';
-        $this->bib = '519';
+
+        // Christopher	Capeliini	(914) 419-9634	100k	chris@chriscap.com	3/7/77
+        // $this->email = 'kds@kds.com';
+        // $this->password = 'password';
+        $this->first_name = 'Christopher';
+        $this->last_name = 'Capeliini';
+        $this->dob_full = '3/7/77';
+        $this->dob_month = '3';
+        $this->dob_day = '7';
+        $this->dob_year = '1977';
+        //$this->bib = '519';
 
         // Set the Guest_User setting to true when the login page is mounted
         // Validated Users will have additional features (Communications, etc.)
@@ -56,52 +66,60 @@ new #[Title('Login')] class extends Component {
         return $rideId ? (int) $rideId : 0;
     }
 
-    public function loginWithGoogle(): void
+    public function guestLogin(): void
     {
         $this->reset('error');
 
-        try {
-            $response = Http::api()->get('/auth/google/redirect');
-        } catch (\Illuminate\Http\Client\ConnectionException) {
-            $this->error = 'Unable to connect. Please check your connection.';
+        UserSetting::set('Guest_User', 'true');
+        $token = bcrypt('D2R2Guest');
 
-            return;
-        }
-
-        $url = $response->json('url');
-
-        if (!$url) {
-            $this->error = 'API error ' . $response->status() . ': ' . substr($response->body(), 0, 100);
-
-            return;
-        }
-
-        Browser::auth($url);
+        $this->redirect(route('home'), navigate: true);
     }
 
     public function login(DeviceIdentity $deviceIdentity): void
     {
+        //dd('Login Start');
         $this->reset('error');
 
-        $this->validate();
+        //$this->validate();
 
+        //dd('Login Cont');
         $deviceInfo = $deviceIdentity->getDeviceInfo();
 
         // Set up a local database query to check either BIB or First/Last Name against the Registration table, and if found, log in the user. If not found, return an error message.
 
         // Take the input values
-        $bib = $this->bib;
+        //$bib = $this->bib;
         $firstName = $this->first_name;
         $lastName = $this->last_name;
+        $dobDay = $this->dob_day;
+        $dobMonth = $this->dob_month;
+        $dobYear = $this->dob_year;
+
+        // FIX THIS TO summarize the date of birth into a single string for comparison
+        // FOR A WORKING VERSION
+        $dobFull = $this->dob_full;
+
+        //dd($dobFull, $dobDay, $dobMonth, $dobYear);
 
         // Check if either BIB or First/Last Name is provided and process accordingly
-        if (empty($bib) && !empty($firstName) && !empty($lastName)) {
+        if (!empty($dobFull) && !empty($firstName) && !empty($lastName)) {
             // Query the Registration table for a matching first and last name
+
+            //dd('Checking Reg');
             $registration = Registration::where('first_name', $firstName)->where('last_name', $lastName)->first();
             if (!$registration) {
+                dd('No Reg');
                 $this->error = 'No registration found for that name.';
                 return;
             } else {
+                // Name has been found, now check the date of birth against the registration record
+                if ($registration->dob !== $dobFull) {
+                    dd('DOB Error');
+                    $this->error = 'Date of birth does not match the registration record.';
+                    return;
+                }
+
                 //$token = $registration->createToken($firstName . ' ' . $lastName)->plainTextToken;
                 $ride_id = $this->getRideID($registration->ride);
 
@@ -110,36 +128,16 @@ new #[Title('Login')] class extends Component {
                     session(['auth_token' => $token, 'token_verified_at' => now()]);
                     UserSetting::set('first_name', $firstName);
                     UserSetting::set('last_name', $lastName);
-                    UserSetting::set('bib', $bib);
+                    //UserSetting::set('bib', $bib);
                     UserSetting::set('ride_id', (string) $ride_id);
                     $this->redirect(route('home'), navigate: true);
                     return;
                 }
             }
             //$token = $registration->createToken($request->device_name)->plainTextToken;
-        } elseif (!empty($bib)) {
-            $registration = Registration::where('bib', $bib)->first();
-            //dd($registration);
-            if (!$registration) {
-                $this->error = 'No registration found for that bib number.';
-                return;
-            } else {
-                $ride_id = $this->getRideID($registration->category_entered);
-                //dd($ride_id);
-                $token = bcrypt($bib);
-                if ($token) {
-                    session(['auth_token' => $token, 'token_verified_at' => now()]);
-                    UserSetting::set('first_name', $registration->first_name);
-                    UserSetting::set('last_name', $registration->last_name);
-                    UserSetting::set('bib', $registration->bib);
-                    UserSetting::set('ride_id', (string) $registration->category_entered);
-                    $this->redirect(route('home'), navigate: true);
-                    return;
-                }
-            }
         } else {
-            $this->error = 'Please enter either a bib number or first and last name.';
-            return;
+            // Not enough information provided, return an error message
+            $token = bcrypt('FLT'); // Temporary token for testing purposes
         }
 
         //$registration = Registration::where('bib', $this->bib)->get();
@@ -180,8 +178,9 @@ new #[Title('Login')] class extends Component {
                 class="text-4xl font-bold bg-gradient-to-r from-ocean-500 to-candy-500 bg-clip-text text-transparent mb-2">
                 Welcome D2R2 Riders!
             </h1>
-            <p class="text-base text-gray-500">Use your bib # or name to get started. <br>Use Guest if not registered
-                before the deadline.</p>
+            <p class="text-base text-gray-500">Riders, please login with your name and birth date (one time only).
+                <br>Guests may use the app without logging in (no messaging).
+            </p>
         </div>
 
         <form wire:submit="login">
@@ -194,21 +193,21 @@ new #[Title('Login')] class extends Component {
                     </div>
                 @endif
 
-                <div class="space-y-1">
+                {{-- <div class="space-y-1">
                     <label class="text-md font-semibold text-gray-600 pl-1">Bib Number</label>
                     <input wire:model="bib" type="text" placeholder="1234" autocomplete="bib"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
                     @error('bib')
                         <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
                 {{-- OR block to separate out Bib and First/Last Name --}}
-                <div class="flex items-center gap-3 py-1">
+                {{-- <div class="flex items-center gap-3 py-1">
                     <div class="flex-1 h-px bg-gray-200"></div>
                     <span class="text-sm text-gray-400 font-medium">or</span>
                     <div class="flex-1 h-px bg-gray-200"></div>
-                </div>
+                </div> --}}
 
                 {{-- First and Last Name entry --}}
                 <div class="space-y-1">
@@ -231,22 +230,48 @@ new #[Title('Login')] class extends Component {
 
 
                 <div class="space-y-1">
-                    <label class="text-sm font-semibold text-gray-600 pl-1">Email</label>
+                    <label class="text-sm font-semibold text-gray-600 pl-1">Date of Birth</label>
+                    <div class="flex gap-2">
+                        <select wire:model="dob_month"
+                            class="flex-1 rounded-2xl border-2 border-white bg-white/60 px-3 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors">
+                            <option value="">Month</option>
+                            @for ($month = 1; $month <= 12; $month++)
+                                <option value="{{ $month }}">{{ $month }}</option>
+                            @endfor
+                        </select>
+                        <select wire:model="dob_day"
+                            class="flex-1 rounded-2xl border-2 border-white bg-white/60 px-3 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors">
+                            <option value="">Day</option>
+                            @for ($day = 1; $day <= 31; $day++)
+                                <option value="{{ $day }}">{{ $day }}</option>
+                            @endfor
+                        </select>
+                        <select wire:model="dob_year"
+                            class="flex-1 rounded-2xl border-2 border-white bg-white/60 px-3 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors">
+                            <option value="">Year</option>
+                            @for ($year = 2026; $year >= 1926; $year--)
+                                <option value="{{ $year }}">{{ $year }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+
+                {{-- <div class="space-y-1">
                     <input wire:model="email" type="email" placeholder="you@example.com" autocomplete="email"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
                     @error('email')
                         <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
-                <div class="space-y-1">
+                {{-- <div class="space-y-1">
                     <label class="text-sm font-semibold text-gray-600 pl-1">Password</label>
                     <input wire:model="password" type="password" placeholder="••••••••" autocomplete="current-password"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors" />
                     @error('password')
                         <p class="text-sm text-candy-600 pl-1">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
                 <div class="pt-2">
                     <button type="submit" x-data="{ pressed: false }"
@@ -297,10 +322,8 @@ new #[Title('Login')] class extends Component {
 
         <p class="text-center text-sm text-gray-500 mt-6" style="animation: fade-in-up 0.4s ease-out 0.2s both">
             Use the D2R2 app as a guest.
-            <a href="{{ route('register') }}" wire:navigate
-                class="font-bold text-ocean-500 hover:text-ocean-600 transition-colors">
-                Continue as Guest
-            </a>
+
         </p>
+        <button type="button" wire:click="guestLogin()">Continue as Guest</button>
     </div>
 </div>
