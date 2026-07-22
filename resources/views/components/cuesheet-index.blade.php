@@ -24,7 +24,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component
 
         //$this->updateRideIds = [];
 
-        $this->ride_id = UserSetting::get('ride_id') ?: null;
+        $this->ride_id = UserSetting::get('ride') ?: null;
 
         //dd($this->ride_id);
         // if (! app()->runningUnitTests() && app(NetworkStatus::class)->isOnline()) {

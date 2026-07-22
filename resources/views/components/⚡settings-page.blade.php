@@ -108,11 +108,13 @@ new #[Title('Settings — D2R2 App')] class extends Component {
         //     ->where(['id', 6])
         //     ->all();
         $ride_data = Ride::where('id', $this->ride_list)->first();
+        //dd($ride_data);
         if ($ride_data) {
             // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
             UserSetting::set('ride_id', $ride_data->id);
             UserSetting::set('ride_desc', $ride_data->ride_desc);
             UserSetting::set('ride', $ride_data->ride);
+            UserSetting::set('ride_list', $ride_data->id);
         }
 
         //dd($ride_data);
@@ -252,7 +254,21 @@ new #[Title('Settings — D2R2 App')] class extends Component {
                     <select wire:model.live="ride_list" id="ride_list" name="ride_list"
                         class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors">
                         {{-- <option disabled value="">Select a ride...</option>      --}}
-                        @foreach (Ride::all() as $ride_list)
+
+
+                        {{-- EXAMPLE CODE - Might work to solve issues --}}
+                        {{-- <select id="ride_list" wire:model.live="ride_list->id" value="{{ $ride_list->id }}"
+                            class="text-black">
+                            <option value="">No Ride selected</option>
+                            @foreach ($ride_list as $r_id)
+                                <option wire:key="{{ $r_id->id }}" value="{{ $r_id->desc }}"
+                                    {{ $ride_list_Id == $r_id->id ? 'selected' : '' }}>
+                                    {{ $r_id->desc }}
+                                </option>
+                            @endforeach
+                        </select> --}}
+
+                        @foreach (Ride::all(['id', 'ride_desc']) as $ride_list)
                             <option value="{{ $ride_list->id }}">{{ $ride_list->ride_desc }}</option>
                             {{-- if ($ride_list->id == $savedRideId) {
                                     <option value="{{ $ride_list->id }}" selected>{{ $ride_list->id }} - {{ $savedRideId }}  {{ $ride_list->ride_desc }}</option>

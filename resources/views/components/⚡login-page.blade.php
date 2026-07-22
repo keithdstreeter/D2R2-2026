@@ -108,36 +108,50 @@ new #[Title('Login')] class extends Component {
 
             //dd('Checking Reg');
             $registration = Registration::where('first_name', $firstName)->where('last_name', $lastName)->first();
+
+            // dd($registration);
+
             if (!$registration) {
                 dd('No Reg');
                 $this->error = 'No registration found for that name.';
                 return;
             } else {
+                //dd($registration->dob, $dobFull);
+
                 // Name has been found, now check the date of birth against the registration record
-                if ($registration->dob !== $dobFull) {
-                    dd('DOB Error');
+                if ($registration->dob == $dobFull) {
+                    //
+                    // dd('DOB Match');
+                    //$token = $registration->createToken($firstName . ' ' . $lastName)->plainTextToken;
+                    //$ride_id = $this->getRideID($registration->ride);
+                    $ride_id = $registration->category_entered; // Assuming 'category_entered' is the ride ID
+
+                    $token = bcrypt($firstName . ' ' . $lastName);
+                    if ($token) {
+                        session(['auth_token' => $token, 'token_verified_at' => now()]);
+                        UserSetting::set('first_name', $firstName);
+                        UserSetting::set('last_name', $lastName);
+                        UserSetting::set('bib', $registration->bib);
+                        UserSetting::set('ride_id', $registration->category_entered); // Assuming 'category_entered' is the ride ID
+                        $this->redirect(route('home'), navigate: true);
+                        $ride_data = Ride::where('id', $ride_id)->first();
+                        if ($ride_data) {
+                            // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
+                            UserSetting::set('ride_id', $ride_data->id);
+                            UserSetting::set('ride_desc', $ride_data->ride_desc);
+                            UserSetting::set('ride', $ride_data->ride);
+                        }
+                        return;
+                    }
+                } else {
                     $this->error = 'Date of birth does not match the registration record.';
-                    return;
-                }
-
-                //$token = $registration->createToken($firstName . ' ' . $lastName)->plainTextToken;
-                $ride_id = $this->getRideID($registration->ride);
-
-                $token = bcrypt($firstName . ' ' . $lastName);
-                if ($token) {
-                    session(['auth_token' => $token, 'token_verified_at' => now()]);
-                    UserSetting::set('first_name', $firstName);
-                    UserSetting::set('last_name', $lastName);
-                    //UserSetting::set('bib', $bib);
-                    UserSetting::set('ride_id', (string) $ride_id);
-                    $this->redirect(route('home'), navigate: true);
-                    return;
                 }
             }
             //$token = $registration->createToken($request->device_name)->plainTextToken;
         } else {
             // Not enough information provided, return an error message
             $token = bcrypt('FLT'); // Temporary token for testing purposes
+            return;
         }
 
         //$registration = Registration::where('bib', $this->bib)->get();
@@ -168,6 +182,7 @@ new #[Title('Login')] class extends Component {
         //$this->error = $response->json('message') ?? 'Invalid credentials. Please try again.';
     }
 };
+
 ?>
 
 <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12">

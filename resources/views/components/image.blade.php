@@ -17,7 +17,7 @@ new #[Title('Image View')] class extends Component {
     {
         //$ride_id = UserSetting::get('ride_id');
 
-        $this->ride_id = UserSetting::get('ride_id') ?: null;
+        $this->ride_id = UserSetting::get('ride') ?: null;
 
         // if ($savedId) {
         //     $this->selectedAgeGroupId = (int) $savedId;
@@ -67,30 +67,20 @@ new #[Title('Image View')] class extends Component {
 
 <div class="min-h-screen px-4 py-8">
 
+    {{-- Title and Back Button --}}
     <div class="mx-auto max-w-lg mt- 20">
-        {{-- Title and Back Button --}}
+
         <div class="mb-6 px-4 flex items-center justify-between">
             <h1 class="text-2xl font-bold text-gray-800">{{ $this->ride_id }} Map</h1>
-            {{-- {{ implode(', ', $this->updateRideIds) }} --}}
 
-            {{-- <button type="button" wire:click="showVals($updateRideIds)">
-                Show
-            </button> --}}
-
-            {{-- <a href="{{ route('home') }}" wire:navigate
-                class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Back</a> --}}
-            {{-- <button type="button" wire:click="saveChecks()">Back</button> --}}
-
-            {{-- <button type="submit">Complete</button> --}}
             <a href="{{ route('home') }}" wire:navigate
                 class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Back</a>
-            {{-- <a href="#" wire:click.prevent="saveChecks($updateRideIds)">GO HOME</a> --}}
+
         </div>
     </div>
     {{-- <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12"> --}}
 
     {{-- Images are not showing in the simulator --}}
     <img src="{{ $this->image_url }}" alt="Photo" class="img-fluid">
-
 
 </div>
