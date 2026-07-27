@@ -26,6 +26,10 @@ new #[Title('Your Ride Cuesheet')] class extends Component
 
         $this->ride_id = UserSetting::get('ride') ?: null;
 
+        $this->updateRideIds = Cuesheet::where('ride', $this->ride_id)
+            ->where('completed', 1)
+            ->pluck('id')
+            ->toArray();
         //dd($this->ride_id);
         // if (! app()->runningUnitTests() && app(NetworkStatus::class)->isOnline()) {
         //     app(ContentSync::class)->sync();
@@ -206,89 +210,57 @@ foreach ($value as $checkedID) {
                 class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Back</a> --}}
                 <button type="button" wire:click="saveChecks()">&larr; Back</button>
 
-                {{-- <button type="submit">Complete</button> --}}
-
-                {{-- <a href="#" wire:click.prevent="saveChecks($updateRideIds)">GO HOME</a> --}}
             </div>
         </div>
-        <div
-            class="relative
-                    overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
-            <table class="table-fixed w-full text-sm text-left rtl:text-right text-fg-brand-subtle">
-                <thead class="text-sm text-white bg-brand-strong">
-                    <tr>
-                        <th scope="col" class="max-w-[12px] text-center font-medium">
-                            Done
-                        </th>
-                        <th scope="col" class="px-6 py-3 font-medium">
-                            Turn
-                        </th>
-                        <th scope="col" class="px-6 py-3 font-medium">
-                            Notes
-                        </th>
-                        <th scope="col" class="px-6 py-3 font-medium">
-                            Dist
-                        </th>
 
+        <div class="w-full overflow-x-auto rounded-md border border-gray-200 shadow-sm">
+            <table class="w-full table-fixed divide-y divide-gray-200 text-left text-sm text-gray-700">
+                <thead class="bg-slate-900 text-xs font-semibold uppercase tracking-wider text-gray-100">
+                    <tr>
+                        <th scope="col" class="w-[10%] px-4 py-3">Done</th>
+                        <th scope="col" class="w-[10%] px-4 py-3">Turn</th>
+                        <th scope="col" class="w-[70%] px-4 py-3">Notes</th>
+                        <th scope="col" class="w-[10%] px-4 py-3 text-right">Dist</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {{-- <tr> --}}
-                    @foreach ($this->cuesheets as $index => $cuesheet)
-                        {{-- Alternate row colors --}}
-                        @if ($loop->iteration % 2 == 0)
-                            <tr class=bg-brand border-b border-brand-light">
-                                {{-- <div wire:key="{{ $post->id }}"> --}}
-                                <td class=""max-w-[20px] align-center px-6 py-4 font-medium text-fg-brand-subtle
-                                    whitespace-nowrap">
-                                    &nbsp; &nbsp;
-                                    {{-- wire:model.live="ride" --}}
 
-                                    <input type="checkbox" value="{{ $cuesheet->id }}" wire:model="updateRideIds">
-
-                                    {{-- <input wire:click="update({{ $cuesheet->id }}, {{ $this->ride_id }})" id="default-checkbox"
-                            type="checkbox"
-                            class="w-4 h-4 border  border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"> --}}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $cuesheet->turn }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $cuesheet->notes }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $cuesheet->distance }}
-                                </td>
-
-                            </tr>
-                        @else
-                            <tr class="bg-brand-strong border-b border-brand-light">
-                                <td class=""max-w-[20px] text-right px-6 py-4 font-medium text-fg-brand-subtle
-                                    whitespace-nowrap">
-                                    &nbsp; &nbsp;
-                                    {{-- <input checked id="default-checkbox" type="checkbox" value=""
-                            class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"> --}}
-
-                                    <input wire:model="updateRideIds" value="{{ $cuesheet->id }}" id="default-checkbox"
-                                        type="checkbox"
-                                        class="w-4 h-4 border  border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
-
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $cuesheet->turn }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $cuesheet->notes }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $cuesheet->distance }}
-                                </td>
-
-                            </tr>
-                        @endif
-                    @endforeach
-
-
+                @foreach ($this->cuesheets as $index => $cuesheet)
+                    @if ($loop->iteration % 2 == 0)
+                        <tr class="bg-brand border-b border-gray-200 bg-slate-800">
+                            <td class="px-4 py-3 font-medium text-white">
+                                <input id="checked-checkbox" type="checkbox" value="{{ $cuesheet->id }}"
+                                    wire:model="updateRideIds"
+                                    class="w-4 h-4 border border-default-medium rounded-xs  focus:ring-2 focus:ring-brand-soft">
+                            </td>
+                            <td class="px-4 py-3 text-white">
+                                {{ $cuesheet->turn }}
+                            </td>
+                            <td class="px-4 py-3 text-white">
+                                {{ $cuesheet->notes }}
+                            </td>
+                            <td class="px-4 py-3 text-white text-right tabular-nums">
+                                {{ $cuesheet->distance }}
+                            </td>
+                        </tr>
+                    @else
+                        <tr class="bg-brand-strong border-b border-gray-200 bg-green-900">
+                            <td class="px-4 py-3 font-medium text-white">
+                                <input wire:model="updateRideIds" value="{{ $cuesheet->id }}" id="checked-checkbox"
+                                    type="checkbox"
+                                    class="w-4 h-4 border align-middle border-default-medium rounded-xs  focus:ring-2 focus:ring-brand-soft">
+                            </td>
+                            <td class="px-4 py-3 text-white">
+                                {{ $cuesheet->turn }}
+                            </td>
+                            <td class="px-4 py-3 text-white">
+                                {{ $cuesheet->notes }}
+                            </td>
+                            <td class="px-4 py-3 text-white text-right tabular-nums">
+                                {{ $cuesheet->distance }}
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
                 </tbody>
             </table>
         </div>

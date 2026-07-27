@@ -7,7 +7,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Image View')] class extends Component {
+new #[Title('Map View')] class extends Component {
     public ?int $selectedAgeGroupId = null;
 
     public ?string $image_url = null;
@@ -15,52 +15,10 @@ new #[Title('Image View')] class extends Component {
 
     public function mount(): void
     {
-        //$ride_id = UserSetting::get('ride_id');
-
+        // Get the Ride (need better names across the board)
         $this->ride_id = UserSetting::get('ride') ?: null;
-
-        // if ($savedId) {
-        //     $this->selectedAgeGroupId = (int) $savedId;
-        // }
-
+        // Make the Map Name (currently using PNG files)
         $this->image_url = 'map-' . $this->ride_id . '.png';
-
-        //dd($this->image_url);
-        //dd($this->image_url);
-        //$path = public_path('css/app.css');
-    }
-
-    public function selectAgeGroup(int $ageGroupId): void
-    {
-        $this->selectedAgeGroupId = $ageGroupId;
-        UserSetting::set('age_group_id', (string) $ageGroupId);
-        unset($this->hasMovies);
-    }
-
-    public function quickStart(): void
-    {
-        if (!$this->selectedAgeGroupId) {
-            return;
-        }
-
-        $this->redirect(route('movies'));
-    }
-
-    /** @return \Illuminate\Database\Eloquent\Collection<int, AgeGroup> */
-    #[Computed]
-    public function ageGroups(): \Illuminate\Database\Eloquent\Collection
-    {
-        return AgeGroup::active()->orderBy('sort_order')->get();
-    }
-
-    #[Computed]
-    public function hasMovies(): bool
-    {
-        if (!$this->selectedAgeGroupId) {
-            return false;
-        }
-
-        return Movie::active()->where('age_group_id', $this->selectedAgeGroupId)->exists();
     }
 };
 ?>
@@ -69,16 +27,13 @@ new #[Title('Image View')] class extends Component {
 
     {{-- Title and Back Button --}}
     <div class="mx-auto max-w-lg mt- 20">
-
         <div class="mb-6 px-4 flex items-center justify-between">
             <h1 class="text-2xl font-bold text-gray-800">{{ $this->ride_id }} Map</h1>
 
             <a href="{{ route('home') }}" wire:navigate
                 class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Back</a>
-
         </div>
     </div>
-    {{-- <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12"> --}}
 
     {{-- Images are not showing in the simulator --}}
     <img src="{{ $this->image_url }}" alt="Photo" class="img-fluid">

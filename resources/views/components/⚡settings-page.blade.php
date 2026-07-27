@@ -59,9 +59,9 @@ new #[Title('Settings — D2R2 App')] class extends Component {
         // Values seem correctly saved in UserSetting
 
         //dd($savedRideId, $savedBib, $savedFirstName, $savedLastName);
-        if ($savedId) {
-            $this->selectedAgeGroupId = (int) $savedId;
-        }
+        // if ($savedId) {
+        //     $this->selectedAgeGroupId = (int) $savedId;
+        // }
 
         if ($savedRideId) {
             $this->savedRideId = (int) $savedRideId;
@@ -71,9 +71,9 @@ new #[Title('Settings — D2R2 App')] class extends Component {
 
         $identity = app(DeviceIdentity::class);
         // This works, but show Debug info instead TEMPORARY
-        //$this->username = $savedFirstName . ' ' . $savedLastName;
+        $this->username = $savedFirstName . ' ' . $savedLastName;
 
-        $this->username = $savedRideDesc . ' - ' . $savedRideId . ' - ' . $savedRide;
+        //$this->username = $savedRideDesc . ' - ' . $savedRideId . ' - ' . $savedRide;
         //$identity->getUsername();
         $this->deviceInfo = $identity->getDeviceInfo();
 
@@ -116,6 +116,16 @@ new #[Title('Settings — D2R2 App')] class extends Component {
             UserSetting::set('ride', $ride_data->ride);
             UserSetting::set('ride_list', $ride_data->id);
         }
+
+        // Add Save for the Username here as well, remove separate form code
+        // $this->validate();
+
+        $identity = app(DeviceIdentity::class);
+        $identity->setUsername($this->username);
+
+        app(LeaderboardService::class)->syncUsername($identity->getDeviceId(), $this->username);
+
+        $this->usernameSaved = true;
 
         //dd($ride_data);
         $this->redirect(route('home'));
@@ -171,17 +181,17 @@ new #[Title('Settings — D2R2 App')] class extends Component {
         UserSetting::set('haptics_enabled', $this->hapticsEnabled ? '1' : '0');
     }
 
-    public function updateUsername(): void
-    {
-        $this->validate();
+    // public function updateUsername(): void
+    // {
+    //     $this->validate();
 
-        $identity = app(DeviceIdentity::class);
-        $identity->setUsername($this->username);
+    //     $identity = app(DeviceIdentity::class);
+    //     $identity->setUsername($this->username);
 
-        app(LeaderboardService::class)->syncUsername($identity->getDeviceId(), $this->username);
+    //     app(LeaderboardService::class)->syncUsername($identity->getDeviceId(), $this->username);
 
-        $this->usernameSaved = true;
-    }
+    //     $this->usernameSaved = true;
+    // }
 
     public function confirmReset(): void
     {
@@ -239,7 +249,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
             <h1 class="text-2xl font-bold text-gray-800">Settings</h1>
             {{-- <a href="{{ route('home') }}" wire:navigate
                 class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Home</a> --}}
-            <button type="button" wire:click="saveSettings()"">&larr; Back</button>
+            <button type="button" wire:click="saveSettings()"">&larr; Save and Return</button>
         </div>
 
         {{-- @if (!$gateUnlocked)
@@ -304,23 +314,23 @@ new #[Title('Settings — D2R2 App')] class extends Component {
             <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up"
                 style="animation-delay: 0.1s">
                 <h2 class="text-lg font-semibold text-gray-700 mb-4">Username</h2>
-                <form wire:submit="updateUsername" class="space-y-3">
-                    <div>
-                        <input type="text" wire:model="username"
-                            class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors"
-                            placeholder="Enter username" maxlength="20" />
-                        @error('username')
-                            <p class="mt-1 text-sm text-candy-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <button type="submit"
+                {{-- <form wire:submit="updateUsername" class="space-y-3"> --}}
+                <div>
+                    <input type="text" wire:model="username"
+                        class="w-full rounded-2xl border-2 border-white bg-white/60 px-4 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors"
+                        placeholder="Enter username" maxlength="20" />
+                    @error('username')
+                        <p class="mt-1 text-sm text-candy-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                {{-- <button type="submit"
                         class="w-full rounded-2xl bg-gradient-to-r from-ocean-500 to-candy-500 px-4 py-3 text-sm font-bold text-white transition-all duration-200 min-h-[44px]">
                         Save Username
                     </button>
                     @if ($usernameSaved)
                         <p class="text-sm text-mint-500 font-semibold animate-fade-in">Username saved!</p>
                     @endif
-                </form>
+                {{-- </form> --}}
             </div>
 
             {{-- Sound & Haptics --}}
@@ -360,7 +370,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
             </div>
 
             {{-- Reset Progress --}}
-            <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up"
+            {{-- <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up"
                 style="animation-delay: 0.3s">
                 <h2 class="text-lg font-semibold text-gray-700 mb-4">Data</h2>
 
@@ -387,7 +397,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
                         Reset All Progress
                     </button>
                 @endif
-            </div>
+            </div> --}}
 
             {{-- Device Info --}}
             <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up"

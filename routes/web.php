@@ -8,19 +8,25 @@ Route::livewire('/login', 'login-page')->name('login');
 Route::livewire('/register', 'register-page')->name('register');
 
 Route::livewire('/welcome2', function () {
-    //return redirect()->away(config('services.api.url') . '/welcome2');
+    // return redirect()->away(config('services.api.url') . '/welcome2');
 
+    $url = config('services.api.url').'/welcome2';
 
-$url = config('services.api.url') . '/welcome2';
-return Redirect::to($url);
+    return Redirect::to($url);
 
 })->name('welcome2');
 
-// IMAGE SHOW 
+// IMAGE SHOW
 Route::livewire('/image', 'image')->name('image');
 
 // Map of the Route
-Route::livewire('/map', 'image')->name('image');
+Route::livewire('/allroutesmap', 'fullmap')->name('allroutesmap');
+
+// Map of the Route
+Route::livewire('/fairgroundsmap', 'fairgrounds')->name('fairgroundsmap');
+
+// Settings Page
+// Route::livewire('/settings', 'settings-page')->name('settings');
 
 // Route::get('/welcome2', function () {
 //     return redirect()->away(config('services.api.url') . '/welcome2');
@@ -48,6 +54,6 @@ Route::middleware(Authenticated::class)->group(function () {
     Route::livewire('/leaderboard', 'leaderboard')->name('leaderboard');
 
     Route::livewire('/cuesheet', 'cuesheet-index')->name('cuesheet');
+    Route::livewire('/notifiy', 'notifiy')->name('notifiy');
 
-    
 });

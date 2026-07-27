@@ -9,6 +9,8 @@ use Livewire\Component;
 
 new #[Title('D2R2 Rider App')] class extends Component {
     public ?int $selectedAgeGroupId = null;
+    public string $savedRide = '';
+    public bool $isGuestUser = true;
 
     public function mount(): void
     {
@@ -17,6 +19,11 @@ new #[Title('D2R2 Rider App')] class extends Component {
         if ($savedId) {
             $this->selectedAgeGroupId = (int) $savedId;
         }
+
+        $savedRide = UserSetting::get('ride');
+
+        $this->savedRide = $savedRide ?? '';
+        $this->isGuestUser = UserSetting::get('Guest_User') !== 'false';
     }
 
     public function selectAgeGroup(int $ageGroupId): void
@@ -35,6 +42,12 @@ new #[Title('D2R2 Rider App')] class extends Component {
             $this->redirect(route('cuesheet'));
         } elseif ($page === 'map') {
             $this->redirect(route('image'));
+        } elseif ($page === 'allroutesmap') {
+            $this->redirect(route('allroutesmap'));
+        } elseif ($page === 'fairgroundsmap') {
+            $this->redirect(route('fairgroundsmap'));
+        } elseif ($page === 'notifiy') {
+            $this->redirect(route('notifiy'));
         }
     }
 
@@ -67,17 +80,19 @@ new #[Title('D2R2 Rider App')] class extends Component {
 ?>
 
 <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+
+    <img src="FLT_Logo-Web.png" alt="FLT Logo" class="img-fluid img-scale mb-6" style="max-width: 200px;">
+
     <div class="w-full max-w-lg text-center" x-data="{ shown: false }" x-init="$nextTick(() => shown = true)">
         <div x-show="shown" x-transition:enter="transition ease-out duration-500"
             x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-            <h1
-                class="text-5xl font-bold bg-gradient-to-r from-candy-500 via-ocean-500 to-mint-500 bg-clip-text text-transparent mb-2">
+            <h1 class="mb-2 text-5xl font-bold text-[#004030]">
                 D2R2 Rider App
             </h1>
-            <p class="text-lg text-gray-500 mb-10">Enjoy the ride!</p>
+            <p class="mb-10 text-lg text-[#4a6b66]">Enjoy the ride!</p>
         </div>
 
-        <h2 class="text-xl font-semibold text-gray-700 mb-4">Ride Services</h2>
+        <h2 class="mb-4 text-xl font-semibold text-[#005040]">Ride Services</h2>
 
         <div class="grid gap-3">
             {{-- @foreach ($this->ageGroups as $index => $ageGroup)
@@ -100,23 +115,51 @@ new #[Title('D2R2 Rider App')] class extends Component {
 
             <button wire:key="cuesheet" wire:click="routeToPage('cuesheet')" x-data="{ pressed: false }"
                 x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
-                :class="pressed ? 'scale-95' : 'scale-100'" @class([
-                    'w-full rounded-2xl px-6 py-5 text-lg font-bold transition-all duration-200 min-h-[56px]',
-                    'bg-gradient-to-r from-ocean-500 to-candy-500 text-white shadow-lg shadow-ocean-200 ring-2 ring-ocean-300',
-                    'bg-white/80 text-gray-700 border-2 border-white hover:border-ocean-300 hover:shadow-md backdrop-blur-sm',
-                ]) {{-- style="animation: fade-in-up 0.4s ease-out {{ $index * 0.08 }}s both" --}}>
-                Cue Sheet
+                :class="pressed ? 'scale-95' : 'scale-100'"
+                class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
+                {{ $savedRide }} Cue Sheet
             </button>
 
             <button wire:key="map" wire:click="routeToPage('map')" x-data="{ pressed: false }"
+                x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
+                :class="pressed ? 'scale-95' : 'scale-100'"
+                class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
+                {{ $savedRide }} Map
+            </button>
+
+            <button wire:key="allroutesmap" wire:click="routeToPage('allroutesmap')" x-data="{ pressed: false }"
+                x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
+                :class="pressed ? 'scale-95' : 'scale-100'"
+                class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
+                All Routes Map
+            </button>
+
+            <button wire:key="fairgrounds" wire:click="routeToPage('fairgroundsmap')" x-data="{ pressed: false }"
+                x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
+                :class="pressed ? 'scale-95' : 'scale-100'"
+                class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
+                Fairgrounds Maps
+            </button>
+
+            @if (!$isGuestUser)
+                <button wire:key="notifiy" wire:click="routeToPage('notifiy')" x-data="{ pressed: false }"
+                    x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
+                    :class="pressed ? 'scale-95' : 'scale-100'"
+                    class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
+                    Notify Ride Director
+                </button>
+            @endif
+
+            {{-- 
+            <button wire:key="settings" wire:click="routeToPage('settings')" x-data="{ pressed: false }"
                 x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                 :class="pressed ? 'scale-95' : 'scale-100'" @class([
                     'w-full rounded-2xl px-6 py-5 text-lg font-bold transition-all duration-200 min-h-[56px]',
                     'bg-gradient-to-r from-ocean-500 to-candy-500 text-white shadow-lg shadow-ocean-200 ring-2 ring-ocean-300',
                     'bg-white/80 text-gray-700 border-2 border-white hover:border-ocean-300 hover:shadow-md backdrop-blur-sm',
-                ]) {{-- style="animation: fade-in-up 0.4s ease-out {{ $index * 0.08 }}s both" --}}>
-                Map
-            </button>
+                ]) 
+                Settings
+            </button> --}}
         </div>
 
         {{-- @if ($selectedAgeGroupId && $this->hasMovies)
@@ -151,7 +194,7 @@ new #[Title('D2R2 Rider App')] class extends Component {
 
             <span class="w-1 h-1 rounded-full bg-gray-300"></span>
             <a href="{{ route('settings') }}" wire:navigate
-                class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
+                class="text-lg font-semibold text-[#005040] transition-colors hover:text-[#004030]">
                 Settings
             </a>
             <span class="w-1 h-1 rounded-full bg-gray-300"></span>

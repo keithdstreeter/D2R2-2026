@@ -39,3 +39,33 @@ it('pre-selects age group if already stored in user_settings', function () {
     Livewire::test('home-page')
         ->assertSet('selectedAgeGroupId', $ageGroup->id);
 });
+
+it('routes to fairgrounds map page from ride services button', function () {
+    UserSetting::set('ride', 'D2R2');
+
+    Livewire::test('home-page')
+        ->call('routeToPage', 'fairgroundsmap')
+        ->assertRedirect(route('fairgroundsmap'));
+});
+
+it('shows notify ride director button for non-guest users', function () {
+    UserSetting::set('Guest_User', 'false');
+
+    Livewire::test('home-page')
+        ->assertSee('Notify Ride Director');
+});
+
+it('hides notify ride director button for guest users', function () {
+    UserSetting::set('Guest_User', 'true');
+
+    Livewire::test('home-page')
+        ->assertDontSee('Notify Ride Director');
+});
+
+it('routes to notifiy page from ride services button', function () {
+    UserSetting::set('Guest_User', 'false');
+
+    Livewire::test('home-page')
+        ->call('routeToPage', 'notifiy')
+        ->assertRedirect(route('notifiy'));
+});

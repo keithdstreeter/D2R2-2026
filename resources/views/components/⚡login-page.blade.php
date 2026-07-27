@@ -72,6 +72,21 @@ new #[Title('Login')] class extends Component {
 
         UserSetting::set('Guest_User', 'true');
         $token = bcrypt('D2R2Guest');
+        session(['auth_token' => $token, 'token_verified_at' => now()]);
+        UserSetting::set('first_name', 'D2R2 App');
+        UserSetting::set('last_name', 'Guest');
+        UserSetting::set('bib', '');
+        UserSetting::set('ride_id', 4);
+        UserSetting::set('ride', '100k');
+
+        // $this->redirect(route('home'), navigate: true);
+        // $ride_data = Ride::where('id', $ride_id)->first();
+        // if ($ride_data) {
+        //     // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
+        //     UserSetting::set('ride_id', $ride_data->id);
+        //     UserSetting::set('ride_desc', $ride_data->ride_desc);
+        //     UserSetting::set('ride', $ride_data->ride);
+        // }
 
         $this->redirect(route('home'), navigate: true);
     }
@@ -129,6 +144,7 @@ new #[Title('Login')] class extends Component {
                     $token = bcrypt($firstName . ' ' . $lastName);
                     if ($token) {
                         session(['auth_token' => $token, 'token_verified_at' => now()]);
+                        UserSetting::set('Guest_User', 'false');
                         UserSetting::set('first_name', $firstName);
                         UserSetting::set('last_name', $lastName);
                         UserSetting::set('bib', $registration->bib);
@@ -245,7 +261,7 @@ new #[Title('Login')] class extends Component {
 
 
                 <div class="space-y-1">
-                    <label class="text-sm font-semibold text-gray-600 pl-1">Date of Birth</label>
+                    <label class="text-sm font-semibold text-gray-600 pl-1">Date of Birth (Day - Month - Year)</label>
                     <div class="flex gap-2">
                         <select wire:model="dob_month"
                             class="flex-1 rounded-2xl border-2 border-white bg-white/60 px-3 py-3 text-base text-gray-700 focus:border-ocean-300 focus:outline-none transition-colors">
@@ -292,7 +308,7 @@ new #[Title('Login')] class extends Component {
                     <button type="submit" x-data="{ pressed: false }"
                         x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                         :class="pressed ? 'scale-95' : 'scale-100'"
-                        class="w-full rounded-2xl font-bold  shadow-lg shadow-ocean-200 border-gray-900 border-2 bg-green-900 min-h-[56px]">
+                        class="w-full rounded-2xl font-bold  shadow-lg shadow-ocean-200 border-gray-900 border-2 bg-green-900 min-h-[56px] text-lg text-white">
                         <span wire:loading.remove wire:target="login">Login</span>
                         <span wire:loading wire:target="login">Signing in…</span>
                     </button>
@@ -332,13 +348,19 @@ new #[Title('Login')] class extends Component {
                     <span wire:loading.remove wire:target="loginWithGoogle">Login with Google</span>
                     <span wire:loading wire:target="loginWithGoogle">Opening…</span>
                 </button> --}}
+
+                <button type="button" wire:click="guestLogin()"
+                    class="w-full rounded-2xl font-bold  shadow-lg shadow-ocean-200 border-gray-900 border-2 bg-green-100 min-h-[56px] text-lg text-black">
+                    Not Registered - Continue as a Guest</button>
             </div>
+
+
         </form>
 
-        <p class="text-center text-sm text-gray-500 mt-6" style="animation: fade-in-up 0.4s ease-out 0.2s both">
+        {{-- <p class="text-center text-sm text-gray-500 mt-6" style="animation: fade-in-up 0.4s ease-out 0.2s both">
             Use the D2R2 app as a guest.
 
-        </p>
-        <button type="button" wire:click="guestLogin()">Continue as Guest</button>
+        </p> --}}
+
     </div>
 </div>
