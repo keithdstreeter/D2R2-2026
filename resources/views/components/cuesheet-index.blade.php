@@ -230,7 +230,7 @@ foreach ($value as $checkedID) {
                             <td class="px-4 py-3 font-medium text-white">
                                 <input id="checked-checkbox" type="checkbox" value="{{ $cuesheet->id }}"
                                     wire:model="updateRideIds"
-                                    class="w-4 h-4 border border-default-medium rounded-xs  focus:ring-2 focus:ring-brand-soft">
+                                    class="accent-black w-4 h-4 border border-default-medium rounded-xs  focus:ring-2 focus:ring-brand-soft">
                             </td>
                             <td class="px-4 py-3 text-white">
                                 {{ $cuesheet->turn }}
@@ -247,7 +247,7 @@ foreach ($value as $checkedID) {
                             <td class="px-4 py-3 font-medium text-white">
                                 <input wire:model="updateRideIds" value="{{ $cuesheet->id }}" id="checked-checkbox"
                                     type="checkbox"
-                                    class="w-4 h-4 border align-middle border-default-medium rounded-xs  focus:ring-2 focus:ring-brand-soft">
+                                    class="accent-black w-4 h-4 border align-middle border-default-medium rounded-xs  focus:ring-2 focus:ring-brand-soft">
                             </td>
                             <td class="px-4 py-3 text-white">
                                 {{ $cuesheet->turn }}

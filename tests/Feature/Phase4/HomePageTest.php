@@ -69,3 +69,9 @@ it('routes to notifiy page from ride services button', function () {
         ->call('routeToPage', 'notifiy')
         ->assertRedirect(route('notifiy'));
 });
+
+it('routes to merchandise page from ride services button', function () {
+    Livewire::test('home-page')
+        ->call('routeToPage', 'merchandise')
+        ->assertRedirect(route('merchandise'));
+});

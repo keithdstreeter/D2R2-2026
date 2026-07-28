@@ -6,6 +6,7 @@ use App\Services\DeviceIdentity;
 use App\Services\LeaderboardService;
 use App\Services\NativeFeedback;
 use App\Services\NetworkStatus;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,5 +32,13 @@ class AppServiceProvider extends ServiceProvider
             ->timeout(10)
             ->acceptJson()
         );
+
+        if (! app()->runningUnitTests()) {
+            try {
+                Artisan::call('migrate', ['--force' => true]);
+            } catch (\Throwable $e) {
+                logger()->error('Migration failed on startup: '.$e->getMessage());
+            }
+        }
     }
 }

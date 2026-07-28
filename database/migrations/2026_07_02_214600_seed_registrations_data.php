@@ -19,15 +19,18 @@ return new class extends Migration
         Registration::query()->delete();
     }
 
-
     private function seedRegistrations(): void
     {
         $Registrations = $this->loadJson('registrations.json');
 
-        //dd($Registrations);
+        if (! is_array($Registrations)) {
+            logger()->error('seed_registrations_data: could not load registrations.json');
+
+            return;
+        }
 
         foreach ($Registrations as $RegistrationData) {
-       
+
             Registration::query()->updateOrCreate(
                 [
                     'bib' => $RegistrationData['bib'],
@@ -37,12 +40,11 @@ return new class extends Migration
                     'category_entered' => $RegistrationData['category_entered'],
                     'email' => $RegistrationData['email'],
                     'dob' => $RegistrationData['dob'],
-                    'gender' => $RegistrationData['gender']
+                    'gender' => $RegistrationData['gender'],
                 ],
             );
         }
     }
-
 
     /** @return array<int, array<string, mixed>> */
     private function loadJson(string $filename): array

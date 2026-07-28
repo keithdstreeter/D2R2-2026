@@ -54,6 +54,7 @@ Route::middleware(Authenticated::class)->group(function () {
     Route::livewire('/leaderboard', 'leaderboard')->name('leaderboard');
 
     Route::livewire('/cuesheet', 'cuesheet-index')->name('cuesheet');
+    Route::livewire('/merchandise', 'merchandise')->name('merchandise');
     Route::livewire('/notifiy', 'notifiy')->name('notifiy');
 
 });

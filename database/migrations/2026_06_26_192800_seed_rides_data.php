@@ -19,16 +19,19 @@ return new class extends Migration
         Ride::query()->delete();
     }
 
-
     private function seedRides(): void
     {
-        $Rides = $this->loadJson('Rides.json');
+        $Rides = $this->loadJson('rides.json');
 
-        //dd($Rides);
+        if (! is_array($Rides)) {
+            logger()->error('seed_rides_data: could not load rides.json');
+
+            return;
+        }
 
         foreach ($Rides as $RideData) {
 
-        //dump($RideData);
+            // dump($RideData);
             // $ageGroup = AgeGroup::query()
             //     ->where('code', $movieData['age_group_code'])
             //     ->firstOrFail();
@@ -58,7 +61,6 @@ return new class extends Migration
             //         'distance' => $RideData['distance'],
             //     ],
             // );
-       
 
             Ride::query()->updateOrCreate(
                 [
@@ -110,7 +112,7 @@ return new class extends Migration
     //             }
     //         }
     //     }
-    //}
+    // }
 
     /** @return array<int, array<string, mixed>> */
     private function loadJson(string $filename): array
