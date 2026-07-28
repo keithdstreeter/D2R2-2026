@@ -17,7 +17,8 @@ return new class extends Migration
 
     public function down(): void
     {
-        Ride::query()->delete();
+        //Ride::query()->delete();
+        Cuesheet::query()->delete();
     }
 
     private function seedCuesheet(): void
@@ -26,6 +27,8 @@ return new class extends Migration
         // New - load all rides from table and then load each ride json file and insert into cuesheet table
         $query = Ride::all();
         
+        //dd($query);
+
         foreach ($query as $ride) {
             $filename = 'cuesheet_'.$ride->ride.'.json';
             $Cuesheet = $this->loadJson($filename);
