@@ -36,25 +36,25 @@
     "distance_miles": "49.70968"
   },
   {
-    "ride": "GRR",
+    "ride": "grr",
     "ride_desc": "D2R2 Green River Ride 2026",
     "distance_k": "57.614372",
     "distance_miles": "35.8"
   },
   {
-    "ride": "GR+12.7",
+    "ride": "gr+12.7",
     "ride_desc": "D2R2 Green River Ride 2026 Add 12.7 mi. 2026",
     "distance_k": "78.05299",
     "distance_miles": "48.5"
   },
   {
-    "ride": "Family-GR",
+    "ride": "family-gr",
     "ride_desc": "D2R2 Family Ride to end of Green River Rd.",
     "distance_k": "26.55411",
     "distance_miles": "16.5"
   },
   {
-    "ride": "Family-CB",
+    "ride": "family-cb",
     "ride_desc": "D2R2 Family Ride to Covered Bridge 2026",
     "distance_k": "19.633948",
     "distance_miles": "12.2"

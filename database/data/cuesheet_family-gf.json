@@ -1,0 +1,74 @@
+[
+  {
+    "distance": "",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto North Green River Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "1.1",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto North Green River Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "5",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Stage Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "0",
+    "turn": "Food",
+    "notes": "Lunch at Green River Crib dam",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Stage Road to continue route",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Green River Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "1.9",
+    "turn": "U Turn",
+    "notes": "Make a U-turn onto Green River Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "1.9",
+    "turn": "Slight Right",
+    "notes": "Keep RIGHT onto Green River Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "0",
+    "turn": "Right",
+    "notes": "Turn RIGHT onto Stage Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "0",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Green River Road to return to route",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "6.1",
+    "turn": "Left",
+    "notes": "Turn LEFT onto Green River Road",
+    "ride": "Family-GRR"
+  },
+  {
+    "distance": "0.1",
+    "turn": "Generic",
+    "notes": "FINISH",
+    "ride": "Family-GRR"
+  }
+]

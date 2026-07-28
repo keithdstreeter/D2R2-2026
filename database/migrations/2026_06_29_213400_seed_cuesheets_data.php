@@ -27,9 +27,9 @@ return new class extends Migration
         $query = Ride::all();
         
         foreach ($query as $ride) {
-            $filename = 'Cuesheet_'.$ride->ride.'.json';
+            $filename = 'cuesheet_'.$ride->ride.'.json';
             $Cuesheet = $this->loadJson($filename);
-            dump($filename);
+            //dump($filename);
             foreach ($Cuesheet as $RideData) {
                 Cuesheet::query()->updateOrCreate(
                     [
