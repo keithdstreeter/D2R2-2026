@@ -39,31 +39,15 @@ return new class extends Migration
 
                     // Handle ride names from the JSON file that may not match the ride name in the database
                     
-                   if ($RideData['ride'] === '100K (The Original!)') {
-                       $rideShortName = '100K';
-                   } elseif ($RideData['ride'] === '140K (NEW for 2026)') {
-                       $rideShortName = '140K';
-                   } elseif ($RideData['ride'] === 'Family Ride') {
-                       $rideShortName = 'Family-GR';
-                   } elseif ($RideData['ride'] === 'Family Ride (under 12 years old)') {
-                       $rideShortName = 'Family-CB';
-                   } elseif ($RideData['ride'] === 'Green River Tour') {
-                       $rideShortName = 'GRR+12.7';
-                   } elseif ($RideData['ride'] === 'Green River Tour (under 18 years old)') {
-                       $rideShortName = 'GRR';
-                   } elseif ($RideData['ride'] === 'Point to Point Ride, 52mi (NEW for 2026)') {
-                       $rideShortName = '80k';
-                   } else {
-                       $rideShortName = $RideData['ride'];
-                   }    
+         
                     
-                    
+                    //dd('Short Name: ' . $rideShortName, 'Ride Data Ride: ' . $RideData['ride']);
                     // $rideShortName = $RideData['ride'];  // This line is no longer needed
-
+                    $rideShortName = $RideData['ride'];
 
                     Cuesheet::query()->updateOrCreate(
                         [
-                            'ride' => $rideShortName,
+                            'ride' => strtolower($rideShortName),
                             'turn' => $RideData['turn'],
                             'notes' => $RideData['notes'],
                             'distance' => $RideData['distance'],

@@ -115,7 +115,7 @@ new #[Title('Login')] class extends Component {
             //dd('Checking Reg');
             $registration = Registration::where('first_name', $firstName)->where('last_name', $lastName)->first();
 
-            // dd($registration);
+            //dd($registration);
 
             if (!$registration) {
                 dd('No Reg');
@@ -139,16 +139,17 @@ new #[Title('Login')] class extends Component {
                         UserSetting::set('first_name', $firstName);
                         UserSetting::set('last_name', $lastName);
                         UserSetting::set('bib', $registration->bib);
-                        UserSetting::set('ride_short_name', $registration->category_entered); // Assuming 'category_entered' is the ride ID
+                        UserSetting::set('ride_short_name', strtolower($registration->category_entered)); // Assuming 'category_entered' is the ride ID
+                        //dd('Ride ID: ' . $ride_id, 'Ride Short Name: ' . $registration->category_entered);
                         $this->redirect(route('home'), navigate: true);
-                        $ride_data = Ride::where('id', $ride_id)->first();
-                        if ($ride_data) {
-                            // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
-                            UserSetting::set('ride_id', $ride_data->id);
-                            UserSetting::set('ride_desc', $ride_data->ride_desc);
-                            UserSetting::set('ride_short_name', $ride_data->ride);
-                        }
-                        return;
+                        // $ride_data = Ride::where('id', $ride_id)->first();
+                        // if ($ride_data) {
+                        //     // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
+                        //     UserSetting::set('ride_id', $ride_data->id);
+                        //     UserSetting::set('ride_desc', $ride_data->ride_desc);
+                        //     UserSetting::set('ride_short_name', $ride_data->ride);
+                        // }
+                        // return;
                     }
                 } else {
                     $this->error = 'Date of birth does not match the registration record.';

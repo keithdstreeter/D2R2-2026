@@ -17,20 +17,21 @@ new #[Title('Your Ride Cuesheet')] class extends Component
     public ?int $ageGroupId = null;
 
     public  $updateRideIds = [];
+    public ?string $rideShortName = null;
 
     public function mount(): void
     {
-        //$this->ageGroupId = (int) UserSetting::get('age_group_id') ?: null;
+        $this->rideShortName = UserSetting::get('ride_short_name') ?: null;
 
-        //$this->updateRideIds = [];
-
-        $this->ride_id = UserSetting::get('ride_id') ?: null;
-
-        $this->updateRideIds = Cuesheet::where('ride', $this->ride_id)
+        // Load any COMPLETED cuesheet items for this ride into the updateRideIds array
+        // May be empty if none have been completed yet, but will be used to pre-check the checkboxes in the view
+        $this->updateRideIds = Cuesheet::where('ride', $this->rideShortName)
             ->where('completed', 1)
             ->pluck('id')
             ->toArray();
-        //dd($this->ride_id);
+
+            //dd($this->rideShortName, $this->updateRideIds);
+        //dd($this->rideShortName);
         // if (! app()->runningUnitTests() && app(NetworkStatus::class)->isOnline()) {
         //     app(ContentSync::class)->sync();
         // }
@@ -51,8 +52,8 @@ new #[Title('Your Ride Cuesheet')] class extends Component
             foreach ($updateRideIds as $checkedID) {
                 Cuesheet::query()->updateOrCreate(
                     [
-                        'ride' => $this->ride_id,
-                        'id' => $ID,
+                        'ride' => $this->rideShortName,
+                        'id' => $checkedID,
                     ],
                     ['completed' => 1],
                 );
@@ -70,13 +71,17 @@ new #[Title('Your Ride Cuesheet')] class extends Component
 
         //dd('Save Checks', $this->updateRideIds);
 
-        $current_ride_id = UserSetting::get('ride_id') ?: null;
+        $current_ride_id = $this->rideShortName ?: null;
 //$flight->updateOrFail(['name' => 'Paris to London']);
         foreach ($this->updateRideIds as $checkedID) {
 
-             DB::table('cuesheets')
-                ->where(['id', $checkedID, 'ride', $current_ride_id])
-                ->update(['completed' => 1]);
+            Cuesheet::query()->updateOrCreate(
+                [
+                    'ride' => $current_ride_id,
+                    'id' => $checkedID,
+                ],
+                ['completed' => 1],
+            );
 
 //             $query = Cuesheet::find([
 //                 'ride' => $current_ride_id,
@@ -98,52 +103,52 @@ new #[Title('Your Ride Cuesheet')] class extends Component
         $this->redirect(route('home'));
     }
 
-    public function updateCompleted( $ID, $ride_id) 
-    {
-        dd("clicked", $ID, $ride_id);   
-        Cuesheet::query()->updateOrCreate(
-            [
-                'ride' => $ID,
-                'id' => $ID,
-            ],
-            ['completed' => 1],
-        );
+    // public function updateCompleted( $ID, $ride_id) 
+    // {
+    //     dd("clicked", $ID, $ride_id);   
+    //     Cuesheet::query()->updateOrCreate(
+    //         [
+    //             'ride' => $ID,
+    //             'id' => $ID,
+    //         ],
+    //         ['completed' => 1],
+    //     );
 
-        dd($ID, $ride_id);
-    }
+    //     dd($ID, $ride_id);
+    // }
 
-     public function updated($name, $value) 
-    {
-        // Use the Livewire updated lifecycle hook to save the updated value
-        // to the Cuesheet model
-        // The $name parameter will contain the Cuesheet Model item
-        // The $value parameter will contain the selected value from that item (checkbox)
+//      public function updated($name, $value) 
+//     {
+//         // Use the Livewire updated lifecycle hook to save the updated value
+//         // to the Cuesheet model
+//         // The $name parameter will contain the Cuesheet Model item
+//         // The $value parameter will contain the selected value from that item (checkbox)
 
-        //dd('UPDATED',$name, $value);
+//         //dd('UPDATED',$name, $value);
 
-        // Need to pull the Ride again, since it is passed into this routine 
-        // which is firing but not by design. Can't control it so going with 
-        // in to see if I can make the Back button work.
+//         // Need to pull the Ride again, since it is passed into this routine 
+//         // which is firing but not by design. Can't control it so going with 
+//         // in to see if I can make the Back button work.
 
-        $current_ride_id = UserSetting::get('ride_id') ?: null;
+//         $current_ride_id = UserSetting::get('ride_short_name') ?: null;
 
-foreach ($value as $checkedID) {
-            Cuesheet::query()->updateOrCreate(
-                [
-                    'ride' => $current_ride_id,
-                    'id' => $checkedID,
-                ],
-                ['completed' => 1],
-            );
-        }
-        $this->redirect(route('home'));
+// foreach ($value as $checkedID) {
+//             Cuesheet::query()->updateOrCreate(
+//                 [
+//                     'ride' => $current_ride_id,
+//                     'id' => $checkedID,
+//                 ],
+//                 ['completed' => 1],
+//             );
+//         }
+//         $this->redirect(route('home'));
 
-        //dd('KDS updated', $name, $value, $updateRideIds);
-        //dd($name, $value);
-        // $this->post->update([
-        //     $name => $value,
-        // ]);
-    }
+//         //dd('KDS updated', $name, $value, $updateRideIds);
+//         //dd($name, $value);
+//         // $this->post->update([
+//         //     $name => $value,
+//         // ]);
+//     }
 
     #[Computed]
     // public function hasNewContent(): bool
@@ -163,8 +168,9 @@ foreach ($value as $checkedID) {
     {
         //$query = Cuesheet::ride()->orderBy('id');
 
-        $query = Cuesheet::all()->where('ride', $this->ride_id);
+        $query = Cuesheet::all()->where('ride', $this->rideShortName);
 
+        //dd($this->rideShortName, $query);
         //dump($query->count());
         //$query = Movie::active()->orderBy('sort_order');
         // if ($this->ageGroupId) {
@@ -199,7 +205,7 @@ foreach ($value as $checkedID) {
         <div class="mx-auto max-w-lg mt- 20">
             {{-- Title and Back Button --}}
             <div class="mb-6 px-4 flex items-center justify-between">
-                <h1 class="text-2xl font-bold text-gray-800">{{ $this->ride_id }} Cue Sheet</h1>
+                <h1 class="text-2xl font-bold text-gray-800">{{ $this->rideShortName }} Cue Sheet</h1>
                 {{-- {{ implode(', ', $this->updateRideIds) }} --}}
 
                 {{-- <button type="button" wire:click="showVals($updateRideIds)">

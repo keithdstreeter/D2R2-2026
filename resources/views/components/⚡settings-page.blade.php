@@ -113,7 +113,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
             // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
             UserSetting::set('ride_id', $ride_data->id);
             UserSetting::set('ride_desc', $ride_data->ride_desc);
-            UserSetting::set('ride_short_name', $ride_data->ride);
+            UserSetting::set('ride_short_name', strtolower($ride_data->ride));
             UserSetting::set('ride_list', $ride_data->id);
         }
 
