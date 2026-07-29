@@ -3,6 +3,7 @@
 use App\Models\Ride;
 use App\Models\Cuesheet;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Log;
 
 return new class extends Migration
 {
@@ -30,42 +31,52 @@ return new class extends Migration
         //dd($query);
 
         foreach ($query as $ride) {
-            $filename = 'cuesheet_'.$ride->ride.'.json';
-            $Cuesheet = $this->loadJson($filename);
-            //dump($filename);
-            foreach ($Cuesheet as $RideData) {
-                Cuesheet::query()->updateOrCreate(
-                    [
-                        'ride' => $RideData['ride'],
-                        'turn' => $RideData['turn'],
-                        'notes' => $RideData['notes'],
-                        'distance' => $RideData['distance'],
-                        'completed' => 0,
-                    ],
-                );
+            try {
+                $filename = 'cuesheet_'.$ride->ride.'.json';
+                $Cuesheet = $this->loadJson($filename);
+                //dump($filename);
+                foreach ($Cuesheet as $RideData) {
+
+                    // Handle ride names from the JSON file that may not match the ride name in the database
+                    
+                   if ($RideData['ride'] === '100K (The Original!)') {
+                       $rideShortName = '100K';
+                   } elseif ($RideData['ride'] === '140K (NEW for 2026)') {
+                       $rideShortName = '140K';
+                   } elseif ($RideData['ride'] === 'Family Ride') {
+                       $rideShortName = 'Family-GR';
+                   } elseif ($RideData['ride'] === 'Family Ride (under 12 years old)') {
+                       $rideShortName = 'Family-CB';
+                   } elseif ($RideData['ride'] === 'Green River Tour') {
+                       $rideShortName = 'GRR+12.7';
+                   } elseif ($RideData['ride'] === 'Green River Tour (under 18 years old)') {
+                       $rideShortName = 'GRR';
+                   } elseif ($RideData['ride'] === 'Point to Point Ride, 52mi (NEW for 2026)') {
+                       $rideShortName = '80k';
+                   } else {
+                       $rideShortName = $RideData['ride'];
+                   }    
+                    
+                    
+                    // $rideShortName = $RideData['ride'];  // This line is no longer needed
+
+
+                    Cuesheet::query()->updateOrCreate(
+                        [
+                            'ride' => $rideShortName,
+                            'turn' => $RideData['turn'],
+                            'notes' => $RideData['notes'],
+                            'distance' => $RideData['distance'],
+                            'completed' => 0,
+                        ],
+                    );
+                }
+            } catch (\Throwable $e) {
+                Log::error('Failed to load cuesheet JSON for ride '.$ride->ride.': '.$e->getMessage());
+                continue; // Skip to the next ride if there's an error
             }
         }
 
-        //$Cuesheet = $this->loadJson('Cuesheet.json');
-
-        //dd($Cuesheet);
-
-
-        // SHOULD THIS BE HERE???
-
-        // foreach ($Cuesheet as $RideData) {
-
-        // //dump($RideData);
-
-        //     Ride::query()->updateOrCreate(
-        //         [
-        //             'ride' => $RideData['ride'],
-        //             'turn' => $RideData['turn'],
-        //             'notes' => $RideData['notes'],
-        //             'distance' => $RideData['distance'],
-        //         ],
-        //     );
-        // }
     }
 
     /** @return array<int, array<string, mixed>> */
