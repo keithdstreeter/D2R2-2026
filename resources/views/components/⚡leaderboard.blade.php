@@ -9,8 +9,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Leaderboard — Quiz App')] class extends Component
-{
+new #[Title('Leaderboard — Quiz App')] class extends Component {
     public string $movieFilter = '';
 
     public function mount(): void
@@ -55,11 +54,7 @@ new #[Title('Leaderboard — Quiz App')] class extends Component
     #[Computed]
     public function movieSlugs(): \Illuminate\Support\Collection
     {
-        return LeaderboardEntry::query()
-            ->select('movie_slug')
-            ->distinct()
-            ->orderBy('movie_slug')
-            ->pluck('movie_slug');
+        return LeaderboardEntry::query()->select('movie_slug')->distinct()->orderBy('movie_slug')->pluck('movie_slug');
     }
 
     public function filterByMovie(string $slug): void
@@ -76,37 +71,36 @@ new #[Title('Leaderboard — Quiz App')] class extends Component
 };
 ?>
 
-<div class="min-h-screen px-4 py-8">
+<div class="min-h-screen px-4 py-16">
     <div class="mx-auto max-w-lg">
         <div class="mb-6 flex items-center justify-between">
             <h1 class="text-2xl font-bold text-gray-800">Leaderboard</h1>
-            <a href="{{ route('home') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Home</a>
+            <a href="{{ route('home') }}" wire:navigate
+                class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Home</a>
         </div>
 
         @if ($this->isOnline)
             {{-- Movie filter tabs --}}
             @if ($this->movieSlugs->isNotEmpty())
                 <div class="mb-4 flex flex-wrap gap-2">
-                    <button
-                        wire:click="clearFilter"
-                        @class([
-                            'rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200',
-                            'bg-gradient-to-r from-ocean-500 to-candy-500 text-white shadow-md' => $movieFilter === '',
-                            'bg-white/60 text-gray-600 border-2 border-white hover:border-ocean-300' => $movieFilter !== '',
-                        ])
-                    >
+                    <button wire:click="clearFilter" @class([
+                        'rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200',
+                        'bg-gradient-to-r from-ocean-500 to-candy-500 text-white shadow-md' =>
+                            $movieFilter === '',
+                        'bg-white/60 text-gray-600 border-2 border-white hover:border-ocean-300' =>
+                            $movieFilter !== '',
+                    ])>
                         All
                     </button>
                     @foreach ($this->movieSlugs as $slug)
-                        <button
-                            wire:key="filter-{{ $slug }}"
-                            wire:click="filterByMovie('{{ $slug }}')"
+                        <button wire:key="filter-{{ $slug }}" wire:click="filterByMovie('{{ $slug }}')"
                             @class([
                                 'rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200',
-                                'bg-gradient-to-r from-ocean-500 to-candy-500 text-white shadow-md' => $movieFilter === $slug,
-                                'bg-white/60 text-gray-600 border-2 border-white hover:border-ocean-300' => $movieFilter !== $slug,
-                            ])
-                        >
+                                'bg-gradient-to-r from-ocean-500 to-candy-500 text-white shadow-md' =>
+                                    $movieFilter === $slug,
+                                'bg-white/60 text-gray-600 border-2 border-white hover:border-ocean-300' =>
+                                    $movieFilter !== $slug,
+                            ])>
                             {{ str_replace('-', ' ', ucwords($slug, '-')) }}
                         </button>
                     @endforeach
@@ -120,14 +114,12 @@ new #[Title('Leaderboard — Quiz App')] class extends Component
                 @else
                     <div class="space-y-3">
                         @foreach ($this->entries as $index => $entry)
-                            <div
-                                wire:key="entry-{{ $entry->id }}"
-                                @class([
-                                    'flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200',
-                                    'bg-ocean-50 border border-ocean-200' => $entry->device_id === $this->deviceId,
-                                    'bg-white/60' => $entry->device_id !== $this->deviceId,
-                                ])
-                            >
+                            <div wire:key="entry-{{ $entry->id }}" @class([
+                                'flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200',
+                                'bg-ocean-50 border border-ocean-200' =>
+                                    $entry->device_id === $this->deviceId,
+                                'bg-white/60' => $entry->device_id !== $this->deviceId,
+                            ])>
                                 {{-- Rank --}}
                                 <span @class([
                                     'flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold',
@@ -147,23 +139,27 @@ new #[Title('Leaderboard — Quiz App')] class extends Component
                                             <span class="text-ocean-500">(You)</span>
                                         @endif
                                     </p>
-                                    <p class="text-xs text-gray-400">{{ str_replace('-', ' ', ucwords($entry->movie_slug, '-')) }}</p>
+                                    <p class="text-xs text-gray-400">
+                                        {{ str_replace('-', ' ', ucwords($entry->movie_slug, '-')) }}</p>
                                 </div>
 
                                 {{-- Score --}}
-                                <span class="text-sm font-bold text-ocean-600">{{ $entry->score }}/{{ $entry->total }}</span>
+                                <span
+                                    class="text-sm font-bold text-ocean-600">{{ $entry->score }}/{{ $entry->total }}</span>
                             </div>
                         @endforeach
                     </div>
                 @endif
             </div>
         @else
-            <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-8 text-center" data-offline-message>
+            <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-8 text-center"
+                data-offline-message>
                 <div class="mb-4 text-4xl">
                     📡
                 </div>
                 <h2 class="text-lg font-bold text-gray-700 mb-2">You're Offline</h2>
-                <p class="text-sm text-gray-500">The leaderboard requires an internet connection. Please connect to Wi-Fi or mobile data to view scores.</p>
+                <p class="text-sm text-gray-500">The leaderboard requires an internet connection. Please connect to
+                    Wi-Fi or mobile data to view scores.</p>
             </div>
         @endif
     </div>

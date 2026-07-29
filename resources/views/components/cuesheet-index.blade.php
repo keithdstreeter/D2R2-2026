@@ -194,7 +194,7 @@ foreach ($value as $checkedID) {
 ?>
 
 <form wire:submit="save()">
-    <div class="min-h-screen px-4 py-8">
+    <div class="min-h-screen px-4 py-16">
 
         <div class="mx-auto max-w-lg mt- 20">
             {{-- Title and Back Button --}}

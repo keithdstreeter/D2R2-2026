@@ -52,7 +52,7 @@ new #[Title('Notify Ride Director')] class extends Component {
 };
 ?>
 
-<div class="min-h-screen px-4 py-8">
+<div class="min-h-screen px-4 py-16">
     <div class="mx-auto max-w-lg space-y-5">
         <div class="flex items-center justify-between">
             <h1 class="text-2xl font-bold text-[#004030]">Notify Ride Director</h1>

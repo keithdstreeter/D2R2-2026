@@ -23,7 +23,7 @@ new #[Title('Map View')] class extends Component {
 };
 ?>
 
-<div class="min-h-screen px-4 py-8">
+<div class="min-h-screen px-4 py-16">
 
     {{-- Title and Back Button --}}
     <div class="mx-auto max-w-lg mt- 20">
