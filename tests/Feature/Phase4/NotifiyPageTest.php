@@ -40,7 +40,7 @@ it('sends ride director message from notifiy page', function () {
     UserSetting::set('first_name', 'Chris');
     UserSetting::set('last_name', 'Rider');
     UserSetting::set('bib', '519');
-    UserSetting::set('ride', '100k');
+    UserSetting::set('ride_short_name', '100k');
 
     Livewire::test('notifiy')
         ->set('message', 'I need support near the aid station.')
@@ -53,6 +53,6 @@ it('sends ride director message from notifiy page', function () {
         && $request['first_name'] === 'Chris'
         && $request['last_name'] === 'Rider'
         && $request['bib'] === '519'
-        && $request['ride'] === '100k'
+        && $request['ride_short_name'] === '100k'
     );
 });

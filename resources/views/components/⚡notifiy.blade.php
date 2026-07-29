@@ -32,7 +32,7 @@ new #[Title('Notify Ride Director')] class extends Component {
                 'first_name' => UserSetting::get('first_name'),
                 'last_name' => UserSetting::get('last_name'),
                 'bib' => UserSetting::get('bib'),
-                'ride' => UserSetting::get('ride'),
+                'ride' => UserSetting::get('ride_id'),
             ]);
         } catch (ConnectionException) {
             $this->error = 'Unable to send right now. Please check your connection and try again.';

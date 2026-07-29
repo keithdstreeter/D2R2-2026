@@ -8,21 +8,21 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new #[Title('D2R2 Rider App')] class extends Component {
-    public ?int $selectedAgeGroupId = null;
     public string $savedRide = '';
+    public ?int $savedRideId = null;
+    //      public string $savedRide = '';
+    public string $savedRideShortName = '';
     public bool $isGuestUser = true;
 
     public function mount(): void
     {
-        $savedId = UserSetting::get('age_group_id');
+        $savedRideId = UserSetting::get('ride_id');
 
-        if ($savedId) {
-            $this->selectedAgeGroupId = (int) $savedId;
-        }
-
-        $savedRide = UserSetting::get('ride');
+        $savedRideShortName = UserSetting::get('ride_short_name');
 
         $this->savedRide = $savedRide ?? '';
+        //$this->savedRideId = $savedRideId ?? null;
+        $this->savedRideShortName = $savedRideShortName ?? '';
         $this->isGuestUser = UserSetting::get('Guest_User') !== 'false';
     }
 
@@ -53,15 +53,6 @@ new #[Title('D2R2 Rider App')] class extends Component {
         }
     }
 
-    public function quickStart(): void
-    {
-        if (!$this->selectedAgeGroupId) {
-            return;
-        }
-
-        $this->redirect(route('movies'));
-    }
-
     /** @return \Illuminate\Database\Eloquent\Collection<int, AgeGroup> */
     #[Computed]
     public function ageGroups(): \Illuminate\Database\Eloquent\Collection
@@ -81,9 +72,11 @@ new #[Title('D2R2 Rider App')] class extends Component {
 };
 ?>
 
-<div class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+<div class="min-h-screen flex flex-col items-center justify-center px-4 py-18">
 
-    <img src="FLT_Logo-Web.png" alt="FLT Logo" class="img-fluid img-scale mb-6" style="max-width: 200px;">
+    <img src="{{ asset('images/logo.png') }}" alt="FLT Logo" class="img-fluid img-scale mb-6" style="max-width: 200px;">
+
+    {{-- <img src="{{ asset('images/logo.png') }}" alt="Static Image" /> --}}
 
     <div class="w-full max-w-lg text-center" x-data="{ shown: false }" x-init="$nextTick(() => shown = true)">
         <div x-show="shown" x-transition:enter="transition ease-out duration-500"
@@ -91,10 +84,10 @@ new #[Title('D2R2 Rider App')] class extends Component {
             <h1 class="mb-2 text-5xl font-bold text-[#004030]">
                 D2R2 Rider App
             </h1>
-            <p class="mb-10 text-lg text-[#4a6b66]">Enjoy the ride!</p>
+            <p class="mb-10 text-lg text-[#4a6b66]">Enjoy the {{ $this->savedRideShortName }} ride!</p>
         </div>
 
-        <h2 class="mb-4 text-xl font-semibold text-[#005040]">Ride Services</h2>
+        {{-- <h2 class="mb-4 text-xl font-semibold text-[#005040]">Ride Services</h2> --}}
 
         <div class="grid gap-3">
             {{-- @foreach ($this->ageGroups as $index => $ageGroup)
@@ -119,14 +112,14 @@ new #[Title('D2R2 Rider App')] class extends Component {
                 x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                 :class="pressed ? 'scale-95' : 'scale-100'"
                 class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
-                {{ $savedRide }} Cue Sheet
+                {{ $this->savedRideShortName }} Cue Sheet
             </button>
 
             <button wire:key="map" wire:click="routeToPage('map')" x-data="{ pressed: false }"
                 x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                 :class="pressed ? 'scale-95' : 'scale-100'"
                 class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
-                {{ $savedRide }} Map
+                {{ $this->savedRideShortName }} Map
             </button>
 
             <button wire:key="allroutesmap" wire:click="routeToPage('allroutesmap')" x-data="{ pressed: false }"

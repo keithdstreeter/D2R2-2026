@@ -73,20 +73,11 @@ new #[Title('Login')] class extends Component {
         UserSetting::set('Guest_User', 'true');
         $token = bcrypt('D2R2Guest');
         session(['auth_token' => $token, 'token_verified_at' => now()]);
-        UserSetting::set('first_name', 'D2R2 App');
-        UserSetting::set('last_name', 'Guest');
+        UserSetting::set('first_name', 'Guest');
+        UserSetting::set('last_name', 'User');
         UserSetting::set('bib', '');
         UserSetting::set('ride_id', 4);
-        UserSetting::set('ride', '100k');
-
-        // $this->redirect(route('home'), navigate: true);
-        // $ride_data = Ride::where('id', $ride_id)->first();
-        // if ($ride_data) {
-        //     // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
-        //     UserSetting::set('ride_id', $ride_data->id);
-        //     UserSetting::set('ride_desc', $ride_data->ride_desc);
-        //     UserSetting::set('ride', $ride_data->ride);
-        // }
+        UserSetting::set('ride_short_name', '100k');
 
         $this->redirect(route('home'), navigate: true);
     }
@@ -148,14 +139,14 @@ new #[Title('Login')] class extends Component {
                         UserSetting::set('first_name', $firstName);
                         UserSetting::set('last_name', $lastName);
                         UserSetting::set('bib', $registration->bib);
-                        UserSetting::set('ride_id', $registration->category_entered); // Assuming 'category_entered' is the ride ID
+                        UserSetting::set('ride_short_name', $registration->category_entered); // Assuming 'category_entered' is the ride ID
                         $this->redirect(route('home'), navigate: true);
                         $ride_data = Ride::where('id', $ride_id)->first();
                         if ($ride_data) {
                             // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
                             UserSetting::set('ride_id', $ride_data->id);
                             UserSetting::set('ride_desc', $ride_data->ride_desc);
-                            UserSetting::set('ride', $ride_data->ride);
+                            UserSetting::set('ride_short_name', $ride_data->ride);
                         }
                         return;
                     }

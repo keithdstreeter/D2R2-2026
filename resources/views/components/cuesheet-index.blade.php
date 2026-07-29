@@ -24,7 +24,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component
 
         //$this->updateRideIds = [];
 
-        $this->ride_id = UserSetting::get('ride') ?: null;
+        $this->ride_id = UserSetting::get('ride_id') ?: null;
 
         $this->updateRideIds = Cuesheet::where('ride', $this->ride_id)
             ->where('completed', 1)
