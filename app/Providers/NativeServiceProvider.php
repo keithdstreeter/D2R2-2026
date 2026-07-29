@@ -36,6 +36,8 @@ class NativeServiceProvider extends ServiceProvider
         return [
             \SRWieZ\NativePHP\Mobile\Screen\ScreenServiceProvider::class,
             \Native\Mobile\Providers\BrowserServiceProvider::class,
+            \Native\Mobile\Providers\PushNotificationsServiceProvider::class,
+        
         ];
     }
 }
