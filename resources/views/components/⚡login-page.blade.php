@@ -198,11 +198,11 @@ new #[Title('Login')] class extends Component {
         <div class="text-center mb-8" x-show="shown" x-transition:enter="transition ease-out duration-500"
             x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
             <h1
-                class="text-4xl font-bold bg-gradient-to-r from-ocean-500 to-candy-500 bg-clip-text text-transparent mb-2">
-                Welcome D2R2 Riders!
+                class="text-4xl font-bold bg-gradient-to-r from-green-600 to-amber-600 bg-clip-text text-transparent mb-2">
+                Welcome<br>D2R2 Riders!
             </h1>
-            <p class="text-base text-gray-500">Riders, please login with your name and birth date (one time only).
-                <br>Guests may use the app without logging in (no messaging).
+            <p class="text-base text-gray-800">Please login with your name<br> and birth date. (one time only).
+                <br>Guests may use the app without<br>logging in (no messaging).
             </p>
         </div>
 
@@ -343,7 +343,7 @@ new #[Title('Login')] class extends Component {
 
                 <button type="button" wire:click="guestLogin()"
                     class="w-full rounded-2xl font-bold  shadow-lg shadow-ocean-200 border-gray-900 border-2 bg-green-100 min-h-[56px] text-lg text-black">
-                    Not Registered - Continue as a Guest</button>
+                    Not Registered<br>Continue as a Guest</button>
             </div>
 
 

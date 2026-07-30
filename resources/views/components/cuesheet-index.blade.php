@@ -215,7 +215,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component
                         <th scope="col" class="w-[8%] px-1 py-3">Done</th>
                         <th scope="col" class="w-[15%] px-4 py-3">Turn</th>
                         <th scope="col" class="w-[65%] px-4 py-3">Notes</th>
-                        <th scope="col" class="w-[12%] px-4 py-3 text-left">Dist</th>
+                        <th scope="col" class="w-[12%] px-4 py-3 text-right">Dist</th>
                     </tr>
                 </thead>
 
