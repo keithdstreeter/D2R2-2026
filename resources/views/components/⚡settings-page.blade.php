@@ -40,7 +40,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
     public ?int $savedRideId = null;
     //public ?string $ride = null;
 
-    public $ride_list = '';
+    public string $ride_list = '';
 
     public function mount(): void
     {
@@ -51,10 +51,11 @@ new #[Title('Settings — D2R2 App')] class extends Component {
         $savedFirstName = UserSetting::get('first_name');
         $savedLastName = UserSetting::get('last_name');
         $savedRideId = UserSetting::get('ride_id');
-        $savedRideDesc = UserSetting::get('ride_desc');
-        $savedRide = UserSetting::get('ride');
+        $savedRideShortName = UserSetting::get('ride_short_name');
 
-        $this->ride_list = $savedRide;
+        if (is_string($savedRideShortName) && $savedRideShortName !== '') {
+            $this->ride_list = strtolower($savedRideShortName);
+        }
         //dd($this->ride_list);
         // Values seem correctly saved in UserSetting
 
@@ -77,21 +78,21 @@ new #[Title('Settings — D2R2 App')] class extends Component {
         //$identity->getUsername();
         $this->deviceInfo = $identity->getDeviceInfo();
 
-        $query = Ride::all();
-        //dd($query);
-        //dd($this->savedRideId, $this->ride, $savedRideId, $savedRideDesc, $savedRide);
+        //dd($this->savedRideId, $this->ride);
     }
 
-    public function saveSettings()
+    public function saveSettings(): void
     {
-        $ride_data = Ride::where('id', $this->ride_list)->first();
+        $ride_data = Ride::query()
+            ->whereRaw('LOWER(ride) = ?', [strtolower($this->ride_list)])
+            ->first();
         //dd($ride_data);
         if ($ride_data) {
             // If ride data is found, save the ride_id, ride_desc, and ride to UserSettings
             UserSetting::set('ride_id', $ride_data->id);
             UserSetting::set('ride_desc', $ride_data->ride_desc);
             UserSetting::set('ride_short_name', strtolower($ride_data->ride));
-            UserSetting::set('ride_list', $ride_data->id);
+            UserSetting::set('ride_list', strtolower($ride_data->ride));
         }
 
         // Add Save for the Username here as well, remove separate form code
@@ -108,24 +109,17 @@ new #[Title('Settings — D2R2 App')] class extends Component {
         $this->redirect(route('home'));
     }
 
-    public function updated($name, $value)
+    public function updatedRideList(string $value): void
     {
-        // Use the Livewire updated lifecycle hook to save the updated value
-        // to the UserSetting model
-        // The $name parameter will contain the Ride Model
-        // The $value parameter will contain the selected value from the dropdown
-        UserSetting::set($name, $value);
+        $ride_data = Ride::query()
+            ->whereRaw('LOWER(ride) = ?', [strtolower($value)])
+            ->first();
 
-        // Update the Ride_id property as well so that it matches the selected value in the dropdown
-        if ($name === 'ride') {
-            $this->ride = $value;
-
-            $rideShortName = Ride::where('id', $value)->pluck('ride')->first();
-            dd($rideShortName);
-            // If the ride ID is not set, return a default value (e.g., 0)
-            //return $rideId ? (int) $rideId : 0;
-
-            userSetting::set('ride_id', $rideShortName);
+        if ($ride_data) {
+            UserSetting::set('ride_short_name', strtolower($ride_data->ride));
+            UserSetting::set('ride_id', (string) $ride_data->id);
+            UserSetting::set('ride_desc', $ride_data->ride_desc);
+            UserSetting::set('ride_list', strtolower($ride_data->ride));
         }
     }
 
@@ -221,7 +215,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
             <h1 class="text-2xl font-bold text-gray-800">Settings</h1>
             {{-- <a href="{{ route('home') }}" wire:navigate
                 class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">&larr; Home</a> --}}
-            <button type="button" wire:click="saveSettings()"">&larr; Save and Return</button>
+            <button type="button" wire:click="saveSettings()">&larr; Save and Return</button>
         </div>
 
         {{-- @if (!$gateUnlocked)
@@ -250,8 +244,11 @@ new #[Title('Settings — D2R2 App')] class extends Component {
                             @endforeach
                         </select> --}}
 
-                        @foreach (Ride::all(['id', 'ride_desc']) as $ride_list)
-                            <option value="{{ $ride_list->id }}">{{ $ride_list->ride_desc }}</option>
+                        <option value="">Select a ride...</option>
+                        @foreach (Ride::all(['id', 'ride', 'ride_desc']) as $ride)
+                            <option wire:key="ride-option-{{ $ride->id }}" value="{{ strtolower($ride->ride) }}">
+                                {{ $ride->ride_desc }}
+                            </option>
                             {{-- if ($ride_list->id == $savedRideId) {
                                     <option value="{{ $ride_list->id }}" selected>{{ $ride_list->id }} - {{ $savedRideId }}  {{ $ride_list->ride_desc }}</option>
                                 } else {

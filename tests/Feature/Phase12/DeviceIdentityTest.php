@@ -2,6 +2,7 @@
 
 use App\Models\UserSetting;
 use App\Services\DeviceIdentity;
+use Native\Mobile\Facades\Device;
 
 it('generates a default username from device id', function () {
     $service = app(DeviceIdentity::class);
@@ -44,4 +45,45 @@ it('returns fallback device info when NativePHP is unavailable', function () {
         'os' => 'Unknown',
         'platform' => 'Unknown',
     ]);
+});
+
+it('parses native device info payload including osVersion', function () {
+    Device::shouldReceive('getInfo')
+        ->once()
+        ->andReturn('{"model":"iPhone 15","platform":"ios","osVersion":"18.5"}');
+
+    $service = new class extends DeviceIdentity
+    {
+        protected function isNativeAvailable(): bool
+        {
+            return true;
+        }
+    };
+
+    $info = $service->getDeviceInfo();
+
+    expect($info)->toBe([
+        'model' => 'iPhone 15',
+        'os' => '18.5',
+        'platform' => 'ios',
+    ]);
+});
+
+it('reads native device id when available', function () {
+    Device::shouldReceive('getId')
+        ->once()
+        ->andReturn('native-device-id-123');
+
+    $service = new class extends DeviceIdentity
+    {
+        protected function isNativeAvailable(): bool
+        {
+            return true;
+        }
+    };
+
+    $deviceId = $service->getDeviceId();
+
+    expect($deviceId)->toBe('native-device-id-123')
+        ->and(UserSetting::get('device_id'))->toBe('native-device-id-123');
 });

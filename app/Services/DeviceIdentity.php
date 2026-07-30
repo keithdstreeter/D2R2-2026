@@ -49,26 +49,14 @@ class DeviceIdentity
             ];
         }
 
-        $info = Device::getInfo();
+        $decoded = $this->decodeNativeDeviceInfo(Device::getInfo());
 
-        if (is_array($info)) {
+        if (is_array($decoded)) {
             return [
-                'model' => $info['model'] ?? 'Unknown',
-                'os' => $info['os'] ?? 'Unknown',
-                'platform' => $info['platform'] ?? 'Unknown',
+                'model' => $decoded['model'] ?? 'Unknown',
+                'os' => $decoded['os'] ?? $decoded['osVersion'] ?? 'Unknown',
+                'platform' => $decoded['platform'] ?? 'Unknown',
             ];
-        }
-
-        if (is_string($info)) {
-            $decoded = json_decode($info, true);
-
-            if (is_array($decoded)) {
-                return [
-                    'model' => $decoded['model'] ?? 'Unknown',
-                    'os' => $decoded['os'] ?? 'Unknown',
-                    'platform' => $decoded['platform'] ?? 'Unknown',
-                ];
-            }
         }
 
         return [
@@ -83,7 +71,11 @@ class DeviceIdentity
         if ($this->isNativeAvailable()) {
             $nativeId = Device::getId();
 
-            if ($nativeId) {
+            if (is_array($nativeId) && isset($nativeId['id']) && is_string($nativeId['id']) && $nativeId['id'] !== '') {
+                return $nativeId['id'];
+            }
+
+            if (is_string($nativeId) && $nativeId !== '') {
                 return $nativeId;
             }
         }
@@ -104,5 +96,29 @@ class DeviceIdentity
     protected function isNativeAvailable(): bool
     {
         return function_exists('nativephp_call');
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    protected function decodeNativeDeviceInfo(mixed $info): ?array
+    {
+        if (is_array($info)) {
+            if (isset($info['info']) && is_string($info['info'])) {
+                $decoded = json_decode($info['info'], true);
+
+                return is_array($decoded) ? $decoded : null;
+            }
+
+            return $info;
+        }
+
+        if (is_string($info)) {
+            $decoded = json_decode($info, true);
+
+            return is_array($decoded) ? $decoded : null;
+        }
+
+        return null;
     }
 }
