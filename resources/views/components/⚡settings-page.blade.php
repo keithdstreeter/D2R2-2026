@@ -84,29 +84,6 @@ new #[Title('Settings — D2R2 App')] class extends Component {
 
     public function saveSettings()
     {
-        // if (! $updateRideIds) {
-        //     return;
-        // }
-
-        //dd('Save Checks', $this->updateRideIds);
-
-        //dd('Save Checks', $this->ride_list);
-        //  /$current_ride_id = UserSetting::get('ride_id') ?: null;
-        //$flight->updateOrFail(['name' => 'Paris to London']);
-        // foreach ($this->updateRideIds as $checkedID) {
-        //     DB::table('cuesheets')
-        //         ->where(['id', $checkedID, 'ride', $current_ride_id])
-        //         ->update(['completed' => 1]);
-        // }
-        //dd('Save Settings', $this->ride_list);
-
-        //$current_ride_id = UserSetting::get('ride_id') ?: null;
-        //$flight->updateOrFail(['name' => 'Paris to London']);
-        //foreach ($this->updateRideIds as $checkedID) {
-
-        // $ride_data = DB::table('rides')
-        //     ->where(['id', 6])
-        //     ->all();
         $ride_data = Ride::where('id', $this->ride_list)->first();
         //dd($ride_data);
         if ($ride_data) {
@@ -150,11 +127,6 @@ new #[Title('Settings — D2R2 App')] class extends Component {
 
             userSetting::set('ride_id', $rideShortName);
         }
-
-        //dd($name, $value);
-        // $this->post->update([
-        //     $name => $value,
-        // ]);
     }
 
     #[On('parent-gate-passed')]
@@ -334,7 +306,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
             </div>
 
             {{-- Sound & Haptics --}}
-            <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up"
+            {{-- <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up"
                 style="animation-delay: 0.2s">
                 <h2 class="text-lg font-semibold text-gray-700 mb-4">Preferences</h2>
                 <div class="space-y-5">
@@ -367,7 +339,7 @@ new #[Title('Settings — D2R2 App')] class extends Component {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- Reset Progress --}}
             {{-- <div class="rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-white p-6 animate-fade-in-up"

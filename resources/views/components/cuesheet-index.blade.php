@@ -166,18 +166,8 @@ new #[Title('Your Ride Cuesheet')] class extends Component
     #[Computed]
     public function cuesheets(): \Illuminate\Database\Eloquent\Collection
     {
-        //$query = Cuesheet::ride()->orderBy('id');
 
         $query = Cuesheet::all()->where('ride', $this->rideShortName);
-
-        //dd($this->rideShortName, $query);
-        //dump($query->count());
-        //$query = Movie::active()->orderBy('sort_order');
-        // if ($this->ageGroupId) {
-        //     $query->where('age_group_id', $this->ageGroupId);
-        // }
-
-        //dd($query);
 
         return $query;
     }
@@ -200,9 +190,8 @@ new #[Title('Your Ride Cuesheet')] class extends Component
 ?>
 
 <form wire:submit="save()">
-    <div class="min-h-screen px-4 py-16">
-
-        <div class="mx-auto max-w-lg mt- 20">
+    <div class="min-h-screen px-1 py-2">
+        <div class="mx-auto max-w-lg mt-16">
             {{-- Title and Back Button --}}
             <div class="mb-6 px-4 flex items-center justify-between">
                 <h1 class="text-2xl font-bold text-gray-800">{{ $this->rideShortName }} Cue Sheet</h1>
@@ -223,10 +212,10 @@ new #[Title('Your Ride Cuesheet')] class extends Component
             <table class="w-full table-fixed divide-y divide-gray-200 text-left text-sm text-gray-700">
                 <thead class="bg-slate-900 text-xs font-semibold uppercase tracking-wider text-gray-100">
                     <tr>
-                        <th scope="col" class="w-[10%] px-4 py-3">Done</th>
-                        <th scope="col" class="w-[10%] px-4 py-3">Turn</th>
-                        <th scope="col" class="w-[70%] px-4 py-3">Notes</th>
-                        <th scope="col" class="w-[10%] px-4 py-3 text-right">Dist</th>
+                        <th scope="col" class="w-[8%] px-1 py-3">Done</th>
+                        <th scope="col" class="w-[15%] px-4 py-3">Turn</th>
+                        <th scope="col" class="w-[65%] px-4 py-3">Notes</th>
+                        <th scope="col" class="w-[12%] px-4 py-3 text-left">Dist</th>
                     </tr>
                 </thead>
 
