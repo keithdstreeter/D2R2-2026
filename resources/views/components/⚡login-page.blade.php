@@ -118,7 +118,7 @@ new #[Title('Login')] class extends Component {
             //dd($registration);
 
             if (!$registration) {
-                dd('No Reg');
+                //dd('No Reg');
                 $this->error = 'No registration found for that name.';
                 return;
             } else {
