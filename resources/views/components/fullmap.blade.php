@@ -36,6 +36,7 @@ new #[Title('All Routes Map')] class extends Component {
     </div>
 
     {{-- Images are not showing in the simulator --}}
-    <img src="{{ asset('images/' . $this->image_url) }}" alt="Photo" class="img-fluid">
+    <img src="{{ asset('images/' . $this->image_url) }}" alt="Photo"
+        class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
 
 </div>

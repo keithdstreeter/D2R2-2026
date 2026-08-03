@@ -4,6 +4,7 @@ use App\Models\Registration;
 use App\Models\Ride;
 use App\Models\UserSetting;
 use App\Services\DeviceIdentity;
+use App\Services\PushNotificationManager;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -30,6 +31,8 @@ new #[Title('Login')] class extends Component {
 
     public function mount(): void
     {
+        app(PushNotificationManager::class)->initialize();
+
         if (session('auth_token')) {
             $this->redirect(route('home'), navigate: true);
         }

@@ -67,7 +67,7 @@ class ContentSync
     protected function fetchQuestions(?string $since): ?array
     {
         try {
-            $baseUrl = config('app.url');
+            $baseUrl = config('services.app.url');
             $url = $baseUrl.'/api/questions';
 
             $query = [];

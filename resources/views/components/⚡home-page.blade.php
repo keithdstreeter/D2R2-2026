@@ -3,6 +3,7 @@
 use App\Models\AgeGroup;
 use App\Models\Movie;
 use App\Models\UserSetting;
+use App\Services\PushNotificationManager;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -16,6 +17,8 @@ new #[Title('D2R2 Rider App')] class extends Component {
 
     public function mount(): void
     {
+        app(PushNotificationManager::class)->initialize();
+
         $savedRideId = UserSetting::get('ride_id');
 
         $savedRideShortName = UserSetting::get('ride_short_name');

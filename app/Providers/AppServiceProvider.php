@@ -6,6 +6,7 @@ use App\Services\DeviceIdentity;
 use App\Services\LeaderboardService;
 use App\Services\NativeFeedback;
 use App\Services\NetworkStatus;
+use App\Services\PushNotificationManager;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(LeaderboardService::class);
         $this->app->singleton(NativeFeedback::class);
         $this->app->singleton(NetworkStatus::class);
+        $this->app->singleton(PushNotificationManager::class);
     }
 
     /**

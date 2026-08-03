@@ -41,12 +41,15 @@ new #[Title('Fairgrounds Info')] class extends Component {
 
     {{-- Images are not showing in the simulator --}}
     <p>Overhead Satellite View</p>
-    <img src="{{ asset('images/' . $this->map1_url) }}" alt="Photo" class="img-fluid">
+    <img src="{{ asset('images/' . $this->map1_url) }}" alt="Photo"
+        class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
     <br>
     <p>Angle Overhead View</p>
-    <img src="{{ asset('images/' . $this->map2_url) }}" alt="Photo" class="img-fluid">
+    <img src="{{ asset('images/' . $this->map2_url) }}" alt="Photo"
+        class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
     <br>
     <p>Detailed Drawing</p>
-    <img src="{{ asset('images/' . $this->map3_url) }}" alt="Photo" class="img-fluid">
+    <img src="{{ asset('images/' . $this->map3_url) }}" alt="Photo"
+        class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
 
 </div>

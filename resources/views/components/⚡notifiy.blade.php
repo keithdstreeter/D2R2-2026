@@ -1,11 +1,15 @@
 <?php
 
 use App\Models\UserSetting;
+use App\Services\PushNotificationManager;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Native\Mobile\Attributes\OnNative;
+use Native\Mobile\Events\PushNotification\PushNotificationReceived;
+use Native\Mobile\Events\PushNotification\TokenGenerated;
 
 new #[Title('Notify Ride Director')] class extends Component {
     #[Validate('required|string|min:3|max:1000')]
@@ -13,12 +17,25 @@ new #[Title('Notify Ride Director')] class extends Component {
 
     public string $error = '';
     public string $success = '';
+    public ?string $pushToken = null;
+    public ?string $pushPermission = null;
+    public string $lastPushMessage = '';
 
     public function mount(): void
     {
         if (UserSetting::get('Guest_User') !== 'false') {
             $this->redirect(route('home'), navigate: true);
         }
+
+        $this->initializePushNotifications();
+    }
+
+    public function initializePushNotifications(): void
+    {
+        $status = app(PushNotificationManager::class)->initialize();
+
+        $this->pushToken = $status['token'];
+        $this->pushPermission = $status['permission'];
     }
 
     public function send(): void
@@ -27,12 +44,15 @@ new #[Title('Notify Ride Director')] class extends Component {
         $this->validate();
 
         try {
-            $response = Http::api()->post('/ride-director/messages', [
+            $baseUrl = config('services.app.url');
+            $response = Http::api()->post($baseUrl . '/ride-director/messages', [
                 'message' => $this->message,
                 'first_name' => UserSetting::get('first_name'),
                 'last_name' => UserSetting::get('last_name'),
                 'bib' => UserSetting::get('bib'),
                 'ride' => UserSetting::get('ride_id'),
+                'ride_short_name' => UserSetting::get('ride_short_name'),
+                'push_token' => UserSetting::get('push_token'),
             ]);
         } catch (ConnectionException) {
             $this->error = 'Unable to send right now. Please check your connection and try again.';
@@ -48,6 +68,28 @@ new #[Title('Notify Ride Director')] class extends Component {
 
         $this->success = 'Message sent to the Ride Director.';
         $this->message = '';
+    }
+
+    #[OnNative(TokenGenerated::class)]
+    public function handlePushTokenGenerated(string $token): void
+    {
+        app(PushNotificationManager::class)->storeToken($token);
+
+        $this->pushToken = $token;
+        $this->pushPermission = 'granted';
+        $this->success = 'Push notifications are enabled on this device.';
+    }
+
+    #[OnNative(PushNotificationReceived::class)]
+    public function handlePushReceived(array $data = []): void
+    {
+        $message = $data['payload']['message'] ?? ($data['message'] ?? null);
+
+        if (is_string($message) && $message !== '') {
+            $this->lastPushMessage = $message;
+        } else {
+            $this->lastPushMessage = json_encode($data, JSON_UNESCAPED_SLASHES) ?: 'Push received.';
+        }
     }
 };
 ?>
@@ -68,6 +110,14 @@ new #[Title('Notify Ride Director')] class extends Component {
 
 
         <div class="rounded-2xl border-2 border-[#90b040] bg-white p-5 shadow-md shadow-[#005040]/10">
+            <div class="mb-4 rounded-xl border border-[#c0e0d0] bg-[#f7fbf8] px-4 py-3 text-sm text-[#163833]">
+                <p><strong>Push Permission:</strong> {{ $pushPermission ?? 'unknown' }}</p>
+                <p class="mt-1 break-all"><strong>Device Token:</strong> {{ $pushToken ?? 'Not available yet' }}</p>
+                @if ($lastPushMessage)
+                    <p class="mt-2"><strong>Last Push Message:</strong> {{ $lastPushMessage }}</p>
+                @endif
+            </div>
+
             @if ($error)
                 <div class="mb-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
                     {{ $error }}

@@ -35,7 +35,9 @@ new #[Title('Map View')] class extends Component {
         </div>
     </div>
 
-    {{-- Images are not showing in the simulator --}}
-    <img src="{{ asset('images/' . $this->image_url) }}" alt="Photo" class="img-fluid">
+    <div class="overflow-auto rounded-lg bg-white/70 p-2">
+        <img src="{{ asset('images/' . $this->image_url) }}" alt="Ride map"
+            class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
+    </div>
 
 </div>

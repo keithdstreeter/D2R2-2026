@@ -41,6 +41,7 @@ it('sends ride director message from notifiy page', function () {
     UserSetting::set('last_name', 'Rider');
     UserSetting::set('bib', '519');
     UserSetting::set('ride_short_name', '100k');
+    UserSetting::set('push_token', 'native-token-123');
 
     Livewire::test('notifiy')
         ->set('message', 'I need support near the aid station.')
@@ -54,5 +55,14 @@ it('sends ride director message from notifiy page', function () {
         && $request['last_name'] === 'Rider'
         && $request['bib'] === '519'
         && $request['ride_short_name'] === '100k'
+        && $request['push_token'] === 'native-token-123'
     );
+});
+
+it('loads saved push token on notifiy page', function () {
+    UserSetting::set('Guest_User', 'false');
+    UserSetting::set('push_token', 'saved-token-abc');
+
+    Livewire::test('notifiy')
+        ->assertSet('pushToken', 'saved-token-abc');
 });

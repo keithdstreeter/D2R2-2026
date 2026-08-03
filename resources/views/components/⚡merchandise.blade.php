@@ -9,8 +9,15 @@ new #[Title('Merchandise')] class extends Component {
 
     public function mount(): void
     {
-        if (function_exists('nativephp_call') && !app()->runningUnitTests()) {
-            Browser::inApp($this->shopUrl);
+        // if (function_exists('nativephp_call') && !app()->runningUnitTests()) {
+        //     Browser::inApp($this->shopUrl);
+        // }
+        try {
+            Browser::open($this->shopUrl);
+            $this->redirect(route('home'));
+        } catch (\Exception $e) {
+            // Handle the exception gracefully, e.g., log it or show a user-friendly message
+            \Log::error('Failed to open shop URL in app browser: ' . $e->getMessage());
         }
     }
 
