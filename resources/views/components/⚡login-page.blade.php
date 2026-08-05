@@ -5,6 +5,7 @@ use App\Models\Ride;
 use App\Models\UserSetting;
 use App\Services\DeviceIdentity;
 use App\Services\PushNotificationManager;
+use App\Services\ContentSync;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -32,6 +33,9 @@ new #[Title('Login')] class extends Component {
     public function mount(): void
     {
         app(PushNotificationManager::class)->initialize();
+
+        // Check for new content and sync if available
+        app(ContentSync::class)->sync();
 
         if (session('auth_token')) {
             $this->redirect(route('home'), navigate: true);

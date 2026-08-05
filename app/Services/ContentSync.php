@@ -2,8 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\AgeGroup;
-use App\Models\Movie;
+use App\Models\Cuesheet;
 use App\Models\Question;
 use App\Models\UserSetting;
 use Illuminate\Support\Facades\Http;
@@ -17,38 +16,72 @@ class ContentSync
 
     public function sync(): int
     {
-        if (! $this->networkStatus->isOnline()) {
-            return 0;
-        }
+
+       // dd('Syncing content...' . $this->networkStatus->isOnline());
+        // if (! $this->networkStatus->isOnline()) {
+        //     return 0;
+        // }
 
         $lastSync = UserSetting::get('last_content_sync');
 
-        $data = $this->fetchQuestions($lastSync);
+        //$data = $this->fetchQuestions($lastSync);
 
+        $data = $this->fetchCuesheetData($lastSync);
+        //dd($data);
         if ($data === null) {
+            Log::warning('Content sync not performed due to last sync timestamp being too old or no new content available.');
             return 0;
         }
 
         $newCount = 0;
 
-        foreach ($data['movies'] as $movieData) {
-            $movie = $this->upsertMovie($movieData);
+        //dd($data);
+        Cuesheet::Truncate();
+        // Cuesheet::query()->update(['is_active' => false]);
 
-            foreach ($movieData['questions'] as $questionData) {
-                $wasRecentlyCreated = $this->upsertQuestion($movie, $questionData);
+        foreach ($data as $cuesheetEntry) {
 
-                if ($wasRecentlyCreated) {
-                    $newCount++;
-                }
-            }
+            $newCuesheetEntry = [
+                'ride' => $cuesheetEntry['ride'],
+                'turn' => $cuesheetEntry['turn'],
+                'notes' => $cuesheetEntry['notes'],
+                'distance' => $cuesheetEntry['distance'],
+                'completed' => $cuesheetEntry['completed'],
+            ];
+
+            // You can use Eloquent
+            Cuesheet::create($newCuesheetEntry); 
+
+            // $movieData = $cuesheetEntry['movie'];
+            // $movie = $this->upsertMovie($movieData);
+
+            // foreach ($cuesheetEntry['questions'] as $questionData) {
+            //     $wasRecentlyCreated = $this->upsertQuestion($movie, $questionData);
+
+            //     if ($wasRecentlyCreated) {
+            //         $newCount++;
+            //     }
+            // }
         }
 
-        UserSetting::set('last_content_sync', $data['timestamp']);
+        // foreach ($data['movies'] as $movieData) {
+        //     $movie = $this->upsertMovie($movieData);
 
-        if ($newCount > 0) {
-            $existing = (int) (UserSetting::get('new_content_count') ?? 0);
-            UserSetting::set('new_content_count', (string) ($existing + $newCount));
-        }
+        //     foreach ($movieData['questions'] as $questionData) {
+        //         $wasRecentlyCreated = $this->upsertQuestion($movie, $questionData);
+
+        //         if ($wasRecentlyCreated) {
+        //             $newCount++;
+        //         }
+        //     }
+        // }
+
+        UserSetting::set('last_content_sync', now()->toDateTimeString());
+
+        // if ($newCount > 0) {
+        //     $existing = (int) (UserSetting::get('new_content_count') ?? 0);
+        //     UserSetting::set('new_content_count', (string) ($existing + $newCount));
+        // }
 
         return $newCount;
     }
@@ -63,11 +96,52 @@ class ContentSync
         UserSetting::set('new_content_count', '0');
     }
 
+     /** @return array<string, mixed>|null */
+    protected function fetchCuesheetData(?string $since): ?array
+    {
+        try {
+            $baseUrl = config('services.api.url');
+            $url = $baseUrl.'/auth/cuesheets';
+
+            //https://nativephp-api-backend-0dqf6dzi.on-forge.com/api/v1/auth/cuesheets
+            //dd($url);
+            $query = [];
+            // if ($since) {
+            //     $query['since'] = $since;
+            // }
+            
+            $response = Http::timeout(10)
+                ->acceptJson()
+                ->get($url, $query);
+
+            if ($response->successful()) {
+                // dd('Content sync successful', [
+                //     'response' => $response->json(),
+                // ]);
+                return $response->json();
+            }
+
+            return null;
+        } catch (\Exception $e) {
+            // dd('Content sync failed', [
+            //     'error' => $e->getMessage(),
+            // ]);
+            Log::warning('Content sync failed', [
+                'error' => $e->getMessage(),
+            ]);
+
+            return null;
+        }
+    }   
+
     /** @return array<string, mixed>|null */
     protected function fetchQuestions(?string $since): ?array
     {
         try {
-            $baseUrl = config('services.app.url');
+            //Http::baseUrl(config('services.api.url'))
+            //$baseUrl = config('app.url');
+            $baseUrl = config('services.api.url');
+
             $url = $baseUrl.'/api/questions';
 
             $query = [];

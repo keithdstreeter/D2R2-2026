@@ -44,7 +44,7 @@ new #[Title('Notify Ride Director')] class extends Component {
         $this->validate();
 
         try {
-            $baseUrl = config('services.app.url');
+            $baseUrl = config('services.api.url');
             $response = Http::api()->post($baseUrl . '/ride-director/messages', [
                 'message' => $this->message,
                 'first_name' => UserSetting::get('first_name'),

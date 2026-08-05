@@ -84,7 +84,7 @@ class LeaderboardService
     protected function callApi(string $endpoint, string $method, array $payload): bool
     {
         try {
-            $baseUrl = config('app.url');
+            $baseUrl = config('services.api.url');
             $url = $baseUrl.$endpoint;
 
             $response = Http::timeout(10)
