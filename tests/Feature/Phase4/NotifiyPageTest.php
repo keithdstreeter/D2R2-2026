@@ -46,10 +46,12 @@ it('sends ride director message from notifiy page', function () {
     Livewire::test('notifiy')
         ->set('message', 'I need support near the aid station.')
         ->call('send')
+        ->assertHasNoErrors()
         ->assertSet('message', '')
         ->assertSee('Message sent to the Ride Director.');
 
     Http::assertSent(fn ($request) => str_contains($request->url(), '/ride-director/messages')
+        && filled($request['date_sent'])
         && $request['message'] === 'I need support near the aid station.'
         && $request['first_name'] === 'Chris'
         && $request['last_name'] === 'Rider'
