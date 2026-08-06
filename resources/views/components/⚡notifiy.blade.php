@@ -46,7 +46,11 @@ new #[Title('Notify Ride Director')] class extends Component {
 
         try {
             $baseUrl = rtrim((string) config('services.api.url', 'http://localhost'), '/');
-            $endpoint = $baseUrl !== '' ? $baseUrl . '/ride-director/messages' : 'http://localhost/ride-director/messages';
+            $endpoint = $baseUrl !== '' ? $baseUrl . '/auth/notifications' : 'http://localhost/auth/notifications';
+
+            //$baseUrl = config('services.api.url');
+            //$response = Http::api()->post($baseUrl . '/auth/notifications', [
+
             $this->dateSent = now()->toIso8601String();
             $response = Http::api()->post($endpoint, [
                 'date_sent' => $this->dateSent,
@@ -57,6 +61,8 @@ new #[Title('Notify Ride Director')] class extends Component {
                 'ride' => UserSetting::get('ride_id'),
                 'ride_short_name' => UserSetting::get('ride_short_name'),
                 'push_token' => UserSetting::get('push_token'),
+                'DateSent' => $this->dateSent,
+                'Message' => $this->message,
             ]);
         } catch (ConnectionException) {
             $this->error = 'Unable to send right now. Please check your connection and try again.';
