@@ -15,6 +15,7 @@ new #[Title('Notify Ride Director')] class extends Component {
     #[Validate('required|string|min:3|max:1000')]
     public string $message = '';
 
+    public string $dateSent = '';
     public string $error = '';
     public string $success = '';
     public ?string $pushToken = null;
@@ -44,8 +45,11 @@ new #[Title('Notify Ride Director')] class extends Component {
         $this->validate();
 
         try {
-            $baseUrl = config('services.api.url');
-            $response = Http::api()->post($baseUrl . '/ride-director/messages', [
+            $baseUrl = rtrim((string) config('services.api.url', 'http://localhost'), '/');
+            $endpoint = $baseUrl !== '' ? $baseUrl . '/ride-director/messages' : 'http://localhost/ride-director/messages';
+            $this->dateSent = now()->toIso8601String();
+            $response = Http::api()->post($endpoint, [
+                'date_sent' => $this->dateSent,
                 'message' => $this->message,
                 'first_name' => UserSetting::get('first_name'),
                 'last_name' => UserSetting::get('last_name'),
@@ -136,7 +140,8 @@ new #[Title('Notify Ride Director')] class extends Component {
             <form wire:submit="send" class="space-y-4">
                 <div class="space-y-1">
                     <label for="message" class="pl-1 text-sm font-semibold text-[#005040]">Message</label>
-                    <textarea id="message" wire:model.live="message" rows="6"
+                    <input type="hidden" name="date_sent" wire:model.defer="dateSent">
+                    <textarea id="message" name="message" wire:model.live="message" rows="6"
                         placeholder="Type your message to the Ride Director..."
                         class="w-full rounded-2xl border-2 border-[#c0e0d0] bg-white px-4 py-3 text-base text-[#163833] transition-colors focus:border-[#005040] focus:outline-none"></textarea>
                     @error('message')
