@@ -16,6 +16,11 @@ new #[Title('Notify Ride Director')] class extends Component {
     public string $message = '';
 
     public string $dateSent = '';
+    public string $first_name = '';
+    public string $last_name = '';
+    public string $bib = '';
+    public string $ride_short_name = '';
+
     public string $error = '';
     public string $success = '';
     public ?string $pushToken = null;
@@ -53,8 +58,8 @@ new #[Title('Notify Ride Director')] class extends Component {
 
             $this->dateSent = now()->toIso8601String();
             $response = Http::api()->post($endpoint, [
-                'date_sent' => $this->dateSent,
-                'message' => $this->message,
+                // 'date_sent' => $this->dateSent,
+                // 'message' => $this->message,
                 'first_name' => UserSetting::get('first_name'),
                 'last_name' => UserSetting::get('last_name'),
                 'bib' => UserSetting::get('bib'),
@@ -147,6 +152,10 @@ new #[Title('Notify Ride Director')] class extends Component {
                 <div class="space-y-1">
                     <label for="message" class="pl-1 text-sm font-semibold text-[#005040]">Message</label>
                     <input type="hidden" name="date_sent" wire:model.defer="dateSent">
+                    <input type="hidden" name="first_name" wire:model.defer="first_name">
+                    <input type="hidden" name="last_name" wire:model.defer="last_name">
+                    <input type="hidden" name="bib" wire:model.defer="bib">
+                    <input type="hidden" name="ride_short_name" wire:model.defer="ride_short_name">
                     <textarea id="message" name="message" wire:model.live="message" rows="6"
                         placeholder="Type your message to the Ride Director..."
                         class="w-full rounded-2xl border-2 border-[#c0e0d0] bg-white px-4 py-3 text-base text-[#163833] transition-colors focus:border-[#005040] focus:outline-none"></textarea>

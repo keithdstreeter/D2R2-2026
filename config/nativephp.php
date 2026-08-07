@@ -300,6 +300,18 @@ return [
 
     'permissions' => [
         //
+        'biometric' => false,
+        'camera' => false,
+        'location' => true,
+        'microphone' => false,
+        'microphone_background' => false,
+        'network_state' => true,
+        'nfc' => false,
+        'push_notifications' => true,
+        'storage_read' => false,
+        'storage_write' => false,
+        'scanner' => false,
+        'vibrate' => false,
     ],
 
     /*
@@ -340,14 +352,14 @@ return [
         'iphone' => [
             'portrait' => true,
             'upside_down' => false,
-            'landscape_left' => false,
-            'landscape_right' => false,
+            'landscape_left' => true,
+            'landscape_right' => true,
         ],
         'android' => [
             'portrait' => true,
             'upside_down' => false,
-            'landscape_left' => false,
-            'landscape_right' => false,
+            'landscape_left' => true,
+            'landscape_right' => true,
         ],
     ],
 ];
