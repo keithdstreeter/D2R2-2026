@@ -21,10 +21,10 @@ return new class extends Migration
 
     private function seedRegistrations(): void
     {
-        $Registrations = $this->loadJson('registrations.json');
+        $Registrations = $this->loadJson('Registrations.json');
 
         if (! is_array($Registrations)) {
-            logger()->error('seed_registrations_data: could not load registrations.json');
+            logger()->error('seed_registrations_data: could not load Registrations.json');
 
             return;
         }
@@ -69,6 +69,26 @@ return new class extends Migration
     {
         $path = database_path('data/'.$filename);
 
-        return json_decode(file_get_contents($path), true);
+        if (! is_file($path)) {
+            logger()->error('seed_registrations_data: seed file missing', [
+                'path' => $path,
+            ]);
+
+            return [];
+        }
+
+        $contents = file_get_contents($path);
+
+        if ($contents === false) {
+            logger()->error('seed_registrations_data: unable to read seed file', [
+                'path' => $path,
+            ]);
+
+            return [];
+        }
+
+        $decoded = json_decode($contents, true);
+
+        return is_array($decoded) ? $decoded : [];
     }
 };

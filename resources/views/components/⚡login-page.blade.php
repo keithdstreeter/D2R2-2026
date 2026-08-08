@@ -7,6 +7,7 @@ use App\Services\DeviceIdentity;
 use App\Services\PushNotificationManager;
 use App\Services\ContentSync;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -60,6 +61,39 @@ new #[Title('Login')] class extends Component {
         UserSetting::set('Guest_User', 'true');
     }
 
+    protected function normalizeName(string $value): string
+    {
+        return (string) Str::of($value)->squish();
+    }
+
+    protected function normalizeDobValue(?string $value): string
+    {
+        if (! is_string($value) || trim($value) === '') {
+            return '';
+        }
+
+        $parts = collect(explode('/', $value))
+            ->map(fn (string $part): string => trim($part))
+            ->values();
+
+        if ($parts->count() !== 3 || $parts->contains(fn (string $part): bool => $part === '')) {
+            return (string) Str::of($value)->squish();
+        }
+
+        [$month, $day, $year] = $parts->all();
+
+        return sprintf('%d/%d/%02d', (int) $month, (int) $day, (int) substr($year, -2));
+    }
+
+    protected function selectedDob(): string
+    {
+        if ($this->dob_month !== '' && $this->dob_day !== '' && $this->dob_year !== '') {
+            return $this->normalizeDobValue("{$this->dob_month}/{$this->dob_day}/{$this->dob_year}");
+        }
+
+        return $this->normalizeDobValue($this->dob_full);
+    }
+
     public function getRideID($rideName): int
     {
         // Retrieve the ride ID from the Ride model based on the CategoryEntered
@@ -97,21 +131,13 @@ new #[Title('Login')] class extends Component {
         //$this->validate();
 
         //dd('Login Cont');
-        $deviceInfo = $deviceIdentity->getDeviceInfo();
-
         // Set up a local database query to check either BIB or First/Last Name against the Registration table, and if found, log in the user. If not found, return an error message.
 
         // Take the input values
         //$bib = $this->bib;
-        $firstName = $this->first_name;
-        $lastName = $this->last_name;
-        $dobDay = $this->dob_day;
-        $dobMonth = $this->dob_month;
-        $dobYear = $this->dob_year;
-
-        // FIX THIS TO summarize the date of birth into a single string for comparison
-        // FOR A WORKING VERSION
-        $dobFull = $this->dob_full;
+        $firstName = $this->normalizeName($this->first_name);
+        $lastName = $this->normalizeName($this->last_name);
+        $dobFull = $this->selectedDob();
 
         //dd($dobFull, $dobDay, $dobMonth, $dobYear);
 
@@ -120,7 +146,10 @@ new #[Title('Login')] class extends Component {
             // Query the Registration table for a matching first and last name
 
             //dd('Checking Reg');
-            $registration = Registration::where('first_name', $firstName)->where('last_name', $lastName)->first();
+            $registration = Registration::query()
+                ->whereRaw('LOWER(TRIM(first_name)) = ?', [Str::lower($firstName)])
+                ->whereRaw('LOWER(TRIM(last_name)) = ?', [Str::lower($lastName)])
+                ->first();
 
             //dd($registration);
 
@@ -132,19 +161,17 @@ new #[Title('Login')] class extends Component {
                 //dd($registration->dob, $dobFull);
 
                 // Name has been found, now check the date of birth against the registration record
-                if ($registration->dob == $dobFull) {
+                if ($this->normalizeDobValue($registration->dob) === $dobFull) {
                     //
                     // dd('DOB Match');
                     //$token = $registration->createToken($firstName . ' ' . $lastName)->plainTextToken;
                     //$ride_id = $this->getRideID($registration->ride);
-                    $ride_id = $registration->category_entered; // Assuming 'category_entered' is the ride ID
-
-                    $token = bcrypt($firstName . ' ' . $lastName);
+                    $token = bcrypt($registration->first_name . ' ' . $registration->last_name);
                     if ($token) {
                         session(['auth_token' => $token, 'token_verified_at' => now()]);
                         UserSetting::set('Guest_User', 'false');
-                        UserSetting::set('first_name', $firstName);
-                        UserSetting::set('last_name', $lastName);
+                        UserSetting::set('first_name', $registration->first_name);
+                        UserSetting::set('last_name', $registration->last_name);
                         UserSetting::set('bib', $registration->bib);
                         UserSetting::set('ride_short_name', strtolower($registration->category_entered)); // Assuming 'category_entered' is the ride ID
                         //dd('Ride ID: ' . $ride_id, 'Ride Short Name: ' . $registration->category_entered);
@@ -165,7 +192,7 @@ new #[Title('Login')] class extends Component {
             //$token = $registration->createToken($request->device_name)->plainTextToken;
         } else {
             // Not enough information provided, return an error message
-            $token = bcrypt('FLT'); // Temporary token for testing purposes
+            $this->error = 'Please enter your first name, last name, and date of birth.';
             return;
         }
 
