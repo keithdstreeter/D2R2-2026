@@ -16,6 +16,7 @@
         "nativephp/mobile": "^3.0",
         "nativephp/mobile-browser": "^1.0",
         "nativephp/mobile-firebase": "^1.1",
+        "nativephp/mobile-network": "^1.0",
         "srwiez/nativephp-mobile-screen": "^1.0"
     },
     "require-dev": {
@@ -94,9 +95,11 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "repositories": [{
-        "name": "nativephp-plugins",
-        "type": "composer",
-        "url": "https://plugins.nativephp.com"
-    }]
+    "repositories": [
+        {
+            "name": "nativephp-plugins",
+            "type": "composer",
+            "url": "https://plugins.nativephp.com"
+        }
+    ]
 }
