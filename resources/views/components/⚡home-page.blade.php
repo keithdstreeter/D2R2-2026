@@ -24,7 +24,6 @@ new #[Title('D2R2 Rider App')] class extends Component {
         $savedRideShortName = UserSetting::get('ride_short_name');
 
         $this->savedRide = $savedRide ?? '';
-        //$this->savedRideId = $savedRideId ?? null;
         $this->savedRideShortName = $savedRideShortName ?? '';
         $this->isGuestUser = UserSetting::get('Guest_User') !== 'false';
     }
@@ -146,14 +145,14 @@ new #[Title('D2R2 Rider App')] class extends Component {
                 Merchandise
             </button>
 
-            {{-- @if (!$isGuestUser) --}}
-            <button wire:key="notifiy" wire:click="routeToPage('notifiy')" x-data="{ pressed: false }"
-                x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
-                :class="pressed ? 'scale-95' : 'scale-100'"
-                class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
-                Notify Ride Director
-            </button>
-            {{-- @endif --}}
+            @if (!$isGuestUser)
+                <button wire:key="notifiy" wire:click="routeToPage('notifiy')" x-data="{ pressed: false }"
+                    x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
+                    :class="pressed ? 'scale-95' : 'scale-100'"
+                    class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
+                    Notify Ride Director
+                </button>
+            @endif
 
             {{-- 
             <button wire:key="settings" wire:click="routeToPage('settings')" x-data="{ pressed: false }"
@@ -181,26 +180,12 @@ new #[Title('D2R2 Rider App')] class extends Component {
             </div>
         @endif --}}
 
-        <div class="mt-8 flex items-center justify-center gap-6">
-            {{-- <a href="{{ route('progress') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
-                Progress
-            </a>
-            <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-            <a href="{{ route('leaderboard') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
-                Leaderboard
-            </a>
-            <a href="{{ route('cuesheet') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
-                Cue Sheet
-            </a>
-
-            <a href="{{ route('image') }}" wire:navigate class="text-sm font-medium text-ocean-500 hover:text-ocean-600 transition-colors">
-                Display Image
-            </a> --}}
+        <div class="mt-8 flex items-center justify-center gap-6 text-2xl text-black">
 
             <span class="w-1 h-1 rounded-full bg-gray-300"></span>
             <a href="{{ route('settings') }}" wire:navigate
                 class="text-lg font-semibold text-[#005040] transition-colors hover:text-[#004030]">
-                Settings
+                Settings / Change Ride
             </a>
             <span class="w-1 h-1 rounded-full bg-gray-300"></span>
         </div>
