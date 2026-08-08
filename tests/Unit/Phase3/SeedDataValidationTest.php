@@ -2,6 +2,16 @@
 
 $dataPath = dirname(__DIR__, 3).'/database/data';
 
+it('loads registrations seed data using the exact device-safe filename casing', function () {
+    $migration = require dirname(__DIR__, 3).'/database/migrations/2026_07_02_214600_seed_registrations_data.php';
+    $method = new ReflectionMethod($migration, 'loadJson');
+    $method->setAccessible(true);
+    $data = $method->invoke($migration, 'Registrations.json');
+
+    expect($data)->toBeArray()->not->toBeEmpty()
+        ->and($data[0])->toHaveKeys(['bib', 'first_name', 'last_name', 'dob']);
+});
+
 it('has valid JSON in each seed data file', function (string $file) {
     $content = file_get_contents($file);
     $decoded = json_decode($content, true);

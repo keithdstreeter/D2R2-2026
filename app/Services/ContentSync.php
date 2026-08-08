@@ -8,6 +8,7 @@ use App\Models\Movie;
 use App\Models\AgeGroup;
 use App\Models\Registration;
 use App\Models\UserSetting;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -124,59 +125,103 @@ class ContentSync
         UserSetting::set('new_content_count', '0');
     }
 
-     /** @return array<string, mixed>|null */
+    /** @return array<int, array<string, mixed>>|null */
     protected function fetchCuesheetData(?string $since): ?array
     {
-        try {
-            $baseUrl = config('services.api.url');
-            $url = $baseUrl.'/auth/cuesheets';
+        return $this->fetchResourceData('/auth/cuesheets', 'cuesheets');
+    }
 
-            $query = [];
-            
-            $response = Http::timeout(10)
-                ->acceptJson()
-                ->get($url, $query);
-
-            if ($response->successful()) {
-                return $response->json();
-            }
-
-            return null;
-        } catch (\Exception $e) {
-            Log::warning('Content sync failed - Cuesheets', [
-                'error' => $e->getMessage(),
-            ]);
-
-            return null;
-        }
-    }   
-
-    /** @return array<string, mixed>|null */
+    /** @return array<int, array<string, mixed>>|null */
     protected function fetchRegistrationData(?string $since): ?array
     {
-        try {
-            $baseUrl = config('services.api.url');
-            $url = $baseUrl.'/auth/registrations';
+        return $this->fetchResourceData('/auth/registrations', 'registrations');
+    }
 
-            $query = [];
-            
+    /** @return array<int, array<string, mixed>>|null */
+    protected function fetchResourceData(string $endpoint, string $resource): ?array
+    {
+        $baseUrl = $this->resolveApiBaseUrl($resource);
+        if ($baseUrl === null) {
+            return null;
+        }
+
+        $url = $baseUrl.$endpoint;
+
+        try {
             $response = Http::timeout(10)
                 ->acceptJson()
-                ->get($url, $query);
+                ->get($url);
 
-            if ($response->successful()) {
-                return $response->json();
+            if (! $response->successful()) {
+                Log::warning('Content sync request failed', [
+                    'resource' => $resource,
+                    'url' => $url,
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+
+                return null;
             }
 
-            return null;
-        } catch (\Exception $e) {
-            Log::warning('Content sync failed - Registrations', [
+            $payload = $response->json();
+
+            if (! is_array($payload)) {
+                Log::warning('Content sync returned non-array payload', [
+                    'resource' => $resource,
+                    'url' => $url,
+                    'status' => $response->status(),
+                    'payload_type' => gettype($payload),
+                ]);
+
+                return null;
+            }
+
+            return $payload;
+        } catch (ConnectionException $e) {
+            Log::warning('Content sync connection failed', [
+                'resource' => $resource,
+                'url' => $url,
                 'error' => $e->getMessage(),
             ]);
 
             return null;
         }
-    }   
+    }
+
+    protected function resolveApiBaseUrl(string $resource): ?string
+    {
+        $baseUrl = rtrim((string) config('services.api.url', ''), '/');
+
+        if ($baseUrl === '') {
+            Log::warning('Content sync skipped because API_BASE_URL is missing', [
+                'resource' => $resource,
+            ]);
+
+            return null;
+        }
+
+        $host = parse_url($baseUrl, PHP_URL_HOST);
+        $scheme = parse_url($baseUrl, PHP_URL_SCHEME);
+
+        if (! is_string($host) || $host === '' || ! is_string($scheme) || $scheme === '') {
+            Log::warning('Content sync skipped because API_BASE_URL is invalid', [
+                'resource' => $resource,
+                'api_base_url' => $baseUrl,
+            ]);
+
+            return null;
+        }
+
+        if (in_array(strtolower($host), ['localhost', '127.0.0.1', '::1'], true) || str_ends_with(strtolower($host), '.test')) {
+            Log::warning('Content sync API host is likely unreachable from a physical device', [
+                'resource' => $resource,
+                'api_base_url' => $baseUrl,
+                'host' => $host,
+            ]);
+        }
+
+        return $baseUrl;
+    }
 
     /** @return array<string, mixed>|null */
     protected function fetchQuestions(?string $since): ?array
