@@ -7,7 +7,7 @@ use Livewire\Livewire;
 use function Pest\Laravel\get;
 
 it('redirects guest users away from notifiy page', function () {
-    UserSetting::set('Guest_User', 'true');
+    UserSetting::set('guest_user', 'true');
 
     session([
         'auth_token' => 'valid-token',
@@ -19,7 +19,7 @@ it('redirects guest users away from notifiy page', function () {
 });
 
 it('allows non-guest users to access notifiy page', function () {
-    UserSetting::set('Guest_User', 'false');
+    UserSetting::set('guest_user', 'false');
 
     session([
         'auth_token' => 'valid-token',
@@ -36,7 +36,7 @@ it('sends ride director message from notifiy page', function () {
         '*/ride-director/messages' => Http::response(['status' => 'ok'], 200),
     ]);
 
-    UserSetting::set('Guest_User', 'false');
+    UserSetting::set('guest_user', 'false');
     UserSetting::set('first_name', 'Chris');
     UserSetting::set('last_name', 'Rider');
     UserSetting::set('bib', '519');
@@ -62,7 +62,7 @@ it('sends ride director message from notifiy page', function () {
 });
 
 it('loads saved push token on notifiy page', function () {
-    UserSetting::set('Guest_User', 'false');
+    UserSetting::set('guest_user', 'false');
     UserSetting::set('push_token', 'saved-token-abc');
 
     Livewire::test('notifiy')

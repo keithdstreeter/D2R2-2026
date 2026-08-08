@@ -43,7 +43,7 @@ it('matches registrations with normalized names and selected date of birth', fun
         ->assertHasNoErrors()
         ->assertRedirect(route('home'));
 
-    expect(UserSetting::get('Guest_User'))->toBe('false')
+    expect(UserSetting::get('guest_user'))->toBe('false')
         ->and(UserSetting::get('first_name'))->toBe('Christopher')
         ->and(UserSetting::get('last_name'))->toBe('Capeliini')
         ->and(UserSetting::get('ride_short_name'))->toBe('100k')

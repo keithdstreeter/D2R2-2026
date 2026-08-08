@@ -196,8 +196,8 @@ new #[Title('Settings — D2R2 App')] class extends Component {
 
     public function logout(): void
     {
-        // Clear the Guest_User setting and any authentication tokens
-        UserSetting::set('Guest_User', 'false');
+        // Clear the guest_user setting and any authentication tokens
+        UserSetting::set('guest_user', 'false');
         session()->forget(['auth_token', 'token_verified_at']);
         $this->redirect(route('login'), navigate: true);
     }

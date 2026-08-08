@@ -29,7 +29,7 @@ new #[Title('Notify Ride Director')] class extends Component {
 
     public function mount(): void
     {
-        if (UserSetting::get('Guest_User') !== 'false') {
+        if (UserSetting::get('guest_user') !== 'false') {
             $this->redirect(route('home'), navigate: true);
         }
 

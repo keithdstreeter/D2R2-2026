@@ -55,10 +55,10 @@ new #[Title('Login')] class extends Component {
         $this->dob_year = '1977';
         //$this->bib = '519';
 
-        // Set the Guest_User setting to true when the login page is mounted
+        // Set the guest_user setting to true when the login page is mounted
         // Validated Users will have additional features (Communications, etc.)
         // that Guest Users will not have access to.
-        UserSetting::set('Guest_User', 'true');
+        UserSetting::set('guest_user', 'true');
     }
 
     protected function normalizeName(string $value): string
@@ -68,15 +68,13 @@ new #[Title('Login')] class extends Component {
 
     protected function normalizeDobValue(?string $value): string
     {
-        if (! is_string($value) || trim($value) === '') {
+        if (!is_string($value) || trim($value) === '') {
             return '';
         }
 
-        $parts = collect(explode('/', $value))
-            ->map(fn (string $part): string => trim($part))
-            ->values();
+        $parts = collect(explode('/', $value))->map(fn(string $part): string => trim($part))->values();
 
-        if ($parts->count() !== 3 || $parts->contains(fn (string $part): bool => $part === '')) {
+        if ($parts->count() !== 3 || $parts->contains(fn(string $part): bool => $part === '')) {
             return (string) Str::of($value)->squish();
         }
 
@@ -111,7 +109,7 @@ new #[Title('Login')] class extends Component {
     {
         $this->reset('error');
 
-        UserSetting::set('Guest_User', 'true');
+        UserSetting::set('guest_user', 'true');
         $token = bcrypt('D2R2Guest');
         session(['auth_token' => $token, 'token_verified_at' => now()]);
         UserSetting::set('first_name', 'Guest');
@@ -169,7 +167,7 @@ new #[Title('Login')] class extends Component {
                     $token = bcrypt($registration->first_name . ' ' . $registration->last_name);
                     if ($token) {
                         session(['auth_token' => $token, 'token_verified_at' => now()]);
-                        UserSetting::set('Guest_User', 'false');
+                        UserSetting::set('guest_user', 'false');
                         UserSetting::set('first_name', $registration->first_name);
                         UserSetting::set('last_name', $registration->last_name);
                         UserSetting::set('bib', $registration->bib);
@@ -184,6 +182,7 @@ new #[Title('Login')] class extends Component {
                         //     UserSetting::set('ride_short_name', $ride_data->ride);
                         // }
                         // return;
+                        UserSetting::set('guest_user', 'false');
                     }
                 } else {
                     $this->error = 'Date of birth does not match the registration record.';

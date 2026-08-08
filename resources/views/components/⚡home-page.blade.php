@@ -25,7 +25,7 @@ new #[Title('D2R2 Rider App')] class extends Component {
 
         $this->savedRide = $savedRide ?? '';
         $this->savedRideShortName = $savedRideShortName ?? '';
-        $this->isGuestUser = UserSetting::get('Guest_User') !== 'false';
+        $this->isGuestUser = UserSetting::get('guest_user') !== 'false';
     }
 
     public function selectAgeGroup(int $ageGroupId): void

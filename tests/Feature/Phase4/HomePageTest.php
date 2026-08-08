@@ -49,21 +49,21 @@ it('routes to fairgrounds map page from ride services button', function () {
 });
 
 it('shows notify ride director button for non-guest users', function () {
-    UserSetting::set('Guest_User', 'false');
+    UserSetting::set('guest_user', 'false');
 
     Livewire::test('home-page')
         ->assertSee('Notify Ride Director');
 });
 
 it('hides notify ride director button for guest users', function () {
-    UserSetting::set('Guest_User', 'true');
+    UserSetting::set('guest_user', 'true');
 
     Livewire::test('home-page')
         ->assertDontSee('Notify Ride Director');
 });
 
 it('routes to notifiy page from ride services button', function () {
-    UserSetting::set('Guest_User', 'false');
+    UserSetting::set('guest_user', 'false');
 
     Livewire::test('home-page')
         ->call('routeToPage', 'notifiy')
