@@ -21,6 +21,9 @@ class ContentSync
     public function sync(): int
     {
 
+    //dd('ContentSync::sync() called');
+
+    Log::info('ContentSync::sync() called at '. now()->toDateTimeString());
         if (! $this->networkStatus->isOnline()) {
             return 0;
         }
@@ -33,28 +36,37 @@ class ContentSync
         // ##############################
         $data = $this->fetchCuesheetData($lastSync);
         if ($data === null) {
-            Log::warning('Content sync not performed due to last sync timestamp being too old or no new content available.');
+
+            Log::warning('Cue Sheet sync not performed due to last sync timestamp being too old or no new content available.');
+            dd(' Failed to fetch cuesheet data. Last sync: '.$lastSync);
             return 0;
         }
 
         $newCount = 0;
 
-        // Clear existing cuesheet entries before inserting new ones
-        Cuesheet::truncate();
-        // Read all cuesheet entries from the fetched data and insert them into the database
-        foreach ($data as $cuesheetEntry) {
-            $newCuesheetEntry = [
-                'ride' => $cuesheetEntry['ride'],
-                'turn' => $cuesheetEntry['turn'],
-                'notes' => $cuesheetEntry['notes'],
-                'distance' => $cuesheetEntry['distance'],
-                'completed' => $cuesheetEntry['completed'],
-            ];
-
-            // Create each cuesheet entry in the database
-            Cuesheet::create($newCuesheetEntry);
-            $newCount++;
+        if ($data === null) {
+            Log::warning('Cuesheet sync not performed due to last sync timestamp being too old or no new content available.');
+            return 0;
+        } else {
+            // Clear existing cuesheet entries before inserting new ones
+            Log::info('Truncating Cuesheet table before inserting new entries.');
+            Cuesheet::truncate();
+            // Read all cuesheet entries from the fetched data and insert them into the database
+            foreach ($data as $cuesheetEntry) {
+                $newCuesheetEntry = [
+                    'ride' => $cuesheetEntry['ride'],
+                    'turn' => $cuesheetEntry['turn'],
+                    'notes' => $cuesheetEntry['notes'],
+                    'distance' => $cuesheetEntry['distance'],
+                    'completed' => $cuesheetEntry['completed'],
+                ];
+                $newCount++;
+                // Create each cuesheet entry in the database
+                Cuesheet::create($newCuesheetEntry);
+            }
+            Log::info('Cuesheet sync completed. New entries inserted: '.$newCount);
         }
+       
 
 
         // ##############################
@@ -62,36 +74,45 @@ class ContentSync
         // ##############################
         $data = $this->fetchRegistrationData($lastSync);
         if ($data === null) {
-            Log::warning('Content sync not performed due to last sync timestamp being too old or no new content available.');
+            Log::warning('Registration sync not performed due to last sync timestamp being too old or no new content available.');
             return 0;
         }
 
-        // Clear existing registration entries before inserting new ones
-        Registration::truncate();
-        // Read all registration entries from the fetched data and insert them into the database
-        foreach ($data as $registrationEntry) {
-            $newRegistrationEntry = [
-                'bib' => $registrationEntry['bib'],
-                'first_name' => $registrationEntry['first_name'],
-                'last_name' => $registrationEntry['last_name'],
-                'phone' => $registrationEntry['phone'],
-                'category_entered' => $registrationEntry['category_entered'],
-                'email' => $registrationEntry['email'],
-                'dob' => $registrationEntry['dob'],
-                'gender' => $registrationEntry['gender'],
-                // 'created_at' => $registrationEntry['created_at'],
-                // 'updated_at' => $registrationEntry['updated_at'],
-            ];
+        $newCount = 0;
+
+        if ($data === null) {
+            Log::warning('Registration sync not performed due to last sync timestamp being too old or no new content available.');
+            return 0;
+        } else {
+            Log::info('Truncating Registration table before inserting new entries.');       
+            // Clear existing registration entries before inserting new ones
+            Registration::truncate();
+            // Read all registration entries from the fetched data and insert them into the database
+            foreach ($data as $registrationEntry) {
+                $newRegistrationEntry = [
+                    'bib' => $registrationEntry['bib'],
+                    'first_name' => $registrationEntry['first_name'],
+                    'last_name' => $registrationEntry['last_name'],
+                    'phone' => $registrationEntry['phone'],
+                    'category_entered' => $registrationEntry['category_entered'],
+                    'email' => $registrationEntry['email'],
+                    'dob' => $registrationEntry['dob'],
+                    'gender' => $registrationEntry['gender'],
+                    // 'created_at' => $registrationEntry['created_at'],
+                    // 'updated_at' => $registrationEntry['updated_at'],
+                ];
 	
+                $newCount++;
 
             // Create each registration entry in the database
-            Registration::create($newRegistrationEntry);
-            $newCount++;
+            Registration::create($newRegistrationEntry); 
+            }
+            Log::info('Registration sync completed. New entries inserted: '.$newCount);
+
+            UserSetting::set('last_content_sync', now()->toDateTimeString());
+
+            return $newCount;
         }
-
-        UserSetting::set('last_content_sync', now()->toDateTimeString());
-
-        return $newCount;
     }
 
     public function hasNewContent(): bool
