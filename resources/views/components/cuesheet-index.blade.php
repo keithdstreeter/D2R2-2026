@@ -6,31 +6,47 @@ use App\Models\QuizSession;
 use App\Models\UserSetting;
 use App\Services\ContentSync;
 use App\Services\NetworkStatus;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-new #[Title('Your Ride Cuesheet')] class extends Component
-{
+new #[Title('Your Ride Cuesheet')] class extends Component {
     public ?int $ageGroupId = null;
 
-    public  $updateRideIds = [];
+    public $updateRideIds = [];
     public ?string $rideShortName = null;
+
+    protected function normalizedRideShortName(): ?string
+    {
+        if (!is_string($this->rideShortName) || trim($this->rideShortName) === '') {
+            return null;
+        }
+
+        return Str::lower((string) Str::of($this->rideShortName)->squish());
+    }
 
     public function mount(): void
     {
         $this->rideShortName = UserSetting::get('ride_short_name') ?: null;
+        $this->rideShortName = $this->normalizedRideShortName();
 
         // Load any COMPLETED cuesheet items for this ride into the updateRideIds array
         // May be empty if none have been completed yet, but will be used to pre-check the checkboxes in the view
-        $this->updateRideIds = Cuesheet::where('ride', $this->rideShortName)
-            ->where('completed', 1)
-            ->pluck('id')
-            ->toArray();
+        $rideShortName = $this->normalizedRideShortName();
 
-            //dd($this->rideShortName, $this->updateRideIds);
+        $this->updateRideIds =
+            $rideShortName === null
+                ? []
+                : Cuesheet::query()
+                    ->whereRaw('LOWER(TRIM(ride)) = ?', [$rideShortName])
+                    ->where('completed', 1)
+                    ->pluck('id')
+                    ->toArray();
+
+        //dd($this->rideShortName, $this->updateRideIds);
         //dd($this->rideShortName);
         // if (! app()->runningUnitTests() && app(NetworkStatus::class)->isOnline()) {
         //     app(ContentSync::class)->sync();
@@ -43,12 +59,12 @@ new #[Title('Your Ride Cuesheet')] class extends Component
     // {
     //     // dd($updateRideIds);
     // }
-    
-     public function save(array $updateRideIds)
-    {
-       //dd('Save Checks');
 
-       if (! $updateRideIds) {
+    public function save(array $updateRideIds)
+    {
+        //dd('Save Checks');
+
+        if (!$updateRideIds) {
             foreach ($updateRideIds as $checkedID) {
                 Cuesheet::query()->updateOrCreate(
                     [
@@ -59,7 +75,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component
                 );
             }
         }
-        
+
         $this->redirect(route('home'));
     }
 
@@ -71,10 +87,9 @@ new #[Title('Your Ride Cuesheet')] class extends Component
 
         //dd('Save Checks', $this->updateRideIds);
 
-        $current_ride_id = $this->rideShortName ?: null;
-//$flight->updateOrFail(['name' => 'Paris to London']);
+        $current_ride_id = $this->normalizedRideShortName();
+        //$flight->updateOrFail(['name' => 'Paris to London']);
         foreach ($this->updateRideIds as $checkedID) {
-
             Cuesheet::query()->updateOrCreate(
                 [
                     'ride' => $current_ride_id,
@@ -83,14 +98,14 @@ new #[Title('Your Ride Cuesheet')] class extends Component
                 ['completed' => 1],
             );
 
-//             $query = Cuesheet::find([
-//                 'ride' => $current_ride_id,
-//                 'id' => $checkedID,
-//             ]);
- 
-// $query->completed = 1;
- 
-// $query->save();
+            //             $query = Cuesheet::find([
+            //                 'ride' => $current_ride_id,
+            //                 'id' => $checkedID,
+            //             ]);
+
+            // $query->completed = 1;
+
+            // $query->save();
             // Cuesheet::query()->updateOrFail(
             //     [
             //         'ride' => $current_ride_id,
@@ -103,9 +118,9 @@ new #[Title('Your Ride Cuesheet')] class extends Component
         $this->redirect(route('home'));
     }
 
-    // public function updateCompleted( $ID, $ride_id) 
+    // public function updateCompleted( $ID, $ride_id)
     // {
-    //     dd("clicked", $ID, $ride_id);   
+    //     dd("clicked", $ID, $ride_id);
     //     Cuesheet::query()->updateOrCreate(
     //         [
     //             'ride' => $ID,
@@ -117,44 +132,38 @@ new #[Title('Your Ride Cuesheet')] class extends Component
     //     dd($ID, $ride_id);
     // }
 
-//      public function updated($name, $value) 
-//     {
-//         // Use the Livewire updated lifecycle hook to save the updated value
-//         // to the Cuesheet model
-//         // The $name parameter will contain the Cuesheet Model item
-//         // The $value parameter will contain the selected value from that item (checkbox)
+    //      public function updated($name, $value)
+    //     {
+    //         // Use the Livewire updated lifecycle hook to save the updated value
+    //         // to the Cuesheet model
+    //         // The $name parameter will contain the Cuesheet Model item
+    //         // The $value parameter will contain the selected value from that item (checkbox)
 
-//         //dd('UPDATED',$name, $value);
+    //         //dd('UPDATED',$name, $value);
 
-//         // Need to pull the Ride again, since it is passed into this routine 
-//         // which is firing but not by design. Can't control it so going with 
-//         // in to see if I can make the Back button work.
+    //         // Need to pull the Ride again, since it is passed into this routine
+    //         // which is firing but not by design. Can't control it so going with
+    //         // in to see if I can make the Back button work.
 
-//         $current_ride_id = UserSetting::get('ride_short_name') ?: null;
+    //         $current_ride_id = UserSetting::get('ride_short_name') ?: null;
 
-// foreach ($value as $checkedID) {
-//             Cuesheet::query()->updateOrCreate(
-//                 [
-//                     'ride' => $current_ride_id,
-//                     'id' => $checkedID,
-//                 ],
-//                 ['completed' => 1],
-//             );
-//         }
-//         $this->redirect(route('home'));
+    // foreach ($value as $checkedID) {
+    //             Cuesheet::query()->updateOrCreate(
+    //                 [
+    //                     'ride' => $current_ride_id,
+    //                     'id' => $checkedID,
+    //                 ],
+    //                 ['completed' => 1],
+    //             );
+    //         }
+    //         $this->redirect(route('home'));
 
-//         //dd('KDS updated', $name, $value, $updateRideIds);
-//         //dd($name, $value);
-//         // $this->post->update([
-//         //     $name => $value,
-//         // ]);
-//     }
-
-    #[Computed]
-    // public function hasNewContent(): bool
-    // {
-    //     //return app(ContentSync::class)->hasNewContent();
-    // }
+    //         //dd('KDS updated', $name, $value, $updateRideIds);
+    //         //dd($name, $value);
+    //         // $this->post->update([
+    //         //     $name => $value,
+    //         // ]);
+    //     }
 
     public function dismissNewContent(): void
     {
@@ -166,26 +175,17 @@ new #[Title('Your Ride Cuesheet')] class extends Component
     #[Computed]
     public function cuesheets(): \Illuminate\Database\Eloquent\Collection
     {
+        $rideShortName = $this->normalizedRideShortName();
 
-        $query = Cuesheet::all()->where('ride', $this->rideShortName);
+        if ($rideShortName === null) {
+            return new \Illuminate\Database\Eloquent\Collection();
+        }
 
-        return $query;
+        return Cuesheet::query()
+            ->whereRaw('LOWER(TRIM(ride)) = ?', [$rideShortName])
+            ->orderBy('id')
+            ->get();
     }
-
-    /** @return \Illuminate\Support\Collection<int, object> */
-    #[Computed]
-    // public function stats(): \Illuminate\Support\Collection
-    // {
-    //     //$movieIds = $this->movies->pluck('id');
-
-    //     return Cuesheet::query()
-    //         ->whereIn('ride', '180k')
-    //         // ->whereNotNull('completed_at')
-    //         // ->selectRaw('movie_id, count(*) as attempts, max(correct_count * 100 / question_count) as best_score, max(completed_at) as last_played')
-    //         // ->groupBy('movie_id')
-    //         ->get()
-    //         ->keyBy('id');
-    // }
 };
 ?>
 

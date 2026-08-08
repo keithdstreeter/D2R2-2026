@@ -12,6 +12,16 @@ it('loads registrations seed data using the exact device-safe filename casing', 
         ->and($data[0])->toHaveKeys(['bib', 'first_name', 'last_name', 'dob']);
 });
 
+it('loads cuesheet seed data regardless of filename casing', function () {
+    $migration = require dirname(__DIR__, 3).'/database/migrations/2026_07_28_213400_seed_cuesheets_data.php';
+    $method = new ReflectionMethod($migration, 'loadJson');
+    $method->setAccessible(true);
+    $data = $method->invoke($migration, 'cuesheet_100k.json');
+
+    expect($data)->toBeArray()->not->toBeEmpty()
+        ->and($data[0])->toHaveKeys(['ride', 'turn', 'notes', 'distance']);
+});
+
 it('has valid JSON in each seed data file', function (string $file) {
     $content = file_get_contents($file);
     $decoded = json_decode($content, true);

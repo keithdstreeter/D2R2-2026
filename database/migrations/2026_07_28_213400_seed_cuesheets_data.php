@@ -66,8 +66,47 @@ return new class extends Migration
     /** @return array<int, array<string, mixed>> */
     private function loadJson(string $filename): array
     {
-        $path = database_path('data/'.$filename);
+        $path = $this->resolveJsonPath($filename);
 
-        return json_decode(file_get_contents($path), true);
+        if ($path === null) {
+            Log::error('seed_cuesheets_data: seed file missing', [
+                'filename' => $filename,
+            ]);
+
+            return [];
+        }
+
+        $contents = file_get_contents($path);
+
+        if ($contents === false) {
+            Log::error('seed_cuesheets_data: unable to read seed file', [
+                'path' => $path,
+            ]);
+
+            return [];
+        }
+
+        $decoded = json_decode($contents, true);
+
+        return is_array($decoded) ? $decoded : [];
+    }
+
+    private function resolveJsonPath(string $filename): ?string
+    {
+        $expectedPath = database_path('data/'.$filename);
+
+        if (is_file($expectedPath)) {
+            return $expectedPath;
+        }
+
+        $normalizedFilename = strtolower($filename);
+
+        foreach (glob(database_path('data/*.json')) as $path) {
+            if (strtolower(basename($path)) === $normalizedFilename) {
+                return $path;
+            }
+        }
+
+        return null;
     }
 };
