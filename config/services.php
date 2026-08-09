@@ -39,4 +39,8 @@ return [
         'url' => env('API_BASE_URL'),
     ],
 
+    'external_api' => [
+        'token' => env('EXTERNAL_API_TOKEN'),
+    ],
+
 ];

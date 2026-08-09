@@ -148,8 +148,10 @@ class ContentSync
         $url = $baseUrl.$endpoint;
 
         try {
+            $token = config('services.external_api.token');
             $response = Http::timeout(10)
                 ->acceptJson()
+                ->withToken($token)
                 ->get($url);
 
             if (! $response->successful()) {
