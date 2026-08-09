@@ -38,7 +38,7 @@ class ContentSync
         if ($data === null) {
 
             Log::warning('Cue Sheet sync not performed due to last sync timestamp being too old or no new content available.');
-            dd(' Failed to fetch cuesheet data. Last sync: '.$lastSync);
+            //dd(' Failed to fetch cuesheet data. Last sync: '.$lastSync);
             return 0;
         }
 
