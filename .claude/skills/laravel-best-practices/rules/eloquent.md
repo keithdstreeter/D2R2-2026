@@ -30,8 +30,7 @@ $articles = Article::whereHas('user', function ($q) {
 
 Correct:
 ```php
-#[Scope]
-protected function active(Builder $query): Builder
+public function scopeActive(Builder $query): Builder
 {
     return $query->where('verified', true)->whereNotNull('activated_at');
 }
@@ -59,8 +58,7 @@ class PublishedScope implements Scope
 
 Correct (local scope you opt into):
 ```php
-#[Scope]
-protected function published(Builder $query): Builder
+public function scopePublished(Builder $query): Builder
 {
     return $query->where('published', true);
 }
