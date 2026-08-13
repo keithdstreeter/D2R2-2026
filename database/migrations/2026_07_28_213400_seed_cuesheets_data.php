@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Ride;
 use App\Models\Cuesheet;
+use App\Models\Ride;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Log;
 
@@ -18,7 +18,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        //Ride::query()->delete();
+        // Ride::query()->delete();
         Cuesheet::query()->delete();
     }
 
@@ -26,17 +26,18 @@ return new class extends Migration
     {
 
         // New - load all rides from table and then load each ride json file and insert into cuesheet table
-        //$query = Ride::all();
+        // $query = Ride::all();
         $newCount = 0;
 
         try {
-                
-                $filename = 'cuesheets.json';
-                $data = $this->loadJson($filename);
 
-                foreach ($data as $cuesheetEntry) {
+            $filename = 'cuesheets.json';
+            $data = $this->loadJson($filename);
+
+            foreach ($data as $cuesheetEntry) {
                 $newCuesheetEntry = [
                     'ride' => $cuesheetEntry['ride'],
+                    'turn' => $cuesheetEntry['turn'],
                     'notes' => $cuesheetEntry['notes'],
                     'distance' => $cuesheetEntry['distance'],
                     'completed' => 0,
@@ -45,11 +46,11 @@ return new class extends Migration
                 // Create each cuesheet entry in the database
                 Cuesheet::create($newCuesheetEntry);
             }
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             Log::error('Failed to retrieve rides from json: '.$e->getMessage());
+
             return;
         }
-      
 
         Log::info('Cuesheet sync completed. New entries inserted: '.$newCount);
 
@@ -61,9 +62,7 @@ return new class extends Migration
         //         foreach ($Cuesheet as $RideData) {
 
         //             // Handle ride names from the JSON file that may not match the ride name in the database
-                    
-         
-                    
+
         //             //dd('Short Name: ' . $rideShortName, 'Ride Data Ride: ' . $RideData['ride']);
         //             // $rideShortName = $RideData['ride'];  // This line is no longer needed
         //             $rideShortName = $RideData['ride'];
