@@ -26,40 +26,63 @@ return new class extends Migration
     {
 
         // New - load all rides from table and then load each ride json file and insert into cuesheet table
-        $query = Ride::all();
-        
-        //dd($query);
+        //$query = Ride::all();
+        $newCount = 0;
 
-        foreach ($query as $ride) {
-            try {
-                $filename = 'cuesheet_'.$ride->ride.'.json';
-                $Cuesheet = $this->loadJson($filename);
-                //dump($filename);
-                foreach ($Cuesheet as $RideData) {
+        try {
+                
+                $filename = 'cuesheets.json';
+                $data = $this->loadJson($filename);
 
-                    // Handle ride names from the JSON file that may not match the ride name in the database
+                foreach ($data as $cuesheetEntry) {
+                $newCuesheetEntry = [
+                    'ride' => $cuesheetEntry['ride'],
+                    'notes' => $cuesheetEntry['notes'],
+                    'distance' => $cuesheetEntry['distance'],
+                    'completed' => 0,
+                ];
+                $newCount++;
+                // Create each cuesheet entry in the database
+                Cuesheet::create($newCuesheetEntry);
+            }
+        } catch (\Throwable $e) {
+            Log::error('Failed to retrieve rides from json: '.$e->getMessage());
+            return;
+        }
+      
+
+        Log::info('Cuesheet sync completed. New entries inserted: '.$newCount);
+
+        // foreach ($query as $ride) {
+        //     try {
+        //         $filename = 'cuesheet_'.$ride->ride.'.json';
+        //         $Cuesheet = $this->loadJson($filename);
+        //         //dump($filename);
+        //         foreach ($Cuesheet as $RideData) {
+
+        //             // Handle ride names from the JSON file that may not match the ride name in the database
                     
          
                     
-                    //dd('Short Name: ' . $rideShortName, 'Ride Data Ride: ' . $RideData['ride']);
-                    // $rideShortName = $RideData['ride'];  // This line is no longer needed
-                    $rideShortName = $RideData['ride'];
+        //             //dd('Short Name: ' . $rideShortName, 'Ride Data Ride: ' . $RideData['ride']);
+        //             // $rideShortName = $RideData['ride'];  // This line is no longer needed
+        //             $rideShortName = $RideData['ride'];
 
-                    Cuesheet::query()->updateOrCreate(
-                        [
-                            'ride' => strtolower($rideShortName),
-                            'turn' => $RideData['turn'],
-                            'notes' => $RideData['notes'],
-                            'distance' => $RideData['distance'],
-                            'completed' => 0,
-                        ],
-                    );
-                }
-            } catch (\Throwable $e) {
-                Log::error('Failed to load cuesheet JSON for ride '.$ride->ride.': '.$e->getMessage());
-                continue; // Skip to the next ride if there's an error
-            }
-        }
+        //             Cuesheet::query()->updateOrCreate(
+        //                 [
+        //                     'ride' => strtolower($rideShortName),
+        //                     'turn' => $RideData['turn'],
+        //                     'notes' => $RideData['notes'],
+        //                     'distance' => $RideData['distance'],
+        //                     'completed' => 0,
+        //                 ],
+        //             );
+        //         }
+        //     } catch (\Throwable $e) {
+        //         Log::error('Failed to load cuesheet JSON for ride '.$ride->ride.': '.$e->getMessage());
+        //         continue; // Skip to the next ride if there's an error
+        //     }
+        // }
 
     }
 

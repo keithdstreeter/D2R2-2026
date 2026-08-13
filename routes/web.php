@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Route;
 Route::livewire('/login', 'login-page')->name('login');
 Route::livewire('/register', 'register-page')->name('register');
 
-Route::livewire('/welcome2', function () {
-    // return redirect()->away(config('services.api.url') . '/welcome2');
+// Route::livewire('/welcome2', function () {
+//     // return redirect()->away(config('services.api.url') . '/welcome2');
 
-    $url = config('services.api.url').'/welcome2';
+//     $url = config('services.api.url').'/welcome2';
 
-    return Redirect::to($url);
+//     return Redirect::to($url);
 
-})->name('welcome2');
+// })->name('welcome2');
 
 // IMAGE SHOW
 Route::livewire('/image', 'image')->name('image');

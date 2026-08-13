@@ -42,6 +42,8 @@ class NativeServiceProvider extends ServiceProvider
             BrowserServiceProvider::class,
             PushNotificationsServiceProvider::class,
             NetworkServiceProvider::class,
+            \Native\Mobile\Providers\DeviceServiceProvider::class,
+        
         ];
     }
 }

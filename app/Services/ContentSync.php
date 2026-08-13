@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Cuesheet;
-use App\Models\Question;
-use App\Models\Movie;
 use App\Models\AgeGroup;
+use App\Models\Cuesheet;
+use App\Models\Movie;
+use App\Models\Question;
 use App\Models\Registration;
 use App\Models\UserSetting;
 use Illuminate\Http\Client\ConnectionException;
@@ -21,31 +21,54 @@ class ContentSync
     public function sync(): int
     {
 
-    //dd('ContentSync::sync() called');
+        // dd('ContentSync::sync() called');
 
-    Log::info('ContentSync::sync() called at '. now()->toDateTimeString());
+        Log::info('ContentSync::sync() called at '.now()->toDateTimeString());
         if (! $this->networkStatus->isOnline()) {
             return 0;
         }
 
         $lastSync = UserSetting::get('last_content_sync');
-
+        Log::info('Last content sync timestamp: '.($lastSync ?? 'never'));
 
         // ##############################
         // Cuesheet Sync
         // ##############################
-        $data = $this->fetchCuesheetData($lastSync);
-        if ($data === null) {
+        // $data = $this->fetchCuesheetData($lastSync);
+        // if ($data === null) {
 
-            Log::warning('Cue Sheet sync not performed due to last sync timestamp being too old or no new content available.');
-            //dd(' Failed to fetch cuesheet data. Last sync: '.$lastSync);
-            return 0;
-        }
+        //     Log::warning('Cue Sheet sync not performed due to last sync timestamp being too old or no new content available.');
+        //     //dd(' Failed to fetch cuesheet data. Last sync: '.$lastSync);
+        //     return 0;
+        // }
 
         $newCount = 0;
 
+        try {
+            $baseUrl = config('services.api.url');
+            $url = $baseUrl.'/auth/cuesheets';
+            $query = [];
+            $response = Http::timeout(10)
+                ->acceptJson()
+                ->get($url, $query);
+            $data = $response->json();
+        } catch (\Throwable $e) {
+            Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
+
+            return 0;
+        }
+
+        // $baseUrl = config('services.api.url');
+        // $url = $baseUrl.'/auth/cuesheets';
+        // $query = [];
+        // $response = Http::timeout(10)
+        //         ->acceptJson()
+        //         ->get($url, $query);
+        // $data = $response->json();
+
         if ($data === null) {
             Log::warning('Cuesheet sync not performed due to last sync timestamp being too old or no new content available.');
+
             return 0;
         } else {
             // Clear existing cuesheet entries before inserting new ones
@@ -66,25 +89,38 @@ class ContentSync
             }
             Log::info('Cuesheet sync completed. New entries inserted: '.$newCount);
         }
-       
-
 
         // ##############################
         // Registration Sync
         // ##############################
-        $data = $this->fetchRegistrationData($lastSync);
-        if ($data === null) {
-            Log::warning('Registration sync not performed due to last sync timestamp being too old or no new content available.');
-            return 0;
-        }
+        // $data = $this->fetchRegistrationData($lastSync);
+        // if ($data === null) {
+        //     Log::warning('Registration sync not performed due to last sync timestamp being too old or no new content available.');
+        //     return 0;
+        // }
 
         $newCount = 0;
 
+        try {
+            $baseUrl = config('services.api.url');
+            $url = $baseUrl.'/auth/registrations';
+            $query = [];
+            $response = Http::timeout(10)
+                ->acceptJson()
+                ->get($url, $query);
+            $data = $response->json();
+        } catch (\Throwable $e) {
+            Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
+
+            return 0;
+        }
+
         if ($data === null) {
             Log::warning('Registration sync not performed due to last sync timestamp being too old or no new content available.');
+
             return 0;
         } else {
-            Log::info('Truncating Registration table before inserting new entries.');       
+            Log::info('Truncating Registration table before inserting new entries.');
             // Clear existing registration entries before inserting new ones
             Registration::truncate();
             // Read all registration entries from the fetched data and insert them into the database
@@ -101,11 +137,11 @@ class ContentSync
                     // 'created_at' => $registrationEntry['created_at'],
                     // 'updated_at' => $registrationEntry['updated_at'],
                 ];
-	
+
                 $newCount++;
 
-            // Create each registration entry in the database
-            Registration::create($newRegistrationEntry); 
+                // Create each registration entry in the database
+                Registration::create($newRegistrationEntry);
             }
             Log::info('Registration sync completed. New entries inserted: '.$newCount);
 
@@ -214,13 +250,13 @@ class ContentSync
             return null;
         }
 
-        if (in_array(strtolower($host), ['localhost', '127.0.0.1', '::1'], true) || str_ends_with(strtolower($host), '.test')) {
-            Log::warning('Content sync API host is likely unreachable from a physical device', [
-                'resource' => $resource,
-                'api_base_url' => $baseUrl,
-                'host' => $host,
-            ]);
-        }
+        // if (in_array(strtolower($host), ['localhost', '127.0.0.1', '::1'], true) || str_ends_with(strtolower($host), '.test')) {
+        //     Log::warning('Content sync API host is likely unreachable from a physical device', [
+        //         'resource' => $resource,
+        //         'api_base_url' => $baseUrl,
+        //         'host' => $host,
+        //     ]);
+        // }
 
         return $baseUrl;
     }
@@ -229,8 +265,8 @@ class ContentSync
     protected function fetchQuestions(?string $since): ?array
     {
         try {
-            //Http::baseUrl(config('services.api.url'))
-            //$baseUrl = config('app.url');
+            // Http::baseUrl(config('services.api.url'))
+            // $baseUrl = config('app.url');
             $baseUrl = config('services.api.url');
 
             $url = $baseUrl.'/api/questions';
