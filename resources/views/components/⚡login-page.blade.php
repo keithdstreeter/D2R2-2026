@@ -47,12 +47,12 @@ new #[Title('Login')] class extends Component {
         // Christopher	Capeliini	(914) 419-9634	100k	chris@chriscap.com	3/7/77
         // $this->email = 'kds@kds.com';
         // $this->password = 'password';
-        $this->first_name = 'Keith';
-        $this->last_name = 'Streeter';
-        $this->dob_full = '4/19/63';
-        $this->dob_month = '4';
-        $this->dob_day = '19';
-        $this->dob_year = '1963';
+        // $this->first_name = 'Keith';
+        // $this->last_name = 'Streeter';
+        //$this->dob_full = '4/19/63';
+        //$this->dob_month = '4';
+        //$this->dob_day = '19';
+        //$this->dob_year = '1963';
         //$this->bib = '519';
 
         // Set the guest_user setting to true when the login page is mounted
