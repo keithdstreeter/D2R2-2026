@@ -18,6 +18,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component {
 
     public $updateRideIds = [];
     public ?string $rideShortName = null;
+    public string $displayRideShortName = '';
 
     protected function normalizedRideShortName(): ?string
     {
@@ -51,6 +52,20 @@ new #[Title('Your Ride Cuesheet')] class extends Component {
         // if (! app()->runningUnitTests() && app(NetworkStatus::class)->isOnline()) {
         //     app(ContentSync::class)->sync();
         // }
+
+        // Adjust for display purposes
+        $this->displayRideShortName = $this->rideShortName;
+        if ($this->rideShortName == 'grr+12.7') {
+            $this->displayRideShortName = 'GRR+12.7';
+        } elseif ($this->rideShortName == 'grr') {
+            $this->displayRideShortName = 'GRR';
+        } elseif ($this->rideShortName == 'family-gr') {
+            $this->displayRideShortName = 'Family GR';
+        } elseif ($this->rideShortName == 'family-cb') {
+            $this->displayRideShortName = 'Family CB';
+        } else {
+            $this->displayRideShortName = $this->rideShortName;
+        }
 
         UserSetting::set('last_content_viewed', now()->toIso8601String());
     }
@@ -194,7 +209,7 @@ new #[Title('Your Ride Cuesheet')] class extends Component {
         <div class="mx-auto max-w-lg mt-16">
             {{-- Title and Back Button --}}
             <div class="mb-6 px-4 flex items-center justify-between">
-                <h1 class="text-2xl font-bold text-gray-800">{{ $this->rideShortName }} Cue Sheet</h1>
+                <h1 class="text-2xl font-bold text-gray-800">{{ $this->displayRideShortName }} Cue Sheet</h1>
                 {{-- {{ implode(', ', $this->updateRideIds) }} --}}
 
                 {{-- <button type="button" wire:click="showVals($updateRideIds)">

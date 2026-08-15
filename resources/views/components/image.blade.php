@@ -17,8 +17,20 @@ new #[Title('Map View')] class extends Component {
     {
         // Get the Ride (need better names across the board)
         $this->rideShortName = UserSetting::get('ride_short_name') ?: null;
+
         // Make the Map Name (currently using PNG files)
         $this->image_url = 'map-' . $this->rideShortName . '.png';
+
+        // Adjust for display purposes
+        if ($this->rideShortName == 'grr+12.7') {
+            $this->rideShortName = 'GRR+12.7';
+        } elseif ($this->rideShortName == 'grr') {
+            $this->rideShortName = 'GRR';
+        } elseif ($this->rideShortName == 'family-gr') {
+            $this->rideShortName = 'Family GR';
+        } elseif ($this->rideShortName == 'family-cb') {
+            $this->rideShortName = 'Family CB';
+        }
     }
 };
 ?>

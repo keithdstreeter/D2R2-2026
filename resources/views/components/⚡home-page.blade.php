@@ -14,6 +14,7 @@ new #[Title('D2R2 Rider App')] class extends Component {
     //      public string $savedRide = '';
     public string $savedRideShortName = '';
     public bool $isGuestUser = true;
+    public string $rideShortName = '';
 
     public function mount(): void
     {
@@ -22,6 +23,16 @@ new #[Title('D2R2 Rider App')] class extends Component {
         $savedRideId = UserSetting::get('ride_id');
 
         $savedRideShortName = UserSetting::get('ride_short_name');
+        $this->rideShortName = $savedRideShortName ?? '';
+        if ($this->rideShortName == 'grr+12.7') {
+            $this->rideShortName = 'GRR+12.7';
+        } elseif ($this->rideShortName == 'grr') {
+            $this->rideShortName = 'GRR';
+        } elseif ($this->rideShortName == 'family-gr') {
+            $this->rideShortName = 'Family GR';
+        } elseif ($this->rideShortName == 'family-cb') {
+            $this->rideShortName = 'Family CB';
+        }
 
         $this->savedRide = $savedRide ?? '';
         $this->savedRideShortName = $savedRideShortName ?? '';
@@ -86,7 +97,7 @@ new #[Title('D2R2 Rider App')] class extends Component {
             <h1 class="mb-2 text-5xl font-bold text-[#004030]">
                 D2R2 Rider App
             </h1>
-            <p class="mb-10 text-lg text-[#4a6b66]">Enjoy the {{ $this->savedRideShortName }} ride!</p>
+            <p class="mb-10 text-lg text-[#4a6b66]">Enjoy the {{ $this->rideShortName }} ride!</p>
         </div>
 
         {{-- <h2 class="mb-4 text-xl font-semibold text-[#005040]">Ride Services</h2> --}}
@@ -114,14 +125,14 @@ new #[Title('D2R2 Rider App')] class extends Component {
                 x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                 :class="pressed ? 'scale-95' : 'scale-100'"
                 class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
-                {{ $this->savedRideShortName }} Cue Sheet
+                {{ $this->rideShortName }} Cue Sheet
             </button>
 
             <button wire:key="map" wire:click="routeToPage('map')" x-data="{ pressed: false }"
                 x-on:click="pressed = true; setTimeout(() => pressed = false, 300)"
                 :class="pressed ? 'scale-95' : 'scale-100'"
                 class="w-full min-h-[56px] rounded-2xl border-2 border-[#90b040] bg-[#005040] px-6 py-5 text-lg font-bold text-[#f2f8f5] shadow-md shadow-[#005040]/25 transition-all duration-200 hover:bg-[#004030] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#c0e0f0] focus:ring-offset-2">
-                {{ $this->savedRideShortName }} Map
+                {{ $this->rideShortName }} Map
             </button>
 
             <button wire:key="allroutesmap" wire:click="routeToPage('allroutesmap')" x-data="{ pressed: false }"
