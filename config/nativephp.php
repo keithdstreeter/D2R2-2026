@@ -362,4 +362,27 @@ return [
             'landscape_right' => true,
         ],
     ],
+
+     /*
+    |--------------------------------------------------------------------------
+    | iOS Info.plist Custom Configuration Extensions
+    |--------------------------------------------------------------------------
+    |
+    | NativePHP compiles these entries directly into the native iOS target's 
+    | Info.plist file during the build stage. 
+    |
+    */
+    'ios' => [
+        'info_plist' => [
+            'NSAppTransportSecurity' => [
+                'NSExceptionDomains' => [
+                    'https://nativephp-api-backend-0dqf6dzi.on-forge.com' => [
+                        'NSIncludesSubdomains' => true,
+                        'NSExceptionAllowsInsecureHTTPLoads' => true,
+                        'NSExceptionMinimumTLSVersion' => 'TLSv1.2',
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];
