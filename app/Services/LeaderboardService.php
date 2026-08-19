@@ -7,6 +7,8 @@ use App\Models\PendingSync;
 use App\Models\QuizSession;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Sentry\Severity;
+use Sentry\State\Scope;
 
 class LeaderboardService
 {
@@ -91,8 +93,21 @@ class LeaderboardService
                 ->acceptJson()
                 ->{strtolower($method)}($url, $payload);
 
+            if (! $response->successful()) {
+                \Sentry\withScope(function (Scope $scope) use ($response, $url, $method): void {
+                    $scope->setContext('api_response', [
+                        'url' => $url,
+                        'method' => $method,
+                        'status' => $response->status(),
+                        'body' => $response->body(),
+                    ]);
+                    \Sentry\captureMessage('Leaderboard API request failed', Severity::error());
+                });
+            }
+
             return $response->successful();
         } catch (\Exception $e) {
+            \Sentry\captureException($e);
             Log::warning('Leaderboard API sync failed', [
                 'endpoint' => $endpoint,
                 'error' => $e->getMessage(),
