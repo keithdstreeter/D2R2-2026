@@ -79,13 +79,13 @@ new #[Title('Notify Ride Director')] class extends Component {
 
         if (!$response->successful()) {
             $this->error = $response->json('message') ?? 'Unable to send your message right now.';
-            $this->error = $this->error . $response->getContent();
+            $this->error = $this->error . $response->body();
 
             return;
         }
 
         $this->success = 'Message sent to the Ride Director.';
-        $this->success = $this->success . $response->getContent();
+        //$this->success = $this->success . $response->body();
         $this->message = '';
     }
 
