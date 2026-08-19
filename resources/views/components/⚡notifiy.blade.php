@@ -72,28 +72,19 @@ new #[Title('Notify Ride Director')] class extends Component {
                 'Message' => $this->message,
             ]);
         } catch (ConnectionException $e) {
-            \Sentry\captureException($e);
-            $this->error = 'Unable to send right now. Please check your connection and try again.';
-            return;
+            //$this->error = 'Unable to send right now. Please check your connection and try again.';
+            $this->error = $e->getMessage();
         }
 
         if (!$response->successful()) {
-            \Sentry\withScope(function (\Sentry\State\Scope $scope) use ($response): void {
-                $scope->setContext('api_response', [
-                    'url' => config('services.api.url').'/auth/notifications',
-                    'status' => $response->status(),
-                    'body' => $response->body(),
-                ]);
-                \Sentry\captureMessage('Notification API request failed', \Sentry\Severity::error());
-            });
-            $this->error = $response->json('message') ?? 'Unable to send your message right now.';
-            $this->error = $this->error . $response->body();
-
+            // $this->error = $response->json('message') ?? 'Unable to send your message right now.';
+            // $this->error = $this->error . $response->body();
+            $this->error = $e->getMessage();
             return;
         }
 
         $this->success = 'Message sent to the Ride Director.';
-        //$this->success = $this->success . $response->body();
+        // $this->success = $this->success . $response->body();
         $this->message = '';
     }
 
