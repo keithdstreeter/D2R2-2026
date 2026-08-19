@@ -71,21 +71,20 @@ new #[Title('Notify Ride Director')] class extends Component {
                 'DateSent' => $this->dateSent,
                 'Message' => $this->message,
             ]);
-        } catch (ConnectionException) {
+        } catch (ConnectionException $e) {
             //$this->error = 'Unable to send right now. Please check your connection and try again.';
-            $this->error = $response->body();
-            return;
+            $this->error = $e->getMessage();
         }
 
         if (!$response->successful()) {
-            $this->error = $response->json('message') ?? 'Unable to send your message right now.';
-            $this->error = $this->error . $response->body();
-
+            // $this->error = $response->json('message') ?? 'Unable to send your message right now.';
+            // $this->error = $this->error . $response->body();
+            $this->error = $e->getMessage();
             return;
         }
 
         $this->success = 'Message sent to the Ride Director.';
-        //$this->success = $this->success . $response->body();
+        // $this->success = $this->success . $response->body();
         $this->message = '';
     }
 
