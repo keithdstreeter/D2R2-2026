@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Sentry\Severity;
+use Sentry\State\Scope;
 use Symfony\Component\HttpFoundation\Response;
 
 class Authenticated
@@ -65,8 +67,19 @@ class Authenticated
                 return true;
             }
 
+            \Sentry\withScope(function (Scope $scope) use ($response): void {
+                $scope->setContext('api_response', [
+                    'url' => config('services.api.url').'/auth/me',
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+                \Sentry\captureMessage('Token verification returned non-successful response', Severity::error());
+            });
+
             return false;
-        } catch (ConnectionException) {
+        } catch (ConnectionException $e) {
+            \Sentry\captureException($e);
+
             $verifiedAt = session('token_verified_at');
 
             if (! $verifiedAt || now()->diffInHours($verifiedAt) >= self::OFFLINE_GRACE_PERIOD_HOURS) {
