@@ -35,6 +35,8 @@ new #[Title('All Routes Map')] class extends Component {
         </div>
     </div>
 
+    {{-- <p>Path to image is: {{ $this->image_url }}</p>
+    <p>Full path is: {{ 'images/' . $this->image_url }}</p> --}}
     {{-- Images are not showing in the simulator --}}
     <img src="{{ asset('images/' . $this->image_url) }}" alt="Photo"
         class="h-auto w-full max-w-none [touch-action:pinch-zoom]">

@@ -18,7 +18,7 @@ new #[Title('Fairgrounds Info')] class extends Component {
         // Get the Ride (need better names across the board)
         //$this->ride_id = UserSetting::get('ride') ?: null;
         // Make the Map Name (currently using PNG files)
-        $this->map1_url = 'D2R2 Fairgrounds Map Update.png';
+        $this->image_url = 'fair.png';
 
         // $this->map2_url = 'D2R2 Map.png';
 
@@ -41,9 +41,18 @@ new #[Title('Fairgrounds Info')] class extends Component {
 
     {{-- Images are not showing in the simulator --}}
     {{-- <p>Overhead Satellite View</p> --}}
-    <img src="{{ asset('images/' . $this->map1_url) }}" alt="Photo"
+    {{-- <img src="{{ asset('images/' . $this->map) }}" alt="Photo"
         class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
-    <br>
+    <br> --}}
+    {{-- 
+    <p>Path to image is: {{ $this->image_url }}</p>
+    <p>Full path is: {{ 'images/' . $this->image_url }}</p> --}}
+
+
+    <img src="{{ asset('images/' . $this->image_url) }}" alt="Photo"
+        class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
+
+
     {{-- <p>Angle Overhead View</p>
     <img src="{{ asset('images/' . $this->map2_url) }}" alt="Photo"
         class="h-auto w-full max-w-none [touch-action:pinch-zoom]">

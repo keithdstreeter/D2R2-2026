@@ -50,10 +50,12 @@ new #[Title('Notify Ride Director')] class extends Component {
         $this->validate();
 
         try {
-            $baseUrl = rtrim((string) config('services.api.url', 'http://localhost'), '/');
-            $endpoint = $baseUrl !== '' ? $baseUrl . '/auth/notifications' : 'http://localhost/auth/notifications';
+            // $baseUrl = rtrim((string) config('services.api.url', 'http://localhost'), '/');
+            // $endpoint = $baseUrl !== '' ? $baseUrl . '/auth/notifications' : 'http://localhost/auth/notifications';
 
-            //$baseUrl = config('services.api.url');
+            $baseUrl = config('services.api.url');
+            $endpoint = $baseUrl . '/auth/notifications';
+
             //$response = Http::api()->post($baseUrl . '/auth/notifications', [
 
             $this->dateSent = now()->toIso8601String();
@@ -70,18 +72,20 @@ new #[Title('Notify Ride Director')] class extends Component {
                 'Message' => $this->message,
             ]);
         } catch (ConnectionException) {
-            $this->error = 'Unable to send right now. Please check your connection and try again.';
-
+            //$this->error = 'Unable to send right now. Please check your connection and try again.';
+            $this->error = $response->body();
             return;
         }
 
         if (!$response->successful()) {
             $this->error = $response->json('message') ?? 'Unable to send your message right now.';
+            $this->error = $this->error . $response->getContent();
 
             return;
         }
 
         $this->success = 'Message sent to the Ride Director.';
+        $this->success = $this->success . $response->getContent();
         $this->message = '';
     }
 
@@ -136,6 +140,9 @@ new #[Title('Notify Ride Director')] class extends Component {
             @if ($error)
                 <div class="mb-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
                     {{ $error }}
+                </div>
+                <div class="mb-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                    {{ $this->getErrorBag() }}
                 </div>
             @endif
 
