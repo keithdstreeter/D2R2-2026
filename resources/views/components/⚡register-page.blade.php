@@ -57,6 +57,15 @@ new #[Title('Register')] class extends Component
             return;
         }
 
+        \Sentry\withScope(function (\Sentry\State\Scope $scope) use ($response): void {
+            $scope->setContext('api_response', [
+                'url' => config('services.api.url').'/auth/register',
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ]);
+            \Sentry\captureMessage('Registration API request failed', \Sentry\Severity::error());
+        });
+
         $this->error = $response->json('message') ?? 'Registration failed. Please try again.';
     }
 };

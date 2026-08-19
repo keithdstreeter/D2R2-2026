@@ -11,6 +11,8 @@ use App\Models\UserSetting;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Sentry\Severity;
+use Sentry\State\Scope;
 
 class ContentSync
 {
@@ -51,8 +53,24 @@ class ContentSync
             $response = Http::timeout(10)
                 ->acceptJson()
                 ->get($url, $query);
+
+            if (! $response->successful()) {
+                \Sentry\withScope(function (Scope $scope) use ($response, $url): void {
+                    $scope->setContext('api_response', [
+                        'url' => $url,
+                        'status' => $response->status(),
+                        'body' => $response->body(),
+                    ]);
+                    \Sentry\captureMessage('Cuesheet API request failed', Severity::error());
+                });
+                Log::error('Cuesheet API request failed', ['status' => $response->status(), 'body' => $response->body()]);
+
+                return 0;
+            }
+
             $data = $response->json();
         } catch (\Throwable $e) {
+            \Sentry\captureException($e);
             Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
 
             return 0;
@@ -108,8 +126,24 @@ class ContentSync
             $response = Http::timeout(10)
                 ->acceptJson()
                 ->get($url, $query);
+
+            if (! $response->successful()) {
+                \Sentry\withScope(function (Scope $scope) use ($response, $url): void {
+                    $scope->setContext('api_response', [
+                        'url' => $url,
+                        'status' => $response->status(),
+                        'body' => $response->body(),
+                    ]);
+                    \Sentry\captureMessage('Registration API request failed', Severity::error());
+                });
+                Log::error('Registration API request failed', ['status' => $response->status(), 'body' => $response->body()]);
+
+                return 0;
+            }
+
             $data = $response->json();
         } catch (\Throwable $e) {
+            \Sentry\captureException($e);
             Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
 
             return 0;
