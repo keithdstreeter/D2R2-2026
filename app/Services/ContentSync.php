@@ -46,35 +46,36 @@ class ContentSync
 
         $newCount = 0;
 
-        try {
-            $baseUrl = config('services.api.url');
-            $url = $baseUrl.'/auth/cuesheets';
-            $query = [];
-            $response = Http::timeout(10)
-                ->acceptJson()
-                ->get($url, $query);
+        // THIS BLOCK WAS THE ORIGINAL IMPLEMENTATION OF THE CUESHEET SYNC, COMMENTED OUT FOR REFERENCE
+        // try {
+        //     $baseUrl = config('services.api.url');
+        //     $url = $baseUrl.'/auth/cuesheets';
+        //     $query = [];
+        //     $response = Http::timeout(10)
+        //         ->acceptJson()
+        //         ->get($url, $query);
 
-            if (! $response->successful()) {
-                \Sentry\withScope(function (Scope $scope) use ($response, $url): void {
-                    $scope->setContext('api_response', [
-                        'url' => $url,
-                        'status' => $response->status(),
-                        'body' => $response->body(),
-                    ]);
-                    \Sentry\captureMessage('Cuesheet API request failed', Severity::error());
-                });
-                Log::error('Cuesheet API request failed', ['status' => $response->status(), 'body' => $response->body()]);
+        //     if (! $response->successful()) {
+        //         \Sentry\withScope(function (Scope $scope) use ($response, $url): void {
+        //             $scope->setContext('api_response', [
+        //                 'url' => $url,
+        //                 'status' => $response->status(),
+        //                 'body' => $response->body(),
+        //             ]);
+        //             \Sentry\captureMessage('Cuesheet API request failed', Severity::error());
+        //         });
+        //         Log::error('Cuesheet API request failed', ['status' => $response->status(), 'body' => $response->body()]);
 
-                return 0;
-            }
+        //         return 0;
+        //     }
 
-            $data = $response->json();
-        } catch (\Throwable $e) {
-            \Sentry\captureException($e);
-            Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
+        //     $data = $response->json();
+        // } catch (\Throwable $e) {
+        //     \Sentry\captureException($e);
+        //     Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
 
-            return 0;
-        }
+        //     return 0;
+        // }
 
         // $baseUrl = config('services.api.url');
         // $url = $baseUrl.'/auth/cuesheets';
@@ -84,29 +85,29 @@ class ContentSync
         //         ->get($url, $query);
         // $data = $response->json();
 
-        if ($data === null) {
-            Log::warning('Cuesheet sync not performed due to last sync timestamp being too old or no new content available.');
+        // if ($data === null) {
+        //     Log::warning('Cuesheet sync not performed due to last sync timestamp being too old or no new content available.');
 
-            return 0;
-        } else {
-            // Clear existing cuesheet entries before inserting new ones
-            Log::info('Truncating Cuesheet table before inserting new entries.');
-            Cuesheet::truncate();
-            // Read all cuesheet entries from the fetched data and insert them into the database
-            foreach ($data as $cuesheetEntry) {
-                $newCuesheetEntry = [
-                    'ride' => $cuesheetEntry['ride'],
-                    'turn' => $cuesheetEntry['turn'],
-                    'notes' => $cuesheetEntry['notes'],
-                    'distance' => $cuesheetEntry['distance'],
-                    'completed' => $cuesheetEntry['completed'],
-                ];
-                $newCount++;
-                // Create each cuesheet entry in the database
-                Cuesheet::create($newCuesheetEntry);
-            }
-            Log::info('Cuesheet sync completed. New entries inserted: '.$newCount);
-        }
+        //     return 0;
+        // } else {
+        //     // Clear existing cuesheet entries before inserting new ones
+        //     Log::info('Truncating Cuesheet table before inserting new entries.');
+        //     Cuesheet::truncate();
+        //     // Read all cuesheet entries from the fetched data and insert them into the database
+        //     foreach ($data as $cuesheetEntry) {
+        //         $newCuesheetEntry = [
+        //             'ride' => $cuesheetEntry['ride'],
+        //             'turn' => $cuesheetEntry['turn'],
+        //             'notes' => $cuesheetEntry['notes'],
+        //             'distance' => $cuesheetEntry['distance'],
+        //             'completed' => $cuesheetEntry['completed'],
+        //         ];
+        //         $newCount++;
+        //         // Create each cuesheet entry in the database
+        //         Cuesheet::create($newCuesheetEntry);
+        //     }
+        //     Log::info('Cuesheet sync completed. New entries inserted: '.$newCount);
+        // }
 
         // ##############################
         // Registration Sync
@@ -119,70 +120,71 @@ class ContentSync
 
         $newCount = 0;
 
-        try {
-            $baseUrl = config('services.api.url');
-            $url = $baseUrl.'/auth/registrations';
-            $query = [];
-            $response = Http::timeout(10)
-                ->acceptJson()
-                ->get($url, $query);
+        // 
+        // try {
+        //     $baseUrl = config('services.api.url');
+        //     $url = $baseUrl.'/auth/registrations';
+        //     $query = [];
+        //     $response = Http::timeout(10)
+        //         ->acceptJson()
+        //         ->get($url, $query);
 
-            if (! $response->successful()) {
-                \Sentry\withScope(function (Scope $scope) use ($response, $url): void {
-                    $scope->setContext('api_response', [
-                        'url' => $url,
-                        'status' => $response->status(),
-                        'body' => $response->body(),
-                    ]);
-                    \Sentry\captureMessage('Registration API request failed', Severity::error());
-                });
-                Log::error('Registration API request failed', ['status' => $response->status(), 'body' => $response->body()]);
+        //     if (! $response->successful()) {
+        //         \Sentry\withScope(function (Scope $scope) use ($response, $url): void {
+        //             $scope->setContext('api_response', [
+        //                 'url' => $url,
+        //                 'status' => $response->status(),
+        //                 'body' => $response->body(),
+        //             ]);
+        //             \Sentry\captureMessage('Registration API request failed', Severity::error());
+        //         });
+        //         Log::error('Registration API request failed', ['status' => $response->status(), 'body' => $response->body()]);
 
-                return 0;
-            }
+        //         return 0;
+        //     }
 
-            $data = $response->json();
-        } catch (\Throwable $e) {
-            \Sentry\captureException($e);
-            Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
+        //     $data = $response->json();
+        // } catch (\Throwable $e) {
+        //     \Sentry\captureException($e);
+        //     Log::error('Failed to retrieve cuesheet data from API: '.$e->getMessage());
 
-            return 0;
-        }
+        //     return 0;
+        // }
 
-        if ($data === null) {
-            Log::warning('Registration sync not performed due to last sync timestamp being too old or no new content available.');
+        // if ($data === null) {
+        //     Log::warning('Registration sync not performed due to last sync timestamp being too old or no new content available.');
 
-            return 0;
-        } else {
-            Log::info('Truncating Registration table before inserting new entries.');
-            // Clear existing registration entries before inserting new ones
-            Registration::truncate();
-            // Read all registration entries from the fetched data and insert them into the database
-            foreach ($data as $registrationEntry) {
-                $newRegistrationEntry = [
-                    'bib' => $registrationEntry['bib'],
-                    'first_name' => $registrationEntry['first_name'],
-                    'last_name' => $registrationEntry['last_name'],
-                    'phone' => $registrationEntry['phone'],
-                    'category_entered' => $registrationEntry['category_entered'],
-                    'email' => $registrationEntry['email'],
-                    'dob' => $registrationEntry['dob'],
-                    'gender' => $registrationEntry['gender'],
-                    // 'created_at' => $registrationEntry['created_at'],
-                    // 'updated_at' => $registrationEntry['updated_at'],
-                ];
+        //     return 0;
+        // } else {
+        //     Log::info('Truncating Registration table before inserting new entries.');
+        //     // Clear existing registration entries before inserting new ones
+        //     Registration::truncate();
+        //     // Read all registration entries from the fetched data and insert them into the database
+        //     foreach ($data as $registrationEntry) {
+        //         $newRegistrationEntry = [
+        //             'bib' => $registrationEntry['bib'],
+        //             'first_name' => $registrationEntry['first_name'],
+        //             'last_name' => $registrationEntry['last_name'],
+        //             'phone' => $registrationEntry['phone'],
+        //             'category_entered' => $registrationEntry['category_entered'],
+        //             'email' => $registrationEntry['email'],
+        //             'dob' => $registrationEntry['dob'],
+        //             'gender' => $registrationEntry['gender'],
+        //             // 'created_at' => $registrationEntry['created_at'],
+        //             // 'updated_at' => $registrationEntry['updated_at'],
+        //         ];
 
-                $newCount++;
+        //         $newCount++;
 
-                // Create each registration entry in the database
-                Registration::create($newRegistrationEntry);
-            }
-            Log::info('Registration sync completed. New entries inserted: '.$newCount);
+        //         // Create each registration entry in the database
+        //         Registration::create($newRegistrationEntry);
+        //     }
+        //     Log::info('Registration sync completed. New entries inserted: '.$newCount);
 
-            UserSetting::set('last_content_sync', now()->toDateTimeString());
+        //     UserSetting::set('last_content_sync', now()->toDateTimeString());
 
             return $newCount;
-        }
+    // }   
     }
 
     public function hasNewContent(): bool

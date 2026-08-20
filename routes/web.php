@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::livewire('/login', 'login-page')->name('login');
-Route::livewire('/register', 'register-page')->name('register');
+// Route::livewire('/register', 'register-page')->name('register');
 
 // Route::livewire('/welcome2', function () {
 //     // return redirect()->away(config('services.api.url') . '/welcome2');

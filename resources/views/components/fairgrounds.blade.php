@@ -49,8 +49,7 @@ new #[Title('Fairgrounds Info')] class extends Component {
     <p>Full path is: {{ 'images/' . $this->image_url }}</p> --}}
 
 
-    <img src="{{ asset('images/' . $this->image_url) }}" alt="Photo"
-        class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
+    <img src="{{ asset('images/fair.png') }}" alt="Photo" class="h-auto w-full max-w-none [touch-action:pinch-zoom]">
 
 
     {{-- <p>Angle Overhead View</p>
